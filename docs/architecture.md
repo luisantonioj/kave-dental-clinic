@@ -40,6 +40,15 @@ populated layouts, but production uses the repository records and currently
 renders the documented safe states because no service image, transformation,
 or promotion is approved for publication.
 
+The services route is also assembled entirely from Server Components. Qualified
+editorial copy and repeatable consultation points live in the typed
+`src/content/services-page.ts` module. Its laboratory story accepts only an
+explicitly approved typed record; production currently passes `null` and
+renders a neutral verification state instead of implying that a facility,
+professional, process, or turnaround promise exists. Decorative route artwork
+is CSS-only while publication permission for the Figma photography remains
+unresolved.
+
 ## Planned frontend structure
 
 ```text

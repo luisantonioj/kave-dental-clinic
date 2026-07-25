@@ -154,6 +154,30 @@ the service grid progresses through one, two, and four columns without forced
 heading line breaks. CSS-only art direction preserves the composition without
 introducing unapproved imagery.
 
+## Implemented services route
+
+The services route preserves the Zirconia Specialists frame's dark editorial
+hero, asymmetric veneer section, four-part crown anatomy sequence, contrasting
+laboratory block, and final consultation call to action. Its production content
+is deliberately narrower than the Figma concept:
+
+- The hero identifies featured zirconia and dental services while requiring an
+  individual consultation for suitability, limitations, and planning.
+- The veneer section presents assessment and discussion topics rather than
+  material-performance or outcome promises.
+- The crown anatomy labels remain complete text records, so their meaning does
+  not depend on the decorative crown silhouette.
+- The laboratory section currently renders a prominent approval state. It does
+  not publish facility, personnel, production, or turnaround details.
+- Both actions lead to the static `/booking` experience and transmit no data.
+- Patient photography is replaced by CSS-only abstract compositions until each
+  asset has documented publication permission.
+
+The unverified chip-proof, durability, decades-long, perfect-fit, 48-hour,
+same-day, master-ceramist, in-house-laboratory, outcome-statistic, and
+perfection language from Figma is omitted. Route metadata uses neutral
+consultation language and makes no treatment guarantee.
+
 ## Responsive interpretation
 
 Use content-driven breakpoints; Tailwind's defaults are starting points rather

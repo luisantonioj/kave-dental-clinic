@@ -74,19 +74,19 @@ are not authorized implementation work.
 
 ## 4. Services route
 
-- [ ] Implement the responsive services editorial hero.
+- [x] Implement the responsive services editorial hero.
   **Accept when:** the visual hierarchy reflects the Zirconia Specialists frame
   and approved, qualified copy replaces unsupported promises.
-- [ ] Implement zirconia veneer benefits from approved content.
+- [x] Implement zirconia veneer benefits from approved content.
   **Accept when:** the section is responsive, accessible, and contains no
   “chip-proof,” lifetime, or guaranteed-result claim without approval.
-- [ ] Implement the crown anatomy section.
+- [x] Implement the crown anatomy section.
   **Accept when:** structure and labels remain understandable without imagery
   and all clinical copy has been approved.
-- [ ] Implement the laboratory/story section with a safe empty-state variant.
+- [x] Implement the laboratory/story section with a safe empty-state variant.
   **Accept when:** unverified in-house laboratory claims can be omitted without
   breaking the page.
-- [ ] Complete services calls to action, metadata, and tests.
+- [x] Complete services calls to action, metadata, and tests.
   **Accept when:** CTAs lead to the static booking route, metadata is unique,
   and responsive and keyboard checks pass.
 
