@@ -239,6 +239,8 @@ than a reason to force a layout transition.
 - Replace desktop navigation with an accessible disclosure menu.
 - Allow display text to reflow naturally without manual `<br>` elements that
   create awkward wrapping.
+- Keep the display type token's mobile floor small enough for the longest
+  approved single word to fit at 360px without clipping or forced word breaks.
 - Stack service and contact cards.
 - Use horizontally scrollable galleries only when the controls and item
   position are accessible; otherwise use a vertical sequence.

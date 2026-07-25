@@ -221,13 +221,15 @@ intentional departures in [`design.md`](design.md).
 
 ## Metadata and rendering
 
-- Define shared metadata defaults in the root layout and unique titles and
-  descriptions per route.
+- Define shared metadata defaults and social-preview fields through
+  `src/lib/metadata.ts`, with unique titles and descriptions supplied by each
+  route.
 - Use canonical URLs only after the production domain is approved.
 - Generate static output where possible; avoid client-side fetching for local
   content.
-- Use valid structured data only for verified business facts. Do not publish
-  unverified staff, ratings, prices, or medical claims as schema.
+- Keep structured data in `src/content/structured-data.ts` and render it from
+  the root layout. Use only verified business facts; do not publish unverified
+  staff, ratings, prices, or medical claims as schema.
 
 ## Testing strategy
 

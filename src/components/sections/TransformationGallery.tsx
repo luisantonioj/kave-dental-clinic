@@ -50,7 +50,6 @@ export function TransformationGallery({ records }: TransformationGalleryProps) {
                   <ResponsiveImage
                     className="h-full min-h-[24rem] object-cover"
                     image={transformation.image}
-                    priority={index === 0}
                     sizes={
                       index === 0
                         ? "(min-width: 1024px) 66vw, (min-width: 768px) 100vw, 100vw"

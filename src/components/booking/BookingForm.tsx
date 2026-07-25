@@ -40,7 +40,7 @@ const FIELD_ORDER: readonly BookingFieldName[] = [
 ];
 
 const INPUT_CLASSES =
-  "min-h-control w-full rounded-control border border-border-strong bg-surface-inverse px-cluster py-control-y text-body text-text-inverse placeholder:text-text-inverse-muted focus:border-action focus:outline-none focus:ring-[length:var(--focus-ring-width)] focus:ring-focus aria-[invalid=true]:border-error";
+  "min-h-control w-full rounded-control border border-border-strong bg-surface-inverse px-cluster py-control-y text-body text-text-inverse placeholder:text-text-inverse-muted focus:border-action focus:outline-none focus:ring-[length:var(--focus-ring-width)] focus:ring-focus aria-[invalid=true]:border-error-inverse";
 
 export function validateBookingValues(
   values: BookingFormValues,
@@ -164,7 +164,10 @@ export function BookingForm() {
             value={values.fullName}
           />
           {errors.fullName ? (
-            <p className="mt-inline text-label text-error" id="fullName-error">
+            <p
+              className="mt-inline text-label text-error-inverse"
+              id="fullName-error"
+            >
               {errors.fullName}
             </p>
           ) : null}
@@ -197,7 +200,10 @@ export function BookingForm() {
             value={values.email}
           />
           {errors.email ? (
-            <p className="mt-inline text-label text-error" id="email-error">
+            <p
+              className="mt-inline text-label text-error-inverse"
+              id="email-error"
+            >
               {errors.email}
             </p>
           ) : null}
@@ -230,7 +236,10 @@ export function BookingForm() {
             value={values.phone}
           />
           {errors.phone ? (
-            <p className="mt-inline text-label text-error" id="phone-error">
+            <p
+              className="mt-inline text-label text-error-inverse"
+              id="phone-error"
+            >
               {errors.phone}
             </p>
           ) : null}
@@ -267,7 +276,10 @@ export function BookingForm() {
             ))}
           </select>
           {errors.serviceId ? (
-            <p className="mt-inline text-label text-error" id="serviceId-error">
+            <p
+              className="mt-inline text-label text-error-inverse"
+              id="serviceId-error"
+            >
               {errors.serviceId}
             </p>
           ) : null}
@@ -302,7 +314,7 @@ export function BookingForm() {
           />
           {errors.preferredDate ? (
             <p
-              className="mt-inline text-label text-error"
+              className="mt-inline text-label text-error-inverse"
               id="preferredDate-error"
             >
               {errors.preferredDate}
@@ -339,7 +351,7 @@ export function BookingForm() {
           />
           {errors.preferredTime ? (
             <p
-              className="mt-inline text-label text-error"
+              className="mt-inline text-label text-error-inverse"
               id="preferredTime-error"
             >
               {errors.preferredTime}
@@ -386,7 +398,7 @@ export function BookingForm() {
           aria-live={status === "invalid" ? "assertive" : "polite"}
           className={`mt-stack border p-cluster ${
             status === "invalid"
-              ? "border-error text-text-inverse"
+              ? "border-error-inverse text-text-inverse"
               : "border-action bg-action/10 text-text-inverse"
           }`}
           ref={statusRef}

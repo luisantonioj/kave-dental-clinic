@@ -6,6 +6,14 @@ import { NAV_ITEMS } from "../../content/navigation";
 import { SiteHeader } from "./SiteHeader";
 
 describe("SiteHeader", () => {
+  it("provides a first-focus skip link to the page main content", () => {
+    render(<SiteHeader />);
+
+    expect(
+      screen.getByRole("link", { name: "Skip to main content" }),
+    ).toHaveAttribute("href", "#main-content");
+  });
+
   it("links to every planned route from the primary navigation", () => {
     render(<SiteHeader />);
 

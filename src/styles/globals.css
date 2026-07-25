@@ -14,7 +14,7 @@
   --color-text-inverse: #ffffff;
   --color-text-inverse-muted: #cac8ac;
   --color-border: #d8d6cc;
-  --color-border-strong: #353535;
+  --color-border-strong: #66665f;
   --color-action: #ece924;
   --color-action-hover: #f5f238;
   --color-action-active: #d9d61a;
@@ -23,6 +23,7 @@
   --color-success: #1f7a4c;
   --color-warning: #8a5a00;
   --color-error: #b42318;
+  --color-error-inverse: #ff8a80;
   --color-disabled: #77766d;
 
   --spacing-inline: 0.5rem;
@@ -45,7 +46,7 @@
   --radius-image: 0.75rem;
   --radius-pill: 9999px;
 
-  --text-display: clamp(3rem, 8vw, 7.5rem);
+  --text-display: clamp(2.25rem, 8vw, 7.5rem);
   --text-display--line-height: 0.94;
   --text-display--letter-spacing: -0.05em;
   --text-heading: clamp(2rem, 5vw, 4rem);
@@ -84,6 +85,8 @@
 
   html {
     background: var(--color-surface);
+    scroll-padding-bottom: var(--spacing-stack);
+    scroll-padding-top: calc(var(--spacing-header) + var(--spacing-cluster));
     scroll-behavior: smooth;
   }
 
@@ -98,6 +101,7 @@
   :focus-visible {
     outline: var(--focus-ring-width) solid var(--color-focus);
     outline-offset: var(--focus-ring-offset);
+    scroll-margin-block: calc(var(--spacing-header) + var(--spacing-cluster));
   }
 
   ::selection {

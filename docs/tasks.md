@@ -133,25 +133,25 @@ are not authorized implementation work.
 
 ## 7. Site-wide quality
 
-- [ ] Audit semantic structure and heading hierarchy across all routes.
+- [x] Audit semantic structure and heading hierarchy across all routes.
   **Accept when:** each page has one meaningful `h1` and logical landmarks and
   headings.
-- [ ] Audit keyboard and visible-focus behavior.
+- [x] Audit keyboard and visible-focus behavior.
   **Accept when:** every action is reachable and operable without a pointer and
   focus is never obscured.
-- [ ] Audit WCAG 2.2 AA contrast and reduced-motion behavior.
+- [x] Audit WCAG 2.2 AA contrast and reduced-motion behavior.
   **Accept when:** text and controls meet contrast requirements and disabling
   motion loses no information.
-- [ ] Audit responsive behavior at 360px, 768px, 1280px, and 1440px.
+- [x] Audit responsive behavior at 360px, 768px, 1280px, and 1440px.
   **Accept when:** no route has horizontal page scrolling, overlap, clipping,
   or unreachable content.
-- [ ] Audit metadata, social previews, and verified structured data.
+- [x] Audit metadata, social previews, and verified structured data.
   **Accept when:** each route has accurate unique metadata and structured data
   contains only approved facts.
-- [ ] Audit image performance and page stability.
+- [x] Audit image performance and page stability.
   **Accept when:** priority is limited to critical imagery, responsive sizes
   are accurate, and images cause no material layout shift.
-- [ ] Run the full release check.
+- [x] Run the full release check.
   **Accept when:** formatting, lint, type-check, unit/component tests,
   Playwright tests, and the production build all pass.
 

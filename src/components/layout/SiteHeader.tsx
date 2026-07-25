@@ -7,6 +7,12 @@ import { MobileNavigation } from "./MobileNavigation";
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border-strong bg-surface-inverse/95 text-text-inverse backdrop-blur-sm">
+      <a
+        className="fixed left-cluster top-cluster z-[60] inline-flex min-h-control -translate-y-[200%] items-center rounded-control bg-action px-card-x py-control-y text-label font-bold uppercase tracking-label text-action-contrast transition-transform focus:translate-y-0 focus:outline-none focus:ring-[length:var(--focus-ring-width)] focus:ring-focus focus:ring-offset-[length:var(--focus-ring-offset)]"
+        href="#main-content"
+      >
+        Skip to main content
+      </a>
       <div className="relative mx-auto flex min-h-header w-full max-w-wide items-center justify-between gap-cluster px-gutter">
         <Link
           aria-label="Kave Dental Clinic home"

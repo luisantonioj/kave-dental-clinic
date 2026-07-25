@@ -3,16 +3,20 @@ import type { Metadata } from "next";
 import { BookingContactCards } from "../../components/booking/BookingContactCards";
 import { BookingForm } from "../../components/booking/BookingForm";
 import { BookingLocation } from "../../components/booking/BookingLocation";
+import { createPageMetadata } from "../../lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Explore Booking | Kave Dental Clinic",
-  description:
-    "Explore Kave Dental Clinic's non-submitting booking fields and use verified Quezon City contact information.",
-};
+export const metadata: Metadata = createPageMetadata(
+  "Explore Booking | Kave Dental Clinic",
+  "Explore Kave Dental Clinic's non-submitting booking fields and use verified Quezon City contact information.",
+);
 
 export default function BookingPage() {
   return (
-    <main className="bg-surface-inverse text-text-inverse">
+    <main
+      className="bg-surface-inverse text-text-inverse"
+      id="main-content"
+      tabIndex={-1}
+    >
       <section
         aria-labelledby="booking-heading"
         className="px-gutter pb-section pt-section"

@@ -24,5 +24,7 @@ describe("ResponsiveImage", () => {
     expect(image).toHaveAttribute("width", "1200");
     expect(image).toHaveAttribute("height", "800");
     expect(image).toHaveAttribute("sizes", "(min-width: 768px) 50vw, 100vw");
+    expect(image).toHaveAttribute("loading", "lazy");
+    expect(image).not.toHaveAttribute("fetchpriority", "high");
   });
 });
