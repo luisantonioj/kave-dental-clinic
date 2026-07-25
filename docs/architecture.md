@@ -58,6 +58,14 @@ fabricated cards or imagery. The editorial gallery is a responsive static list;
 no carousel or gallery interaction is retained. The closing action is a link to
 the non-submitting `/booking` route and contains no fields.
 
+The booking page keeps its static shell, verified contact cards, and location
+content as Server Components. `BookingForm` is the only Client Component on the
+route. Its controlled values, presentation-only errors, and result status exist
+only in React memory. The form has no `action`; its submit event is intercepted,
+and a valid presentation state says that online booking is coming soon, no
+appointment was created, and no details were sent. Refreshing or remounting
+returns every field to its empty initial state.
+
 ## Planned frontend structure
 
 ```text

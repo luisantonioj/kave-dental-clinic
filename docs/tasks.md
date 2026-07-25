@@ -110,24 +110,24 @@ are not authorized implementation work.
 
 ## 6. Static booking route
 
-- [ ] Implement the booking page shell, clinic details, and direct-contact
+- [x] Implement the booking page shell, clinic details, and direct-contact
   cards.
   **Accept when:** all facts match `docs/context.md`, layout is responsive, and
   direct contacts include no entered form values.
-- [ ] Implement labelled booking fields with in-memory state only.
+- [x] Implement labelled booking fields with in-memory state only.
   **Accept when:** labels, autocomplete, descriptions, and keyboard order are
   correct and refresh clears all values.
-- [ ] Implement accessible presentation-only validation.
+- [x] Implement accessible presentation-only validation.
   **Accept when:** errors are associated with fields, announced appropriately,
   and tested without transmitting values.
-- [ ] Implement the non-submitting final action and status.
+- [x] Implement the non-submitting final action and status.
   **Accept when:** the UI says online booking is coming soon, never claims an
   appointment exists, and no form action, server action, or API route exists.
-- [ ] Add a Playwright privacy-boundary test.
+- [x] Add a Playwright privacy-boundary test.
   **Accept when:** entering distinctive values and activating every booking
   control causes no request, URL, storage, cookie, console log, or analytics
   payload containing those values.
-- [ ] Complete booking metadata and responsive tests.
+- [x] Complete booking metadata and responsive tests.
   **Accept when:** mobile, tablet, and desktop layouts pass and all controls
   remain reachable at 200% zoom.
 

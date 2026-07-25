@@ -203,6 +203,31 @@ descriptions, “real patients, real results” language, ten-shade and alignmen
 claims, award and installment-plan claims, response-time promise, and “smiles
 of the week” framing are not published.
 
+## Implemented booking route
+
+The booking route preserves the Bookings frame's oversized editorial heading,
+two-column form and information composition, stacked contact cards, and closing
+location section. It adapts all behavior and factual content to the static
+milestone:
+
+- The route displays only the shared verified phone, hours, address, Instagram,
+  and Facebook destinations. The conflicting Figma address, email, operating
+  days, and establishment year are omitted.
+- The form has persistent labels, instructions, error relationships,
+  autocomplete hints, logical keyboard order, and adequate control targets.
+- Values and validation state exist only in the narrow client form's memory.
+  The form has no action and its submit event is always intercepted.
+- Invalid attempts focus the first field needing attention and announce that no
+  information was sent.
+- A complete demonstration state says online booking is coming soon, no
+  appointment was created, and no details were sent.
+- The location visual is CSS-only. Figma's dashboard/map image and all
+  unapproved staff portraits are not deployed.
+
+The fictional doctor profiles, “confirm appointment” wording, flagship and
+boutique claims, and any implication of live availability or reservation are
+not published.
+
 ## Responsive interpretation
 
 Use content-driven breakpoints; Tailwind's defaults are starting points rather
