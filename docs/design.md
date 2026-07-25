@@ -98,6 +98,36 @@ may remain local when they do not represent a system rule.
 
 Motion should clarify state, stay subtle, and have a reduced-motion equivalent.
 
+## Implemented shared foundation
+
+The shared implementation consolidates measurements repeated across the
+1280px Figma frames into semantic tokens in `src/styles/globals.css`:
+
+- Anybody is the display face, loaded through `next/font` with Arial Black,
+  Arial, and generic sans-serif fallbacks.
+- Manrope is the body face, loaded through `next/font` with Arial, Helvetica,
+  and generic sans-serif fallbacks.
+- Both fonts use `display: swap`, preloading, and Next.js fallback adjustment
+  to reserve text metrics and avoid a font-loading layout shift.
+- The 80px desktop gutter, 1120px content width, 1440px wide container,
+  80px navigation height, shared card/control spacing, fine borders, and pill
+  action radius are represented by semantic tokens.
+- Color tokens cover page, raised, and inverse surfaces; primary and muted
+  text; subtle and strong borders; action, focus, success, warning, error, and
+  disabled states.
+- Motion duration and easing tokens are overridden under
+  `prefers-reduced-motion`, with no information depending on animation.
+
+Shared header and footer components follow the Figma hierarchy but use the
+verified navigation and clinic content. Unverified doctor links, newsletter
+collection, empty policy links, conflicting operating days, and stale
+copyright text are intentionally omitted.
+
+Approved image records carry source, alt text, and intrinsic width and height.
+The reusable responsive image treatment requires a `sizes` declaration and
+uses `next/image`; route work must still choose purposeful alt text and limit
+priority loading to critical imagery.
+
 ## Responsive interpretation
 
 Use content-driven breakpoints; Tailwind's defaults are starting points rather

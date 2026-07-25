@@ -26,30 +26,30 @@ are not authorized implementation work.
 
 ## 2. Design system and shared content
 
-- [ ] Establish approved font loading and the semantic type scale.
+- [x] Establish approved font loading and the semantic type scale.
   **Accept when:** display and body styles render without layout shift and have
   documented fallbacks.
-- [ ] Define color, spacing, layout, border, radius, and motion tokens from
+- [x] Define color, spacing, layout, border, radius, and motion tokens from
   repeated Figma values.
   **Accept when:** tokens cover the shared primitives in `docs/design.md`,
   reduced motion is supported, and repeated raw values are avoided.
-- [ ] Add typed navigation and verified clinic contact content.
+- [x] Add typed navigation and verified clinic contact content.
   **Accept when:** TypeScript enforces route and contact shapes and all rendered
   facts match `docs/context.md`.
-- [ ] Add typed services, transformations, and promotions content modules.
+- [x] Add typed services, transformations, and promotions content modules.
   **Accept when:** unapproved entries cannot render as approved production
   content and transformation records require a consent reference.
-- [ ] Implement accessible shared button and text-link treatments.
+- [x] Implement accessible shared button and text-link treatments.
   **Accept when:** variants support hover, focus-visible, active, and disabled
   states with keyboard and component tests.
-- [ ] Implement responsive `SiteHeader` and mobile navigation.
+- [x] Implement responsive `SiteHeader` and mobile navigation.
   **Accept when:** all four routes are reachable, the disclosure is
   keyboard-accessible, focus behavior is tested, and no horizontal overflow
   occurs.
-- [ ] Implement `SiteFooter` using verified contact and social details.
+- [x] Implement `SiteFooter` using verified contact and social details.
   **Accept when:** every route renders identical verified information and no
   empty policy or newsletter action is exposed.
-- [ ] Add approved image handling conventions and a reusable responsive image
+- [x] Add approved image handling conventions and a reusable responsive image
   treatment.
   **Accept when:** images use `next/image`, reserve dimensions, declare sizes,
   and follow the alt-text rules.

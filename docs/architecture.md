@@ -122,6 +122,14 @@ Only approved promotions may render in a production build. Transformation
 content requires a non-empty consent reference kept in the approved content
 workflow; the public site must not expose that internal reference.
 
+The implemented content modules use discriminated approval states and export
+approved-content selectors. Pending services may remain in the planning
+catalog without an approved image, while an approved service requires an
+`ApprovedImage`. Approved transformations require an image and a non-empty
+`consent:` reference; selectors reject pending records and empty references.
+Pending and expired promotions are likewise excluded by the production
+selector. No transformation or promotion is currently approved for rendering.
+
 The static booking UI may use:
 
 ```ts
