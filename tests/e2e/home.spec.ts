@@ -28,9 +28,29 @@ test("renders the shared layout without horizontal overflow", async ({
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "Kave Dental Clinic",
+      name: "Your ticket to a picture-perfect smile",
     }),
   ).toBeVisible();
+  await expect(page).toHaveTitle("Kave Dental Clinic | Services and Contact");
+
+  const hero = page.locator("main section").first();
+  await expect(
+    hero.getByRole("link", { name: "Explore booking" }),
+  ).toHaveAttribute("href", "/booking");
+  await expect(
+    hero.getByRole("link", {
+      name: "View transformations",
+    }),
+  ).toHaveAttribute("href", "/transformations");
+  await expect(
+    page.getByText(
+      "Detailed service cards are awaiting clinic-approved images and wording.",
+    ),
+  ).toBeVisible();
+  await expect(
+    page.getByText("No transformation media is approved for publication yet."),
+  ).toBeVisible();
+  await expect(page.getByText(/500\+|PHP 4,000/i)).toHaveCount(0);
 
   const headerRoutes = await page
     .getByRole("banner")
@@ -54,6 +74,21 @@ test("renders the shared layout without horizontal overflow", async ({
     await page.keyboard.press("Escape");
     await expect(menuButton).toBeFocused();
   }
+
+  let reachedHeroAction = false;
+  for (let tabIndex = 0; tabIndex < 12; tabIndex += 1) {
+    await page.keyboard.press("Tab");
+    reachedHeroAction = await page.evaluate(
+      () =>
+        document.activeElement?.textContent
+          ?.trim()
+          .includes("Explore booking") ?? false,
+    );
+    if (reachedHeroAction) {
+      break;
+    }
+  }
+  expect(reachedHeroAction).toBe(true);
 
   const hasHorizontalOverflow = await page.evaluate(
     () =>

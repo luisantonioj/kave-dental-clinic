@@ -33,6 +33,13 @@ static booking form's presentation and validation states.
 Shared navigation and footer belong to the root layout. Route-specific sections
 remain within their route until their reuse is demonstrated.
 
+The home route is assembled from Server Components. Its featured-service,
+transformation-preview, and promotion sections read only through the approved
+content selectors. Test fixtures may pass approved records directly to verify
+populated layouts, but production uses the repository records and currently
+renders the documented safe states because no service image, transformation,
+or promotion is approved for publication.
+
 ## Planned frontend structure
 
 ```text

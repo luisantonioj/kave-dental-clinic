@@ -128,6 +128,32 @@ The reusable responsive image treatment requires a `sizes` declaration and
 uses `next/image`; route work must still choose purposeful alt text and limit
 priority loading to critical imagery.
 
+## Implemented home route
+
+The home route preserves the Home frame's dark editorial hero, oversized
+display hierarchy, dual calls to action, service grid, transformation preview,
+and full-width closing banner. It adapts rather than publishes unverified
+Figma material:
+
+- The verified public tagline supplies the `h1`; supporting copy is neutral and
+  directs visitors to services, approved work, and verified contact details.
+- No Figma patient, treatment, or promotional image is deployed without a
+  documented local approval.
+- The service grid supports one through four approved cards, while production
+  displays an explicit approval state until both wording and images are
+  approved.
+- The transformation preview renders only consented records and exposes no
+  internal consent reference. Its production state contains no patient media.
+- An approved promotion can render its title and details. Pending, expired, or
+  absent promotions render a non-promotional verified-contact banner instead.
+- Figma's patient imagery, outcome language, `500+` count, PHP 4,000 price,
+  included benefits, and seasonal framing are not published.
+
+At narrow widths, the hero actions and section content stack into one column;
+the service grid progresses through one, two, and four columns without forced
+heading line breaks. CSS-only art direction preserves the composition without
+introducing unapproved imagery.
+
 ## Responsive interpretation
 
 Use content-driven breakpoints; Tailwind's defaults are starting points rather

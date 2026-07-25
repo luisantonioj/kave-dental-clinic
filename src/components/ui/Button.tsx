@@ -3,7 +3,7 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 import type { AppRoute } from "../../content/navigation";
 
-export type ButtonVariant = "primary" | "secondary";
+export type ButtonVariant = "primary" | "secondary" | "inverse";
 
 const BASE_CLASSES =
   "inline-flex min-h-control items-center justify-center gap-inline rounded-control border px-card-x py-control-y text-label font-bold uppercase tracking-label transition-colors [transition-duration:var(--motion-duration-fast)] [transition-timing-function:var(--motion-easing-standard)] focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus focus-visible:ring-offset-[length:var(--focus-ring-offset)] disabled:cursor-not-allowed disabled:opacity-50 active:translate-y-px";
@@ -13,6 +13,8 @@ const VARIANT_CLASSES: Record<ButtonVariant, string> = {
     "border-action bg-action text-action-contrast hover:border-action-hover hover:bg-action-hover active:border-action-active active:bg-action-active disabled:hover:border-action disabled:hover:bg-action",
   secondary:
     "border-border-strong bg-transparent text-text hover:bg-surface-raised active:bg-border disabled:hover:bg-transparent",
+  inverse:
+    "border-text-inverse bg-transparent text-text-inverse hover:bg-surface-inverse-raised active:bg-border-strong disabled:hover:bg-transparent",
 };
 
 function joinClassNames(...classNames: ReadonlyArray<string | undefined>) {

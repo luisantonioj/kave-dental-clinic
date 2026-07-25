@@ -56,19 +56,19 @@ are not authorized implementation work.
 
 ## 3. Home route
 
-- [ ] Implement the responsive home hero and primary calls to action.
+- [x] Implement the responsive home hero and primary calls to action.
   **Accept when:** hierarchy matches Figma, CTAs lead to `/booking` and
   `/transformations`, and mobile text reflows without forced desktop breaks.
-- [ ] Implement the featured-services section from typed content.
+- [x] Implement the featured-services section from typed content.
   **Accept when:** cards adapt from one to four columns without clipping and
   service links use valid routes.
-- [ ] Implement the approved transformation preview.
+- [x] Implement the approved transformation preview.
   **Accept when:** only consented assets render and the gallery CTA leads to
   `/transformations`.
-- [ ] Implement conditional promotional content.
+- [x] Implement conditional promotional content.
   **Accept when:** an approved active promotion renders accessibly and a
   pending, expired, or absent promotion leaves a coherent layout.
-- [ ] Complete home-route metadata and tests.
+- [x] Complete home-route metadata and tests.
   **Accept when:** metadata is unique, keyboard navigation works, responsive
   Playwright coverage passes, and the route has no unverified claims.
 
