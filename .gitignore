@@ -1,0 +1,21 @@
+# dependencies
+/node_modules
+
+# Next.js generated output
+/.next
+/out
+next-env.d.ts
+
+# test output
+/coverage
+/playwright-report
+/test-results
+
+# local tooling
+*.tsbuildinfo
+
+# logs
+npm-debug.log*
+
+# environment files are intentionally unsupported in this milestone
+.env*

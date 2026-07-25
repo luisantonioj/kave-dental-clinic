@@ -9,19 +9,19 @@ are not authorized implementation work.
 
 ## 1. Frontend foundation
 
-- [ ] Scaffold Next.js App Router with TypeScript strict mode and npm.
+- [x] Scaffold Next.js App Router with TypeScript strict mode and npm.
   **Accept when:** `/` renders from `src/app`, `npm run dev` works, and no
   Firebase package or environment variable exists.
-- [ ] Add Tailwind CSS and semantic global-token wiring.
+- [x] Add Tailwind CSS and semantic global-token wiring.
   **Accept when:** a documented CSS variable is consumed through Tailwind and
   no route-specific UI is introduced.
-- [ ] Configure ESLint and Prettier with non-mutating check scripts.
+- [x] Configure ESLint and Prettier with non-mutating check scripts.
   **Accept when:** `npm run lint` and `npm run format:check` pass.
-- [ ] Add `npm run typecheck` and production build scripts.
+- [x] Add `npm run typecheck` and production build scripts.
   **Accept when:** both commands pass on the scaffold.
-- [ ] Configure Vitest, React Testing Library, and shared test setup.
+- [x] Configure Vitest, React Testing Library, and shared test setup.
   **Accept when:** one meaningful smoke test passes through `npm run test`.
-- [ ] Configure Playwright with mobile and desktop projects.
+- [x] Configure Playwright with mobile and desktop projects.
   **Accept when:** one route smoke test passes through `npm run test:e2e`.
 
 ## 2. Design system and shared content
