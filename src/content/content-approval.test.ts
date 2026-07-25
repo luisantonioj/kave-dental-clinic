@@ -1,7 +1,9 @@
 import { getApprovedPromotions, type Promotion } from "./promotions";
 import { getApprovedServices, type Service } from "./services";
 import {
+  getApprovedPatientStories,
   getApprovedTransformations,
+  type PatientStory,
   type Transformation,
 } from "./transformations";
 import { describe, expect, it } from "vitest";
@@ -66,6 +68,38 @@ describe("production content approval filters", () => {
 
     expect(getApprovedTransformations(records).map(({ id }) => id)).toEqual([
       "consented",
+    ]);
+  });
+
+  it("requires approved patient-story wording with a consent reference", () => {
+    const records = [
+      {
+        id: "consented-story",
+        title: "Consented test story",
+        summary: "Test-only approved summary.",
+        treatment: "Test treatment",
+        status: "approved",
+        consentReference: "consent:test-story",
+      },
+      {
+        id: "missing-reference",
+        title: "Invalid test story",
+        summary: "Test-only invalid summary.",
+        treatment: "Test treatment",
+        status: "approved",
+        consentReference: "consent:",
+      },
+      {
+        id: "pending-story",
+        title: "Pending test story",
+        summary: "Test-only pending summary.",
+        treatment: "Test treatment",
+        status: "pending-approval",
+      },
+    ] as const satisfies readonly PatientStory[];
+
+    expect(getApprovedPatientStories(records).map(({ id }) => id)).toEqual([
+      "consented-story",
     ]);
   });
 

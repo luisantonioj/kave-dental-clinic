@@ -49,6 +49,15 @@ professional, process, or turnaround promise exists. Decorative route artwork
 is CSS-only while publication permission for the Figma photography remains
 unresolved.
 
+The transformations route remains a static Server Component composition. Both
+gallery records and patient stories use discriminated approval states and
+require a non-empty internal `consent:` reference before their public content
+can render. The reference itself is never exposed. Production currently has no
+approved records, so both sections render explanatory empty states without
+fabricated cards or imagery. The editorial gallery is a responsive static list;
+no carousel or gallery interaction is retained. The closing action is a link to
+the non-submitting `/booking` route and contains no fields.
+
 ## Planned frontend structure
 
 ```text

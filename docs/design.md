@@ -178,6 +178,31 @@ same-day, master-ceramist, in-house-laboratory, outcome-statistic, and
 perfection language from Figma is omitted. Route metadata uses neutral
 consultation language and makes no treatment guarantee.
 
+## Implemented transformations route
+
+The transformations route preserves the Transformations frame's centered dark
+hero, editorial bento rhythm, contrasting patient-story area, and bright
+closing call to action. It changes the content and interaction where approval
+or privacy boundaries require it:
+
+- The gallery and optional patient stories render only typed records that have
+  approved status and a non-empty consent reference.
+- Each approved gallery image requires intrinsic dimensions and purposeful alt
+  text through the shared image contract. Internal consent references never
+  render.
+- Production currently shows clear image-free and story-free states because no
+  patient record is approved for publication.
+- The gallery is a responsive static list. No carousel or video control is
+  retained, so there is no hidden or non-functional interaction.
+- The closing section links to `/booking`; the Figma lead form is omitted and
+  the Transformations route collects no personal information.
+- CSS-only abstract art direction replaces the unapproved hero photograph.
+
+Figma's named patients, portrait and treatment media, patient quote, outcome
+descriptions, “real patients, real results” language, ten-shade and alignment
+claims, award and installment-plan claims, response-time promise, and “smiles
+of the week” framing are not published.
+
 ## Responsive interpretation
 
 Use content-driven breakpoints; Tailwind's defaults are starting points rather

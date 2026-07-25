@@ -92,19 +92,19 @@ are not authorized implementation work.
 
 ## 5. Transformations route
 
-- [ ] Implement the transformation gallery from typed, consented records.
+- [x] Implement the transformation gallery from typed, consented records.
   **Accept when:** the layout is responsive, all images have purposeful alt
   text, and unapproved records cannot render.
-- [ ] Implement optional patient-story cards.
+- [x] Implement optional patient-story cards.
   **Accept when:** the section handles zero or multiple approved stories without
   fabricated filler content.
-- [ ] Implement accessible gallery interaction if interaction is retained.
+- [x] Implement accessible gallery interaction if interaction is retained.
   **Accept when:** controls are labelled, keyboard-operable, announce position,
   honor reduced motion, and have component tests.
-- [ ] Implement the consultation call to action without an active lead form.
+- [x] Implement the consultation call to action without an active lead form.
   **Accept when:** it links to `/booking` or verified direct contact and collects
   no personal information.
-- [ ] Complete transformation metadata and tests.
+- [x] Complete transformation metadata and tests.
   **Accept when:** Playwright covers empty and populated approved-content states
   at mobile and desktop widths.
 
