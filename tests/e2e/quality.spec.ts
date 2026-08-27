@@ -27,7 +27,7 @@ const ROUTES = [
     path: "/transformations",
     title: "Transformation Gallery | Kave Dental Clinic",
     description:
-      "View consented transformation content from Kave Dental Clinic when approved for publication, and explore consultation information.",
+      "View consented transformation content and curated official social posts from Kave Dental Clinic.",
     heading: "Transformation gallery",
   },
   {
@@ -338,6 +338,27 @@ test("reduced motion preserves content and pages remain visually stable", async 
       page.getByRole("heading", { level: 1, name: route.heading }),
     ).toBeVisible();
 
+    await expect
+      .poll(() =>
+        page.evaluate(() =>
+          getComputedStyle(document.documentElement)
+            .getPropertyValue("--motion-duration-fast")
+            .trim(),
+        ),
+      )
+      .toMatch(/ms$/);
+    await expect
+      .poll(() =>
+        page.evaluate(() =>
+          Number.parseFloat(
+            getComputedStyle(document.documentElement)
+              .getPropertyValue("--motion-duration-fast")
+              .trim(),
+          ),
+        ),
+      )
+      .toBe(0.01);
+
     const qualityMetrics = await page.evaluate(() => {
       const rootStyle = getComputedStyle(document.documentElement);
       const images = Array.from(document.images).map((image) => ({
@@ -358,14 +379,10 @@ test("reduced motion preserves content and pages remain visually stable", async 
         layoutShift: window.__qualityLayoutShift ?? 0,
         mainTextLength:
           document.querySelector("main")?.textContent?.trim().length ?? 0,
-        motionDuration: rootStyle
-          .getPropertyValue("--motion-duration-fast")
-          .trim(),
         scrollBehavior: rootStyle.scrollBehavior,
       };
     });
 
-    expect(qualityMetrics.motionDuration).toBe("0.01ms");
     expect(qualityMetrics.scrollBehavior).toBe("auto");
     expect(qualityMetrics.mainTextLength).toBeGreaterThan(100);
     expect(qualityMetrics.imageIssues).toBe(0);

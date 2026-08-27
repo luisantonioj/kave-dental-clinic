@@ -4,7 +4,9 @@ export interface ContactDetails {
   address: string;
   hours: string;
   facebookUrl: `https://${string}`;
+  facebookReelsUrl?: `https://${string}`;
   instagramUrl: `https://${string}`;
+  instagramReelsUrl?: `https://${string}`;
 }
 
 export interface ClinicDetails extends ContactDetails {
@@ -20,5 +22,8 @@ export const CLINIC_DETAILS = {
   address: "128 Mindanao Avenue, Tandang Sora, Quezon City",
   hours: "Open daily, 10:00 AM–7:00 PM",
   facebookUrl: "https://www.facebook.com/profile.php?id=61551864636049",
+  facebookReelsUrl:
+    "https://www.facebook.com/profile.php?id=61551864636049&sk=reels_tab",
   instagramUrl: "https://www.instagram.com/kavedentalclinic/",
+  instagramReelsUrl: "https://www.instagram.com/kavedentalclinic/reels/",
 } as const satisfies ClinicDetails;

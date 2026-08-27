@@ -9,166 +9,174 @@ are not authorized implementation work.
 
 ## 1. Frontend foundation
 
-- [x] Scaffold Next.js App Router with TypeScript strict mode and npm.
-  **Accept when:** `/` renders from `src/app`, `npm run dev` works, and no
-  Firebase package or environment variable exists.
-- [x] Add Tailwind CSS and semantic global-token wiring.
-  **Accept when:** a documented CSS variable is consumed through Tailwind and
-  no route-specific UI is introduced.
-- [x] Configure ESLint and Prettier with non-mutating check scripts.
-  **Accept when:** `npm run lint` and `npm run format:check` pass.
-- [x] Add `npm run typecheck` and production build scripts.
-  **Accept when:** both commands pass on the scaffold.
-- [x] Configure Vitest, React Testing Library, and shared test setup.
-  **Accept when:** one meaningful smoke test passes through `npm run test`.
-- [x] Configure Playwright with mobile and desktop projects.
-  **Accept when:** one route smoke test passes through `npm run test:e2e`.
+- [x] Scaffold Next.js App Router with TypeScript strict mode and npm. **Accept
+      when:** `/` renders from `src/app`, `npm run dev` works, and no Firebase
+      package or environment variable exists.
+- [x] Add Tailwind CSS and semantic global-token wiring. **Accept when:** a
+      documented CSS variable is consumed through Tailwind and no route-specific
+      UI is introduced.
+- [x] Configure ESLint and Prettier with non-mutating check scripts. **Accept
+      when:** `npm run lint` and `npm run format:check` pass.
+- [x] Add `npm run typecheck` and production build scripts. **Accept when:**
+      both commands pass on the scaffold.
+- [x] Configure Vitest, React Testing Library, and shared test setup. **Accept
+      when:** one meaningful smoke test passes through `npm run test`.
+- [x] Configure Playwright with mobile and desktop projects. **Accept when:**
+      one route smoke test passes through `npm run test:e2e`.
 
 ## 2. Design system and shared content
 
-- [x] Establish approved font loading and the semantic type scale.
-  **Accept when:** display and body styles render without layout shift and have
-  documented fallbacks.
+- [x] Establish approved font loading and the semantic type scale. **Accept
+      when:** display and body styles render without layout shift and have
+      documented fallbacks.
 - [x] Define color, spacing, layout, border, radius, and motion tokens from
-  repeated Figma values.
-  **Accept when:** tokens cover the shared primitives in `docs/design.md`,
-  reduced motion is supported, and repeated raw values are avoided.
-- [x] Add typed navigation and verified clinic contact content.
-  **Accept when:** TypeScript enforces route and contact shapes and all rendered
-  facts match `docs/context.md`.
+      repeated Figma values. **Accept when:** tokens cover the shared primitives
+      in `docs/design.md`, reduced motion is supported, and repeated raw values
+      are avoided.
+- [x] Add typed navigation and verified clinic contact content. **Accept when:**
+      TypeScript enforces route and contact shapes and all rendered facts match
+      `docs/context.md`.
 - [x] Add typed services, transformations, and promotions content modules.
-  **Accept when:** unapproved entries cannot render as approved production
-  content and transformation records require a consent reference.
-- [x] Implement accessible shared button and text-link treatments.
-  **Accept when:** variants support hover, focus-visible, active, and disabled
-  states with keyboard and component tests.
-- [x] Implement responsive `SiteHeader` and mobile navigation.
-  **Accept when:** all four routes are reachable, the disclosure is
-  keyboard-accessible, focus behavior is tested, and no horizontal overflow
-  occurs.
-- [x] Implement `SiteFooter` using verified contact and social details.
-  **Accept when:** every route renders identical verified information and no
-  empty policy or newsletter action is exposed.
+      **Accept when:** unapproved entries cannot render as approved production
+      content and transformation records require a consent reference.
+- [x] Implement accessible shared button and text-link treatments. **Accept
+      when:** variants support hover, focus-visible, active, and disabled states
+      with keyboard and component tests.
+- [x] Implement responsive `SiteHeader` and mobile navigation. **Accept when:**
+      all four routes are reachable, the disclosure is keyboard-accessible,
+      focus behavior is tested, and no horizontal overflow occurs.
+- [x] Implement `SiteFooter` using verified contact and social details. **Accept
+      when:** every route renders identical verified information and no empty
+      policy or newsletter action is exposed.
 - [x] Add approved image handling conventions and a reusable responsive image
-  treatment.
-  **Accept when:** images use `next/image`, reserve dimensions, declare sizes,
-  and follow the alt-text rules.
+      treatment. **Accept when:** images use `next/image`, reserve dimensions,
+      declare sizes, and follow the alt-text rules.
 
 ## 3. Home route
 
-- [x] Implement the responsive home hero and primary calls to action.
-  **Accept when:** hierarchy matches Figma, CTAs lead to `/booking` and
-  `/transformations`, and mobile text reflows without forced desktop breaks.
-- [x] Implement the featured-services section from typed content.
-  **Accept when:** cards adapt from one to four columns without clipping and
-  service links use valid routes.
-- [x] Implement the approved transformation preview.
-  **Accept when:** only consented assets render and the gallery CTA leads to
-  `/transformations`.
-- [x] Implement conditional promotional content.
-  **Accept when:** an approved active promotion renders accessibly and a
-  pending, expired, or absent promotion leaves a coherent layout.
-- [x] Complete home-route metadata and tests.
-  **Accept when:** metadata is unique, keyboard navigation works, responsive
-  Playwright coverage passes, and the route has no unverified claims.
+- [x] Implement the responsive home hero and primary calls to action. **Accept
+      when:** hierarchy matches Figma, CTAs lead to `/booking` and
+      `/transformations`, and mobile text reflows without forced desktop breaks.
+- [x] Implement the featured-services section from typed content. **Accept
+      when:** cards adapt from one to four columns without clipping and service
+      links use valid routes.
+- [x] Implement the approved transformation preview. **Accept when:** only
+      consented assets render and the gallery CTA leads to `/transformations`.
+- [x] Implement conditional promotional content. **Accept when:** an approved
+      active promotion renders accessibly and a pending, expired, or absent
+      promotion leaves a coherent layout.
+- [x] Complete home-route metadata and tests. **Accept when:** metadata is
+      unique, keyboard navigation works, responsive Playwright coverage passes,
+      and the route has no unverified claims.
 
 ## 4. Services route
 
-- [x] Implement the responsive services editorial hero.
-  **Accept when:** the visual hierarchy reflects the Zirconia Specialists frame
-  and approved, qualified copy replaces unsupported promises.
-- [x] Implement zirconia veneer benefits from approved content.
-  **Accept when:** the section is responsive, accessible, and contains no
-  “chip-proof,” lifetime, or guaranteed-result claim without approval.
-- [x] Implement the crown anatomy section.
-  **Accept when:** structure and labels remain understandable without imagery
-  and all clinical copy has been approved.
+- [x] Implement the responsive services editorial hero. **Accept when:** the
+      visual hierarchy reflects the Zirconia Specialists frame and approved,
+      qualified copy replaces unsupported promises.
+- [x] Implement zirconia veneer benefits from approved content. **Accept when:**
+      the section is responsive, accessible, and contains no “chip-proof,”
+      lifetime, or guaranteed-result claim without approval.
+- [x] Implement the crown anatomy section. **Accept when:** structure and labels
+      remain understandable without imagery and all clinical copy has been
+      approved.
 - [x] Implement the laboratory/story section with a safe empty-state variant.
-  **Accept when:** unverified in-house laboratory claims can be omitted without
-  breaking the page.
-- [x] Complete services calls to action, metadata, and tests.
-  **Accept when:** CTAs lead to the static booking route, metadata is unique,
-  and responsive and keyboard checks pass.
+      **Accept when:** unverified in-house laboratory claims can be omitted
+      without breaking the page.
+- [x] Complete services calls to action, metadata, and tests. **Accept when:**
+      CTAs lead to the static booking route, metadata is unique, and responsive
+      and keyboard checks pass.
 
 ## 5. Transformations route
 
 - [x] Implement the transformation gallery from typed, consented records.
-  **Accept when:** the layout is responsive, all images have purposeful alt
-  text, and unapproved records cannot render.
-- [x] Implement optional patient-story cards.
-  **Accept when:** the section handles zero or multiple approved stories without
-  fabricated filler content.
+      **Accept when:** the layout is responsive, all images have purposeful alt
+      text, and unapproved records cannot render.
+- [x] Implement optional patient-story cards. **Accept when:** the section
+      handles zero or multiple approved stories without fabricated filler
+      content.
 - [x] Implement accessible gallery interaction if interaction is retained.
-  **Accept when:** controls are labelled, keyboard-operable, announce position,
-  honor reduced motion, and have component tests.
+      **Accept when:** controls are labelled, keyboard-operable, announce
+      position, honor reduced motion, and have component tests.
 - [x] Implement the consultation call to action without an active lead form.
-  **Accept when:** it links to `/booking` or verified direct contact and collects
-  no personal information.
-- [x] Complete transformation metadata and tests.
-  **Accept when:** Playwright covers empty and populated approved-content states
-  at mobile and desktop widths.
+      **Accept when:** it links to `/booking` or verified direct contact and
+      collects no personal information.
+- [x] Complete transformation metadata and tests. **Accept when:** Playwright
+      covers empty and populated approved-content states at mobile and desktop
+      widths.
 
 ## 6. Static booking route
 
 - [x] Implement the booking page shell, clinic details, and direct-contact
-  cards.
-  **Accept when:** all facts match `docs/context.md`, layout is responsive, and
-  direct contacts include no entered form values.
-- [x] Implement labelled booking fields with in-memory state only.
-  **Accept when:** labels, autocomplete, descriptions, and keyboard order are
-  correct and refresh clears all values.
-- [x] Implement accessible presentation-only validation.
-  **Accept when:** errors are associated with fields, announced appropriately,
-  and tested without transmitting values.
-- [x] Implement the non-submitting final action and status.
-  **Accept when:** the UI says online booking is coming soon, never claims an
-  appointment exists, and no form action, server action, or API route exists.
-- [x] Add a Playwright privacy-boundary test.
-  **Accept when:** entering distinctive values and activating every booking
-  control causes no request, URL, storage, cookie, console log, or analytics
-  payload containing those values.
-- [x] Complete booking metadata and responsive tests.
-  **Accept when:** mobile, tablet, and desktop layouts pass and all controls
-  remain reachable at 200% zoom.
+      cards. **Accept when:** all facts match `docs/context.md`, layout is
+      responsive, and direct contacts include no entered form values.
+- [x] Implement labelled booking fields with in-memory state only. **Accept
+      when:** labels, autocomplete, descriptions, and keyboard order are correct
+      and refresh clears all values.
+- [x] Implement accessible presentation-only validation. **Accept when:** errors
+      are associated with fields, announced appropriately, and tested without
+      transmitting values.
+- [x] Implement the non-submitting final action and status. **Accept when:** the
+      UI says online booking is coming soon, never claims an appointment exists,
+      and no form action, server action, or API route exists.
+- [x] Add a Playwright privacy-boundary test. **Accept when:** entering
+      distinctive values and activating every booking control causes no request,
+      URL, storage, cookie, console log, or analytics payload containing those
+      values.
+- [x] Complete booking metadata and responsive tests. **Accept when:** mobile,
+      tablet, and desktop layouts pass and all controls remain reachable at 200%
+      zoom.
 
 ## 7. Site-wide quality
 
-- [x] Audit semantic structure and heading hierarchy across all routes.
-  **Accept when:** each page has one meaningful `h1` and logical landmarks and
-  headings.
-- [x] Audit keyboard and visible-focus behavior.
-  **Accept when:** every action is reachable and operable without a pointer and
-  focus is never obscured.
-- [x] Audit WCAG 2.2 AA contrast and reduced-motion behavior.
-  **Accept when:** text and controls meet contrast requirements and disabling
-  motion loses no information.
-- [x] Audit responsive behavior at 360px, 768px, 1280px, and 1440px.
-  **Accept when:** no route has horizontal page scrolling, overlap, clipping,
-  or unreachable content.
-- [x] Audit metadata, social previews, and verified structured data.
-  **Accept when:** each route has accurate unique metadata and structured data
-  contains only approved facts.
-- [x] Audit image performance and page stability.
-  **Accept when:** priority is limited to critical imagery, responsive sizes
-  are accurate, and images cause no material layout shift.
-- [x] Run the full release check.
-  **Accept when:** formatting, lint, type-check, unit/component tests,
-  Playwright tests, and the production build all pass.
+- [x] Audit semantic structure and heading hierarchy across all routes. **Accept
+      when:** each page has one meaningful `h1` and logical landmarks and
+      headings.
+- [x] Audit keyboard and visible-focus behavior. **Accept when:** every action
+      is reachable and operable without a pointer and focus is never obscured.
+- [x] Audit WCAG 2.2 AA contrast and reduced-motion behavior. **Accept when:**
+      text and controls meet contrast requirements and disabling motion loses no
+      information.
+- [x] Audit responsive behavior at 360px, 768px, 1280px, and 1440px. **Accept
+      when:** no route has horizontal page scrolling, overlap, clipping, or
+      unreachable content.
+- [x] Audit metadata, social previews, and verified structured data. **Accept
+      when:** each route has accurate unique metadata and structured data
+      contains only approved facts.
+- [x] Audit image performance and page stability. **Accept when:** priority is
+      limited to critical imagery, responsive sizes are accurate, and images
+      cause no material layout shift.
+- [x] Run the full release check. **Accept when:** formatting, lint, type-check,
+      unit/component tests, Playwright tests, and the production build all pass.
 
 ## 8. Content and launch approval
 
 - [ ] Obtain written approval for final clinic contact details and hours.
-  **Accept when:** the approval source and review date are recorded in the
-  project's approved content workflow.
+      **Accept when:** the approval source and review date are recorded in the
+      project's approved content workflow.
 - [ ] Resolve every row in the `docs/design.md` content-verification table.
-  **Accept when:** each item is approved with evidence, replaced by neutral
-  approved copy, or omitted.
-- [ ] Obtain publication permission for every patient and staff image.
-  **Accept when:** each deployed asset maps to a documented approval and
-  appropriate alt text.
-- [ ] Complete a production-content review with the clinic.
-  **Accept when:** no preview marker, fictional profile, unsupported claim,
-  expired promotion, or placeholder link remains.
+      **Accept when:** each item is approved with evidence, replaced by neutral
+      approved copy, or omitted.
+- [ ] Obtain publication permission for every patient and staff image. **Accept
+      when:** each deployed asset maps to a documented approval and appropriate
+      alt text.
+- [ ] Complete a production-content review with the clinic. **Accept when:** no
+      preview marker, fictional profile, unsupported claim, expired promotion,
+      or placeholder link remains.
+
+## 9. Curated social feed
+
+- [x] Add typed, consent-gated Facebook and Instagram records with strict URL
+      normalization, chronological ordering, and cross-post handling. **Accept
+      when:** unsupported or unapproved records cannot render, tracking data is
+      removed, and internal consent references remain private.
+- [x] Add the responsive “Latest from Kave” section and direct playable embeds.
+      **Accept when:** records reveal in batches of twelve, embedded players
+      render directly on screen with lazy loading, and an original-post fallback
+      is always available.
+- [x] Document and verify the curator workflow. **Accept when:** maintainers can
+      add an approved URL without credentials, scraping, a runtime API, or a new
+      dependency, and all release checks pass.
 
 ## Future booking system
 
@@ -176,21 +184,21 @@ Do not begin these tasks until the clinic approves a separate booking-system
 specification, privacy requirements, and operational owner.
 
 - [ ] Define appointment states, transitions, cancellation, rescheduling, and
-  conflict behavior.
-- [ ] Define provider, service, duration, availability, holiday, and
-  Asia/Manila timezone rules.
+      conflict behavior.
+- [ ] Define provider, service, duration, availability, holiday, and Asia/Manila
+      timezone rules.
 - [ ] Define the minimum patient data, consent language, privacy notice,
-  retention, deletion, and data-subject request process.
+      retention, deletion, and data-subject request process.
 - [ ] Design Firebase projects, collections, indexes, emulators, and environment
-  separation.
+      separation.
 - [ ] Design and test deny-by-default Firebase Security Rules.
 - [ ] Define staff authentication, roles, session behavior, and account
-  recovery.
+      recovery.
 - [ ] Implement appointment creation with idempotency and concurrency
-  protection.
+      protection.
 - [ ] Implement notification templates, consent, delivery retries, and failure
-  visibility.
+      visibility.
 - [ ] Implement a least-privilege staff administration workflow and audit
-  history.
+      history.
 - [ ] Complete privacy, security, accessibility, load, recovery, and operational
-  acceptance testing before enabling public submission.
+      acceptance testing before enabling public submission.

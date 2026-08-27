@@ -23,16 +23,16 @@ clinic approval before publication.
 KAVE provides general, restorative, and cosmetic dental care, with public
 content that prominently features smile makeovers, zirconia veneers, crowns,
 bridges, braces, and whitening. The website should communicate precision,
-natural-looking results, patient comfort, and accessible contact options
-without promising a particular medical outcome.
+natural-looking results, patient comfort, and accessible contact options without
+promising a particular medical outcome.
 
 ## Target users
 
 - Prospective patients comparing dental clinics in or near Quezon City
 - People researching restorative or cosmetic options
 - Existing patients looking for clinic hours, location, or contact information
-- Social-media visitors who want more structured information than a post or
-  reel provides
+- Social-media visitors who want more structured information than a post or reel
+  provides
 - Mobile users who need a fast path from discovery to direct contact
 
 Users may be anxious, unfamiliar with dental terminology, price-conscious, or
@@ -42,15 +42,15 @@ needs with a qualified clinician.
 
 ## Current milestone
 
-Build a polished, accessible, responsive frontend for the four routes represented
-in Figma:
+Build a polished, accessible, responsive frontend for the four routes
+represented in Figma:
 
-| Route | User outcome |
-| --- | --- |
-| `/` | Understand KAVE's focus and reach services, transformations, or booking |
-| `/services` | Learn about zirconia and other featured service categories |
-| `/transformations` | Review clinic-approved visual work and patient stories |
-| `/booking` | Explore appointment fields and use a verified direct-contact option |
+| Route              | User outcome                                                            |
+| ------------------ | ----------------------------------------------------------------------- |
+| `/`                | Understand KAVE's focus and reach services, transformations, or booking |
+| `/services`        | Learn about zirconia and other featured service categories              |
+| `/transformations` | Review clinic-approved visual work and patient stories                  |
+| `/booking`         | Explore appointment fields and use a verified direct-contact option     |
 
 The booking page is a static interface demonstration. A visitor may interact
 with fields for presentation and client-side validation, but the website must
@@ -100,14 +100,15 @@ The current milestone excludes:
 - Analytics that capture booking-field values
 - Firebase installation, configuration, calls, or environment variables
 - A CMS or editable staff dashboard
+- Meta account authorization, social-feed API synchronization, and scraping
 
 ## Future booking vision
 
-A future milestone may introduce real appointment requests using Firebase and
-an approved operational workflow. That work must first define scheduling
-ownership, availability rules, patient consent, privacy obligations, retention,
-staff access, security rules, notifications, failure handling, and audit needs.
-The current frontend should keep clean route and data boundaries so those
+A future milestone may introduce real appointment requests using Firebase and an
+approved operational workflow. That work must first define scheduling ownership,
+availability rules, patient consent, privacy obligations, retention, staff
+access, security rules, notifications, failure handling, and audit needs. The
+current frontend should keep clean route and data boundaries so those
 capabilities can be added without pretending they already exist.
 
 ## Verified public clinic details
@@ -116,14 +117,16 @@ The following information was visible on the clinic's
 [Facebook profile](https://www.facebook.com/profile.php?id=61551864636049) when
 this documentation was prepared:
 
-| Field | Verified public value |
-| --- | --- |
-| Name | Kave Dental Clinic |
-| Tagline | Your ticket to a picture-perfect smile |
-| Phone | `0961 394 4174` |
-| Hours | Open daily, `10:00 AM–7:00 PM` |
-| Address | `128 Mindanao Avenue, Tandang Sora, Quezon City` |
-| Instagram | [`@kavedentalclinic`](https://www.instagram.com/kavedentalclinic/) |
+| Field     | Verified public value                                              |
+| --------- | ------------------------------------------------------------------ |
+| Name      | Kave Dental Clinic                                                 |
+| Tagline   | Your ticket to a picture-perfect smile                             |
+| Phone     | `0961 394 4174`                                                    |
+| Hours     | Open daily, `10:00 AM–7:00 PM`                                     |
+| Address         | `128 Mindanao Avenue, Tandang Sora, Quezon City`                                        |
+| Instagram       | [`@kavedentalclinic`](https://www.instagram.com/kavedentalclinic/)                      |
+| Instagram Reels | [Instagram Reels](https://www.instagram.com/kavedentalclinic/reels/)                    |
+| Facebook Reels  | [Facebook Reels](https://www.facebook.com/profile.php?id=61551864636049&sk=reels_tab) |
 
 Verify these values with the clinic again before launch and whenever the public
 profiles change.
@@ -151,3 +154,10 @@ these items in the verification table in [`design.md`](design.md).
 
 Never invent content to fill a visually empty area. Prefer a clearly marked
 placeholder in development and omit it from a public build until approved.
+
+Public Facebook or Instagram publication does not by itself approve an item for
+the website. Every curated social record requires an authorized summary,
+supported public URL, and traceable website-publication consent. Patient media
+requires the same documented permission as locally hosted transformation
+content. Removing or privatizing the source post requires removing or disabling
+the matching curated record in the next deployment.

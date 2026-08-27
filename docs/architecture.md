@@ -23,12 +23,12 @@ static booking form's presentation and validation states.
 
 ## Route boundaries
 
-| Route | Main responsibility | Rendering boundary |
-| --- | --- | --- |
-| `/` | Hero, featured services, transformation preview, promotion, contact footer | Server-first |
-| `/services` | Zirconia-focused editorial content and approved related services | Server-first |
-| `/transformations` | Approved galleries, stories, and consultation call to action | Server-first; client only for gallery interaction |
-| `/booking` | Form presentation, clinic details, and contact alternatives | Server page with a narrow form Client Component |
+| Route              | Main responsibility                                                        | Rendering boundary                                |
+| ------------------ | -------------------------------------------------------------------------- | ------------------------------------------------- |
+| `/`                | Hero, featured services, transformation preview, promotion, contact footer | Server-first                                      |
+| `/services`        | Zirconia-focused editorial content and approved related services           | Server-first                                      |
+| `/transformations` | Approved galleries, stories, and consultation call to action               | Server-first; client only for gallery interaction |
+| `/booking`         | Form presentation, clinic details, and contact alternatives                | Server page with a narrow form Client Component   |
 
 Shared navigation and footer belong to the root layout. Route-specific sections
 remain within their route until their reuse is demonstrated.
@@ -37,26 +37,26 @@ The home route is assembled from Server Components. Its featured-service,
 transformation-preview, and promotion sections read only through the approved
 content selectors. Test fixtures may pass approved records directly to verify
 populated layouts, but production uses the repository records and currently
-renders the documented safe states because no service image, transformation,
-or promotion is approved for publication.
+renders the documented safe states because no service image, transformation, or
+promotion is approved for publication.
 
 The services route is also assembled entirely from Server Components. Qualified
 editorial copy and repeatable consultation points live in the typed
 `src/content/services-page.ts` module. Its laboratory story accepts only an
-explicitly approved typed record; production currently passes `null` and
-renders a neutral verification state instead of implying that a facility,
-professional, process, or turnaround promise exists. Decorative route artwork
-is CSS-only while publication permission for the Figma photography remains
-unresolved.
+explicitly approved typed record; production currently passes `null` and renders
+a neutral verification state instead of implying that a facility, professional,
+process, or turnaround promise exists. Decorative route artwork is CSS-only
+while publication permission for the Figma photography remains unresolved.
 
-The transformations route remains a static Server Component composition. Both
-gallery records and patient stories use discriminated approval states and
-require a non-empty internal `consent:` reference before their public content
-can render. The reference itself is never exposed. Production currently has no
-approved records, so both sections render explanatory empty states without
-fabricated cards or imagery. The editorial gallery is a responsive static list;
-no carousel or gallery interaction is retained. The closing action is a link to
-the non-submitting `/booking` route and contains no fields.
+The transformations route remains server-first. Gallery records, patient
+stories, and curated social records use discriminated approval states and
+require a non-empty internal `consent:` reference before public content can
+render. The reference itself is never exposed. Production currently has no
+approved records, so the route renders explanatory empty states without
+fabricated media. The editorial gallery is static. `SocialFeedClient` is a
+narrow client boundary for revealing additional curated records and embedding
+playable Meta iframes directly in responsive cards. There is no Meta API,
+scraping, runtime synchronization, or account credential.
 
 The booking page keeps its static shell, verified contact cards, and location
 content as Server Components. `BookingForm` is the only Client Component on the
@@ -143,6 +143,18 @@ interface Promotion {
   status: "pending-approval" | "approved" | "expired";
 }
 
+interface ApprovedSocialPost {
+  id: string;
+  status: "approved";
+  platform: "facebook" | "instagram";
+  kind: "post" | "reel" | "video";
+  url: `https://${string}`;
+  publishedAt: string;
+  summary: string;
+  consentReference: `consent:${string}`;
+  crossPostGroup?: string;
+}
+
 interface ApprovedImage {
   src: string;
   alt: string;
@@ -155,13 +167,19 @@ Only approved promotions may render in a production build. Transformation
 content requires a non-empty consent reference kept in the approved content
 workflow; the public site must not expose that internal reference.
 
+Curated social records follow the same boundary. Their selectors validate
+supported HTTPS Meta URLs, remove tracking parameters, reject malformed or
+unsupported records, sort by publication time, remove exact duplicates, and
+prefer Instagram when an editor assigns matching `crossPostGroup` values. Social
+summaries and dates are approved local content; they are not scraped from Meta.
+
 The implemented content modules use discriminated approval states and export
-approved-content selectors. Pending services may remain in the planning
-catalog without an approved image, while an approved service requires an
+approved-content selectors. Pending services may remain in the planning catalog
+without an approved image, while an approved service requires an
 `ApprovedImage`. Approved transformations require an image and a non-empty
 `consent:` reference; selectors reject pending records and empty references.
-Pending and expired promotions are likewise excluded by the production
-selector. No transformation or promotion is currently approved for rendering.
+Pending and expired promotions are likewise excluded by the production selector.
+No transformation or promotion is currently approved for rendering.
 
 The static booking UI may use:
 
@@ -186,8 +204,8 @@ URL, cookie, or browser-storage boundary.
 - Render the booking page and fields without a form action, API call, or server
   action.
 - Prevent native submission and do not serialize field values.
-- Keep the primary action disabled or show an explicit non-submitting
-  “online booking is coming soon” result.
+- Keep the primary action disabled or show an explicit non-submitting “online
+  booking is coming soon” result.
 - Clear values when the page is refreshed; do not use local or session storage.
 - Direct contact actions use only the verified clinic destination. They do not
   prefill a message with form data.
@@ -204,6 +222,8 @@ URL, cookie, or browser-storage boundary.
   for decoration.
 - Never download patient media from social networks for reuse without explicit
   permission and a traceable approval record.
+- Curated social records retain only an approved summary and canonical public
+  URL. Official Meta embeds remain remotely hosted and are loaded on demand.
 - Keep Figma export filenames human-readable and stable; do not couple
   application code to temporary Figma asset URLs.
 
@@ -233,12 +253,12 @@ intentional departures in [`design.md`](design.md).
 
 ## Testing strategy
 
-| Layer | Tooling | Responsibility |
-| --- | --- | --- |
-| Static analysis | TypeScript, ESLint, Prettier | Types, code quality, and formatting |
-| Unit/component | Vitest, React Testing Library | Rendering, state, validation, focus, and disabled behavior |
-| Browser | Playwright | Routes, navigation, responsive layouts, keyboard flow, and booking network boundary |
-| Production build | Next.js build | Route and server/client boundary correctness |
+| Layer            | Tooling                       | Responsibility                                                                      |
+| ---------------- | ----------------------------- | ----------------------------------------------------------------------------------- |
+| Static analysis  | TypeScript, ESLint, Prettier  | Types, code quality, and formatting                                                 |
+| Unit/component   | Vitest, React Testing Library | Rendering, state, validation, focus, and disabled behavior                          |
+| Browser          | Playwright                    | Routes, navigation, responsive layouts, keyboard flow, and booking network boundary |
+| Production build | Next.js build                 | Route and server/client boundary correctness                                        |
 
 Playwright should cover representative mobile, tablet, and desktop viewports.
 Accessibility checks supplement, but do not replace, keyboard and screen-reader
@@ -247,9 +267,9 @@ semantics review.
 ## Environments and deployment
 
 The frontend has local, preview, and production environments but no
-environment-specific application data in the first milestone. Preview builds
-may contain conspicuously marked placeholder content; production builds must
-use approved content only.
+environment-specific application data in the first milestone. Preview builds may
+contain conspicuously marked placeholder content; production builds must use
+approved content only.
 
 When Firebase work begins, create separate development and production projects,
 document public client configuration in `.env.example`, keep privileged

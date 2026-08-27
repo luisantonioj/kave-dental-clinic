@@ -14,12 +14,12 @@ values.
 
 ## Screen inventory
 
-| Figma frame | Route | Major sections |
-| --- | --- | --- |
-| KAVE Dental \| Home | `/` | Navigation, hero, services, transformations, seasonal promotion, footer |
-| KAVE Dental \| Zirconia Specialists | `/services` | Editorial hero, veneer benefits, crown anatomy, laboratory story, consultation call to action, footer |
-| KAVE Dental \| Transformations | `/transformations` | Gallery hero, treatment gallery, patient stories, testimonial treatment, consultation call to action, footer |
-| KAVE Dental \| Bookings | `/booking` | Booking hero, static form, hours and contact cards, doctors section, location, footer |
+| Figma frame                         | Route              | Major sections                                                                                               |
+| ----------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------ |
+| KAVE Dental \| Home                 | `/`                | Navigation, hero, services, transformations, seasonal promotion, footer                                      |
+| KAVE Dental \| Zirconia Specialists | `/services`        | Editorial hero, veneer benefits, crown anatomy, laboratory story, consultation call to action, footer        |
+| KAVE Dental \| Transformations      | `/transformations` | Gallery hero, treatment gallery, patient stories, testimonial treatment, consultation call to action, footer |
+| KAVE Dental \| Bookings             | `/booking`         | Booking hero, static form, hours and contact cards, doctors section, location, footer                        |
 
 Shared navigation, booking calls to action, contact information, and footer
 behavior must remain consistent across routes even where the Figma frames use
@@ -56,10 +56,9 @@ Define semantic variables before implementing route-specific sections:
 - Focus, success, warning, error, and disabled states
 - Image overlays and gradients
 
-Use names such as `--color-surface`, `--color-surface-raised`,
-`--color-text`, `--color-text-muted`, `--color-border`,
-`--color-action`, and `--color-focus`. Do not name tokens after a single page or
-raw color value.
+Use names such as `--color-surface`, `--color-surface-raised`, `--color-text`,
+`--color-text-muted`, `--color-border`, `--color-action`, and `--color-focus`.
+Do not name tokens after a single page or raw color value.
 
 ### Typography
 
@@ -81,8 +80,8 @@ Provide system fallbacks and use fluid sizes with `clamp()` where appropriate.
 - Page gutters
 - Reading width and wide media/container width
 
-Repeated Figma measurements become tokens. One-off art-direction adjustments
-may remain local when they do not represent a system rule.
+Repeated Figma measurements become tokens. One-off art-direction adjustments may
+remain local when they do not represent a system rule.
 
 ### Borders and radii
 
@@ -100,40 +99,40 @@ Motion should clarify state, stay subtle, and have a reduced-motion equivalent.
 
 ## Implemented shared foundation
 
-The shared implementation consolidates measurements repeated across the
-1280px Figma frames into semantic tokens in `src/styles/globals.css`:
+The shared implementation consolidates measurements repeated across the 1280px
+Figma frames into semantic tokens in `src/styles/globals.css`:
 
 - Anybody is the display face, loaded through `next/font` with Arial Black,
   Arial, and generic sans-serif fallbacks.
 - Manrope is the body face, loaded through `next/font` with Arial, Helvetica,
   and generic sans-serif fallbacks.
-- Both fonts use `display: swap`, preloading, and Next.js fallback adjustment
-  to reserve text metrics and avoid a font-loading layout shift.
-- The 80px desktop gutter, 1120px content width, 1440px wide container,
-  80px navigation height, shared card/control spacing, fine borders, and pill
-  action radius are represented by semantic tokens.
-- Color tokens cover page, raised, and inverse surfaces; primary and muted
-  text; subtle and strong borders; action, focus, success, warning, error, and
+- Both fonts use `display: swap`, preloading, and Next.js fallback adjustment to
+  reserve text metrics and avoid a font-loading layout shift.
+- The 80px desktop gutter, 1120px content width, 1440px wide container, 80px
+  navigation height, shared card/control spacing, fine borders, and pill action
+  radius are represented by semantic tokens.
+- Color tokens cover page, raised, and inverse surfaces; primary and muted text;
+  subtle and strong borders; action, focus, success, warning, error, and
   disabled states.
 - Motion duration and easing tokens are overridden under
   `prefers-reduced-motion`, with no information depending on animation.
 
 Shared header and footer components follow the Figma hierarchy but use the
 verified navigation and clinic content. Unverified doctor links, newsletter
-collection, empty policy links, conflicting operating days, and stale
-copyright text are intentionally omitted.
+collection, empty policy links, conflicting operating days, and stale copyright
+text are intentionally omitted.
 
 Approved image records carry source, alt text, and intrinsic width and height.
-The reusable responsive image treatment requires a `sizes` declaration and
-uses `next/image`; route work must still choose purposeful alt text and limit
+The reusable responsive image treatment requires a `sizes` declaration and uses
+`next/image`; route work must still choose purposeful alt text and limit
 priority loading to critical imagery.
 
 ## Implemented home route
 
-The home route preserves the Home frame's dark editorial hero, oversized
-display hierarchy, dual calls to action, service grid, transformation preview,
-and full-width closing banner. It adapts rather than publishes unverified
-Figma material:
+The home route preserves the Home frame's dark editorial hero, oversized display
+hierarchy, dual calls to action, service grid, transformation preview, and
+full-width closing banner. It adapts rather than publishes unverified Figma
+material:
 
 - The verified public tagline supplies the `h1`; supporting copy is neutral and
   directs visitors to services, approved work, and verified contact details.
@@ -181,9 +180,9 @@ consultation language and makes no treatment guarantee.
 ## Implemented transformations route
 
 The transformations route preserves the Transformations frame's centered dark
-hero, editorial bento rhythm, contrasting patient-story area, and bright
-closing call to action. It changes the content and interaction where approval
-or privacy boundaries require it:
+hero, editorial bento rhythm, contrasting patient-story area, and bright closing
+call to action. It changes the content and interaction where approval or privacy
+boundaries require it:
 
 - The gallery and optional patient stories render only typed records that have
   approved status and a non-empty consent reference.
@@ -194,14 +193,22 @@ or privacy boundaries require it:
   patient record is approved for publication.
 - The gallery is a responsive static list. No carousel or video control is
   retained, so there is no hidden or non-functional interaction.
+- “Latest from Kave” is a separate, manually curated social section so general
+  clinic posts are not represented as transformation evidence. Production
+  currently shows its verified-profile empty state.
+- Approved social cards use an editorial image-free preview. Twelve render
+  initially, and a narrow client boundary reveals additional batches.
+- Approved social cards embed the official Meta player directly on screen,
+  allowing visitors to play reels without opening a modal. A direct
+  original-post link remains available on every card.
 - The closing section links to `/booking`; the Figma lead form is omitted and
   the Transformations route collects no personal information.
 - CSS-only abstract art direction replaces the unapproved hero photograph.
 
 Figma's named patients, portrait and treatment media, patient quote, outcome
 descriptions, “real patients, real results” language, ten-shade and alignment
-claims, award and installment-plan claims, response-time promise, and “smiles
-of the week” framing are not published.
+claims, award and installment-plan claims, response-time promise, and “smiles of
+the week” framing are not published.
 
 ## Implemented booking route
 
@@ -215,8 +222,8 @@ milestone:
   days, and establishment year are omitted.
 - The form has persistent labels, instructions, error relationships,
   autocomplete hints, logical keyboard order, and adequate control targets.
-- Values and validation state exist only in the narrow client form's memory.
-  The form has no action and its submit event is always intercepted.
+- Values and validation state exist only in the narrow client form's memory. The
+  form has no action and its submit event is always intercepted.
 - Invalid attempts focus the first field needing attention and announce that no
   information was sent.
 - A complete demonstration state says online booking is coming soon, no
@@ -225,8 +232,8 @@ milestone:
   unapproved staff portraits are not deployed.
 
 The fictional doctor profiles, “confirm appointment” wording, flagship and
-boutique claims, and any implication of live availability or reservation are
-not published.
+boutique claims, and any implication of live availability or reservation are not
+published.
 
 ## Responsive interpretation
 
@@ -242,8 +249,8 @@ than a reason to force a layout transition.
 - Keep the display type token's mobile floor small enough for the longest
   approved single word to fit at 360px without clipping or forced word breaks.
 - Stack service and contact cards.
-- Use horizontally scrollable galleries only when the controls and item
-  position are accessible; otherwise use a vertical sequence.
+- Use horizontally scrollable galleries only when the controls and item position
+  are accessible; otherwise use a vertical sequence.
 - Keep controls full-width where helpful and at least 44px high.
 - Present comparison imagery without hiding context or essential labels.
 
@@ -273,6 +280,7 @@ overlapping content.
 - Primary, secondary, and text-link button treatments
 - `ServiceCard` and service editorial sections
 - Transformation preview and gallery item
+- Curated social feed, progressive reveal, and direct playable Meta embed cards
 - Promotional banner that renders only approved, current content
 - Booking form controls and non-submitting status message
 - Clinic-hours, direct-contact, and location cards
@@ -284,15 +292,15 @@ testable.
 
 ## Interaction and state behavior
 
-| State | Required treatment |
-| --- | --- |
-| Hover | Subtle feedback that does not carry meaning alone |
-| Focus visible | High-contrast ring on every interactive element |
-| Active | Immediate pressed/selected feedback |
-| Loading | Reserve dimensions; avoid unexplained indefinite spinners |
-| Empty | Explain why content is unavailable and offer a valid next action |
-| Disabled | Reduce emphasis, retain readable contrast, and explain why when needed |
-| Invalid | Identify the field, describe the correction, and announce the error |
+| State          | Required treatment                                                                |
+| -------------- | --------------------------------------------------------------------------------- |
+| Hover          | Subtle feedback that does not carry meaning alone                                 |
+| Focus visible  | High-contrast ring on every interactive element                                   |
+| Active         | Immediate pressed/selected feedback                                               |
+| Loading        | Reserve dimensions; avoid unexplained indefinite spinners                         |
+| Empty          | Explain why content is unavailable and offer a valid next action                  |
+| Disabled       | Reduce emphasis, retain readable contrast, and explain why when needed            |
+| Invalid        | Identify the field, describe the correction, and announce the error               |
 | Booking result | State that online booking is coming soon; do not imply an appointment was created |
 
 The static booking interface can demonstrate validation only after meaningful
@@ -320,21 +328,21 @@ as “appointment confirmed.”
 The following Figma items are placeholders or unverified until an authorized
 clinic representative approves them:
 
-| Figma content | Status | Required resolution |
-| --- | --- | --- |
-| Dr. Karen Velasco, Dr. Marcus Sy, and Dr. Arlene Chua profiles | Placeholder | Obtain names, roles, credentials, biographies, and approved portraits, or omit the section |
-| `+63 (917) 123 4567` and `concierge@kavedental.ph` | Conflicts with public source / unverified | Replace the phone with the verified value; publish email only after approval |
-| Monday–Saturday operations and Sunday by appointment | Conflicts with current Facebook hours | Use “Open daily, 10 AM–7 PM” unless the clinic provides a newer schedule |
-| “EST. 2024” and 2024 copyright text | Unverified or stale | Confirm establishment year; render the current copyright year independently |
-| “500+ transformations” | Unverified claim | Supply evidence and approval or remove the quantity |
-| “Award-Winning Aesthetic Lab” | Unverified claim | Provide award name, issuer, year, and approval or remove |
-| In-house laboratory and master ceramist claims | Unverified claim | Confirm facilities and responsible professionals before publication |
-| “48-hour turnaround” and same-day adjustment claims | Unverified promise | Obtain operational and clinical approval or replace with neutral consultation copy |
-| PHP 4,000 braces promotion and included benefits | Time-sensitive placeholder | Confirm price, terms, dates, eligibility, and approval; otherwise omit |
-| Patient names, stories, quotation, and before/after imagery | Consent required | Obtain documented publication consent and approved wording |
-| “10-shade improvement,” durability, chip-proof, and decades-long language | Medical/marketing claim | Require clinical and legal review; use qualified educational copy if approved |
-| “Manila's most iconic smiles” and similar superlatives | Unsubstantiated marketing | Replace with factual brand language |
-| Privacy Policy, Terms of Service, and newsletter signup links | Not yet implemented | Do not link to empty pages or collect email until content and processing exist |
+| Figma content                                                             | Status                                    | Required resolution                                                                        |
+| ------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Dr. Karen Velasco, Dr. Marcus Sy, and Dr. Arlene Chua profiles            | Placeholder                               | Obtain names, roles, credentials, biographies, and approved portraits, or omit the section |
+| `+63 (917) 123 4567` and `concierge@kavedental.ph`                        | Conflicts with public source / unverified | Replace the phone with the verified value; publish email only after approval               |
+| Monday–Saturday operations and Sunday by appointment                      | Conflicts with current Facebook hours     | Use “Open daily, 10 AM–7 PM” unless the clinic provides a newer schedule                   |
+| “EST. 2024” and 2024 copyright text                                       | Unverified or stale                       | Confirm establishment year; render the current copyright year independently                |
+| “500+ transformations”                                                    | Unverified claim                          | Supply evidence and approval or remove the quantity                                        |
+| “Award-Winning Aesthetic Lab”                                             | Unverified claim                          | Provide award name, issuer, year, and approval or remove                                   |
+| In-house laboratory and master ceramist claims                            | Unverified claim                          | Confirm facilities and responsible professionals before publication                        |
+| “48-hour turnaround” and same-day adjustment claims                       | Unverified promise                        | Obtain operational and clinical approval or replace with neutral consultation copy         |
+| PHP 4,000 braces promotion and included benefits                          | Time-sensitive placeholder                | Confirm price, terms, dates, eligibility, and approval; otherwise omit                     |
+| Patient names, stories, quotation, and before/after imagery               | Consent required                          | Obtain documented publication consent and approved wording                                 |
+| “10-shade improvement,” durability, chip-proof, and decades-long language | Medical/marketing claim                   | Require clinical and legal review; use qualified educational copy if approved              |
+| “Manila's most iconic smiles” and similar superlatives                    | Unsubstantiated marketing                 | Replace with factual brand language                                                        |
+| Privacy Policy, Terms of Service, and newsletter signup links             | Not yet implemented                       | Do not link to empty pages or collect email until content and processing exist             |
 
 Source conflicts follow the precedence in [`context.md`](context.md). Keep
 pending items out of production rather than silently converting mockup copy into

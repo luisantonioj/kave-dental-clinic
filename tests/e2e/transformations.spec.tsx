@@ -86,6 +86,13 @@ test("transformations route covers empty and approved states accessibly", async 
     page.getByTestId("transformation-gallery-empty-state"),
   ).toBeVisible();
   await expect(page.getByTestId("patient-stories-empty-state")).toBeVisible();
+  await expect(page.getByTestId("social-feed")).toBeVisible();
+  await expect(
+    page.getByTestId("social-feed").getByRole("article"),
+  ).toHaveCount(10);
+  await expect(page.getByTestId("social-feed").locator("iframe")).toHaveCount(
+    10,
+  );
   await expect(
     page.getByTestId("transformation-gallery").getByRole("button"),
   ).toHaveCount(0);

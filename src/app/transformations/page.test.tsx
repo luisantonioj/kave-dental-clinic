@@ -23,6 +23,8 @@ describe("TransformationsPage", () => {
     expect(
       screen.getByTestId("patient-stories-empty-state"),
     ).toBeInTheDocument();
+    expect(screen.getByTestId("social-feed")).toBeInTheDocument();
+    expect(screen.getAllByRole("article")).toHaveLength(10);
   });
 
   it("offers only a static booking link and collects no personal information", () => {
@@ -45,7 +47,7 @@ describe("TransformationsPage", () => {
     expect(metadata).toMatchObject({
       title: "Transformation Gallery | Kave Dental Clinic",
       description:
-        "View consented transformation content from Kave Dental Clinic when approved for publication, and explore consultation information.",
+        "View consented transformation content and curated official social posts from Kave Dental Clinic.",
     });
   });
 });
