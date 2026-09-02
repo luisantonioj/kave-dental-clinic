@@ -82,14 +82,13 @@ export const SOCIAL_POST_RECORDS = [
   },
   {
     id: "fb-reel-3494739964035370",
-    status: "approved",
+    status: "pending-approval",
     platform: "facebook",
     kind: "reel",
     url: "https://www.facebook.com/reel/3494739964035370/",
     publishedAt: "2026-08-10T10:00:00+08:00",
     summary:
       "Patient dental assessment and comprehensive consultation walkthrough",
-    consentReference: "consent:public-facebook-reel-3494739964035370",
   },
   {
     id: "fb-reel-27790501063937120",
@@ -113,22 +112,20 @@ export const SOCIAL_POST_RECORDS = [
   },
   {
     id: "fb-reel-2523887458050544",
-    status: "approved",
+    status: "pending-approval",
     platform: "facebook",
     kind: "reel",
     url: "https://www.facebook.com/reel/2523887458050544/",
     publishedAt: "2026-08-04T10:00:00+08:00",
     summary: "Personalized smile design and aesthetic restorative consultation",
-    consentReference: "consent:public-facebook-reel-2523887458050544",
   },
   {
     id: "fb-reel-1011767028265703",
-    status: "approved",
+    status: "pending-approval",
     platform: "facebook",
     kind: "reel",
     url: "https://www.facebook.com/reel/1011767028265703/",
     publishedAt: "2026-08-02T10:00:00+08:00",
     summary: "Healthier gums and gingivectomy gum contouring procedure care",
-    consentReference: "consent:public-facebook-reel-1011767028265703",
   },
 ] as const satisfies readonly SocialPost[];
