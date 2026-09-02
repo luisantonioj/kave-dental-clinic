@@ -43,7 +43,7 @@ test("services route is responsive, qualified, and keyboard reachable", async ({
   await expect(finalCallToAction).toHaveAttribute("href", "/booking");
 
   let reachedFinalCallToAction = false;
-  for (let tabIndex = 0; tabIndex < 16; tabIndex += 1) {
+  for (let tabIndex = 0; tabIndex < 60; tabIndex += 1) {
     await page.keyboard.press("Tab");
     reachedFinalCallToAction = await finalCallToAction.evaluate(
       (link) => link === document.activeElement,
@@ -69,4 +69,45 @@ test("services route is responsive, qualified, and keyboard reachable", async ({
     );
     expect(hasHorizontalOverflow).toBe(false);
   }
+});
+
+test("services search and category filtering work interactively", async ({
+  page,
+}) => {
+  await page.goto("/services");
+
+  const searchInput = page.getByRole("searchbox", {
+    name: "Search Procedures & Treatments",
+  });
+  await expect(searchInput).toBeVisible();
+
+  // Search for "zirconia"
+  await searchInput.fill("zirconia");
+  await expect(
+    page.getByRole("heading", { name: "Zirconia Veneers" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Zirconia Crowns" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Dental Check-up" }),
+  ).not.toBeVisible();
+
+  // Clear search
+  const clearBtn = page.getByRole("button", { name: "Clear search query" });
+  await clearBtn.click();
+  await expect(searchInput).toHaveValue("");
+  await expect(
+    page.getByRole("heading", { name: "Dental Check-up" }),
+  ).toBeVisible();
+
+  // Filter by category tab
+  const cosmeticTab = page.getByRole("tab", { name: /Cosmetic Dentistry/i });
+  await cosmeticTab.click();
+  await expect(
+    page.getByRole("heading", { name: "Cosmetic Dentistry" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "General Dentistry" }),
+  ).not.toBeVisible();
 });
