@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 /*
  * Shared tokens consolidate repeated values from the 1280px Figma frames.
@@ -108,6 +109,13 @@
   --color-error: #f87171;
   --color-error-inverse: #ff8a80;
   --color-disabled: #555555;
+}
+
+html.dark .dark-logo {
+  display: block !important;
+}
+html.dark .light-logo {
+  display: none !important;
 }
 
 @layer base {

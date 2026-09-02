@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { MOBILE_NAV_ITEMS, PRIMARY_NAV_ITEMS } from "../../content/navigation";
@@ -17,10 +18,25 @@ export function SiteHeader() {
       <div className="relative mx-auto flex min-h-header w-full max-w-wide items-center justify-between gap-cluster px-gutter">
         <Link
           aria-label="Kave Dental Clinic home"
-          className="inline-flex min-h-control items-center font-display text-card font-extrabold uppercase tracking-[-0.05em] text-action focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus"
+          className="inline-flex min-h-control items-center focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus"
           href="/"
         >
-          Kave Dental
+          <Image
+            alt="Kave Dental Clinic"
+            className="light-logo h-9 w-auto object-contain dark:hidden"
+            height={44}
+            priority
+            src="/images/kave-dental-logo.png"
+            width={170}
+          />
+          <Image
+            alt="Kave Dental Clinic"
+            className="dark-logo hidden h-9 w-auto object-contain dark:block"
+            height={44}
+            priority
+            src="/images/kave-dental-logo-dark.png"
+            width={170}
+          />
         </Link>
 
         <nav aria-label="Primary navigation" className="hidden md:block">
