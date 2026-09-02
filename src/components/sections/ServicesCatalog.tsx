@@ -87,10 +87,7 @@ function CategorySection({ category }: CategorySectionProps) {
             </span>
             <div className="absolute bottom-3 left-4 right-4">
               <span className="inline-block rounded-full bg-surface-raised/90 px-3 py-1 text-xs font-semibold text-action backdrop-blur-sm shadow-sm">
-                {category.isSpecialty
-                  ? "Specialty Discipline"
-                  : "Clinical Care"}{" "}
-                • {category.procedures.length} procedures
+                {category.procedures.length} procedures
               </span>
             </div>
           </div>

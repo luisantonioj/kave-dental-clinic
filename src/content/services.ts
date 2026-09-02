@@ -328,7 +328,7 @@ export const SERVICE_CATEGORIES: readonly ServiceCategoryRecord[] = [
           "Targeted minor oral surgical procedures for hard and soft tissues.",
         consultationNote:
           "Pre-op evaluation and personalized post-op recovery care are reviewed.",
-        tags: ["Oral Surgery", "Clinical Care"],
+        tags: ["Oral Surgery", "Minor Surgery"],
       },
     ],
   },

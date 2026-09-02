@@ -87,14 +87,7 @@ export function CategoryPillarCard({ category }: CategoryCardProps) {
 
         <div className="flex flex-1 flex-col justify-between p-card-y">
           <div>
-            <div className="flex items-center gap-2">
-              <p className="text-label font-bold uppercase tracking-label text-action">
-                {category.isSpecialty
-                  ? "Specialty Discipline"
-                  : "Clinical Care"}
-              </p>
-            </div>
-            <h3 className="mt-1 font-display text-card font-bold text-text transition-colors group-hover:text-action">
+            <h3 className="font-display text-card font-bold text-text transition-colors group-hover:text-action">
               {category.name}
             </h3>
             <p className="mt-cluster text-body text-text-muted">
