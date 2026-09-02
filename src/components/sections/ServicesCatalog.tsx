@@ -16,15 +16,15 @@ function ProcedureCard({ procedure }: ProcedureCardProps) {
     <Link
       href="/booking"
       aria-label={`Book consultation for ${procedure.name}`}
-      className="group flex flex-col justify-between border border-border bg-surface-raised p-card-y transition-all duration-300 hover:border-action/60 focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus focus-visible:ring-offset-[length:var(--focus-ring-offset)]"
+      className="group flex h-full flex-col justify-between border border-border bg-surface-raised p-card-y transition-all duration-300 hover:border-action/60 focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus focus-visible:ring-offset-[length:var(--focus-ring-offset)]"
     >
       <div>
         {procedure.tags && procedure.tags.length > 0 && (
-          <div className="mb-2 flex flex-wrap gap-1.5">
+          <div className="mb-3 flex flex-wrap gap-1.5">
             {procedure.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-block rounded border border-border bg-surface px-2 py-0.5 text-[0.68rem] font-bold uppercase tracking-wider text-action"
+                className="inline-block rounded border border-border bg-surface px-2.5 py-1 text-[0.7rem] font-bold uppercase tracking-wider text-action"
               >
                 {tag}
               </span>
@@ -34,13 +34,21 @@ function ProcedureCard({ procedure }: ProcedureCardProps) {
         <h4 className="font-display text-card font-bold text-text transition-colors group-hover:text-action">
           {procedure.name}
         </h4>
-        <p className="mt-1 text-sm text-text-muted">{procedure.description}</p>
-        {procedure.consultationNote && (
-          <p className="mt-2 border-l-2 border-action/60 pl-2.5 text-xs text-text-muted/80">
+      </div>
+
+      <div className="my-auto py-3">
+        <p className="text-body leading-relaxed text-text-muted">
+          {procedure.description}
+        </p>
+      </div>
+
+      {procedure.consultationNote && (
+        <div className="mt-auto pt-2">
+          <p className="rounded-r border-l-2 border-action/60 bg-surface/50 px-3 py-2 text-xs leading-relaxed text-text-muted/90">
             {procedure.consultationNote}
           </p>
-        )}
-      </div>
+        </div>
+      )}
     </Link>
   );
 }
