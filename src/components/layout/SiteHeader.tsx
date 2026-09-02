@@ -3,10 +3,11 @@ import Link from "next/link";
 import { NAV_ITEMS } from "../../content/navigation";
 import { ButtonLink } from "../ui/Button";
 import { MobileNavigation } from "./MobileNavigation";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border-strong bg-surface-inverse/95 text-text-inverse backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-border bg-surface/95 text-text backdrop-blur-sm">
       <a
         className="fixed left-cluster top-cluster z-[60] inline-flex min-h-control -translate-y-[200%] items-center rounded-control bg-action px-card-x py-control-y text-label font-bold uppercase tracking-label text-action-contrast transition-transform focus:translate-y-0 focus:outline-none focus:ring-[length:var(--focus-ring-width)] focus:ring-focus focus:ring-offset-[length:var(--focus-ring-offset)]"
         href="#main-content"
@@ -27,7 +28,7 @@ export function SiteHeader() {
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
                 <Link
-                  className="inline-flex min-h-control items-center text-label font-bold uppercase tracking-label text-text-inverse-muted transition-colors [transition-duration:var(--motion-duration-fast)] hover:text-action focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus active:text-action-active"
+                  className="inline-flex min-h-control items-center text-label font-bold uppercase tracking-label text-text-muted transition-colors [transition-duration:var(--motion-duration-fast)] hover:text-action focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus active:text-action-active"
                   href={item.href}
                 >
                   {item.label}
@@ -37,11 +38,17 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <ButtonLink className="hidden md:inline-flex" href="/booking">
-          Book appointment
-        </ButtonLink>
+        <div className="hidden items-center gap-cluster md:flex">
+          <ThemeToggle />
+          <ButtonLink className="" href="/booking">
+            Book appointment
+          </ButtonLink>
+        </div>
 
-        <MobileNavigation items={NAV_ITEMS} />
+        <div className="flex items-center gap-cluster md:hidden">
+          <ThemeToggle />
+          <MobileNavigation items={NAV_ITEMS} />
+        </div>
       </div>
     </header>
   );

@@ -14,7 +14,7 @@ export function TransformationGallery({ records }: TransformationGalleryProps) {
   return (
     <section
       aria-labelledby="transformation-gallery-heading"
-      className="bg-surface-inverse px-gutter py-section text-text-inverse"
+      className="bg-surface px-gutter py-section text-text"
       data-testid="transformation-gallery"
     >
       <div className="mx-auto w-full max-w-wide">
@@ -28,7 +28,7 @@ export function TransformationGallery({ records }: TransformationGalleryProps) {
           >
             Approved transformations
           </h2>
-          <p className="mt-stack text-body text-text-inverse-muted">
+          <p className="mt-stack text-body text-text-muted">
             Every published record requires purposeful image text, approved
             treatment wording, and a documented consent reference.
           </p>
@@ -46,7 +46,7 @@ export function TransformationGallery({ records }: TransformationGalleryProps) {
                 }
                 key={transformation.id}
               >
-                <figure className="group relative h-full min-h-[24rem] overflow-hidden rounded-image border border-border-strong bg-surface-inverse-raised">
+                <figure className="group relative h-full min-h-[24rem] overflow-hidden rounded-image border border-border bg-surface-raised">
                   <ResponsiveImage
                     className="h-full min-h-[24rem] object-cover"
                     image={transformation.image}
@@ -56,7 +56,7 @@ export function TransformationGallery({ records }: TransformationGalleryProps) {
                         : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                     }
                   />
-                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 to-transparent p-card-x pt-section">
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 to-transparent p-card-x pt-section text-text-inverse">
                     <p className="text-label font-bold uppercase tracking-label text-action">
                       {transformation.treatment}
                     </p>
@@ -70,14 +70,14 @@ export function TransformationGallery({ records }: TransformationGalleryProps) {
           </ul>
         ) : (
           <div
-            className="mt-card-y grid min-h-[28rem] place-items-center rounded-image border border-border-strong bg-[linear-gradient(135deg,#191919,#0e0e0e)] p-card-x text-center"
+            className="mt-card-y grid min-h-[28rem] place-items-center rounded-image border border-border bg-surface-raised p-card-x text-center"
             data-testid="transformation-gallery-empty-state"
           >
             <div className="max-w-reading">
               <p className="font-display text-card font-bold uppercase">
                 No transformation media is approved for publication yet
               </p>
-              <p className="mt-stack text-body text-text-inverse-muted">
+              <p className="mt-stack text-body text-text-muted">
                 The gallery will remain image-free until consent and approved
                 wording are documented.
               </p>

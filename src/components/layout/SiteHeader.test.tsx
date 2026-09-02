@@ -4,10 +4,19 @@ import { describe, expect, it } from "vitest";
 
 import { NAV_ITEMS } from "../../content/navigation";
 import { SiteHeader } from "./SiteHeader";
+import { ThemeProvider } from "./ThemeProvider";
+
+function renderHeader() {
+  return render(
+    <ThemeProvider>
+      <SiteHeader />
+    </ThemeProvider>,
+  );
+}
 
 describe("SiteHeader", () => {
   it("provides a first-focus skip link to the page main content", () => {
-    render(<SiteHeader />);
+    renderHeader();
 
     expect(
       screen.getByRole("link", { name: "Skip to main content" }),
@@ -15,7 +24,7 @@ describe("SiteHeader", () => {
   });
 
   it("links to every planned route from the primary navigation", () => {
-    render(<SiteHeader />);
+    renderHeader();
 
     const navigation = screen.getByRole("navigation", {
       name: "Primary navigation",
@@ -30,10 +39,20 @@ describe("SiteHeader", () => {
     }
   });
 
+  it("renders an accessible theme toggle button", () => {
+    renderHeader();
+
+    expect(
+      screen.getAllByRole("button", {
+        name: /switch to (dark|light) mode/i,
+      }).length,
+    ).toBeGreaterThanOrEqual(1);
+  });
+
   it("moves focus into the mobile disclosure and restores it on Escape", async () => {
     const user = userEvent.setup();
 
-    render(<SiteHeader />);
+    renderHeader();
 
     const trigger = screen.getByRole("button", {
       name: "Menu",

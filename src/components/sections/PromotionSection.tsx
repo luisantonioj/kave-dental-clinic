@@ -18,7 +18,7 @@ export function PromotionSection({
     return (
       <section
         aria-labelledby="home-contact-heading"
-        className="border-y border-border-strong bg-surface-inverse text-text-inverse"
+        className="border-y border-border bg-surface text-text"
       >
         <div className="mx-auto grid w-full max-w-wide gap-stack px-gutter py-section md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
           <div>
@@ -41,7 +41,7 @@ export function PromotionSection({
   return (
     <section
       aria-labelledby="approved-promotion-heading"
-      className="border-y border-action/40 bg-surface-inverse text-text-inverse"
+      className="border-y border-action/40 bg-surface text-text"
     >
       <div className="mx-auto grid w-full max-w-wide gap-card-y px-gutter py-section lg:grid-cols-[minmax(0,2fr)_minmax(16rem,1fr)]">
         <div>
@@ -56,12 +56,9 @@ export function PromotionSection({
           </h2>
         </div>
         <div>
-          <ul className="space-y-cluster text-body text-text-inverse-muted">
+          <ul className="space-y-cluster text-body text-text-muted">
             {promotion.details.map((detail) => (
-              <li
-                className="border-b border-border-strong pb-cluster"
-                key={detail}
-              >
+              <li className="border-b border-border pb-cluster" key={detail}>
                 {detail}
               </li>
             ))}

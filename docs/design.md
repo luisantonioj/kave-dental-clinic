@@ -35,9 +35,21 @@ generic:
 - Generous whitespace and clear horizontal structure
 - Fine borders, restrained radii, and card-based service information
 - Large, art-directed photography and transformation imagery
-- Sparse accent color used for hierarchy rather than decoration
+- Sparse saffron-gold accent (`--color-action: #F4C430`) used for hierarchy
+  rather than decoration
 - Uppercase labels and small metadata paired with expressive headings
 - Direct, confident calls to action without medical guarantees
+- User-controlled dark/light mode toggle in the site header
+
+The four-color palette is `#111111` (dark surface & dark-mode base), `#F4C430`
+(saffron-gold accent), `#FAFAF7` (light surface & light-mode base), and
+`#FFFFFF` (raised card surface in light mode). Light mode is the default, with
+`#FAFAF7` providing the background across the entire site (header, heroes,
+content sections, booking page, and footer) and `#FFFFFF` for elevated cards.
+Dark mode is activated by a toggle in the header that persists the preference in
+`localStorage` and respects `prefers-color-scheme` for first-time visitors,
+inverting the entire site to `#111111` with `#1a1a1a` raised cards and `#FAFAF7`
+text.
 
 Preserve this hierarchy at smaller sizes without shrinking the desktop canvas.
 Readability and content order take priority over matching a line break from
@@ -58,7 +70,9 @@ Define semantic variables before implementing route-specific sections:
 
 Use names such as `--color-surface`, `--color-surface-raised`, `--color-text`,
 `--color-text-muted`, `--color-border`, `--color-action`, and `--color-focus`.
-Do not name tokens after a single page or raw color value.
+Do not name tokens after a single page or raw color value. Light-mode values
+live in the `@theme {}` block; dark-mode overrides live in the `.dark {}` class
+selector in `globals.css`.
 
 ### Typography
 

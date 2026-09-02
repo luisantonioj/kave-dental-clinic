@@ -178,6 +178,15 @@ are not authorized implementation work.
       add an approved URL without credentials, scraping, a runtime API, or a new
       dependency, and all release checks pass.
 
+## 10. Color palette and theme toggle
+
+- [x] Update color tokens to four-color system (#111111, #F4C430, #FAFAF7, #FFFFFF)
+      with dark-mode overrides in `globals.css`. **Accept when:** WCAG 2.2 AA contrast
+      ratios pass in both light and dark modes and reduced motion is honored.
+- [x] Add accessible `ThemeToggle` with sun/moon icons and `ThemeProvider` with
+      localStorage persistence and FOUC prevention. **Accept when:** theme toggle
+      is accessible, operable by keyboard, available in desktop/mobile nav, and tested.
+
 ## Future booking system
 
 Do not begin these tasks until the clinic approves a separate booking-system

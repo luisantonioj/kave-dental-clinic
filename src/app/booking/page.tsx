@@ -12,11 +12,7 @@ export const metadata: Metadata = createPageMetadata(
 
 export default function BookingPage() {
   return (
-    <main
-      className="bg-surface-inverse text-text-inverse"
-      id="main-content"
-      tabIndex={-1}
-    >
+    <main className="bg-surface text-text" id="main-content" tabIndex={-1}>
       <section
         aria-labelledby="booking-heading"
         className="px-gutter pb-section pt-section"
@@ -33,13 +29,13 @@ export default function BookingPage() {
               >
                 Explore <span className="text-action">booking</span>
               </h1>
-              <p className="mt-stack max-w-reading text-lead text-text-inverse-muted">
+              <p className="mt-stack max-w-reading text-lead text-text-muted">
                 Review the planned fields and presentation-only validation.
                 Online booking is coming soon, so nothing entered here is sent
                 or saved.
               </p>
             </div>
-            <p className="text-label font-bold uppercase tracking-label text-text-inverse-muted">
+            <p className="text-label font-bold uppercase tracking-label text-text-muted">
               Quezon City
             </p>
           </div>

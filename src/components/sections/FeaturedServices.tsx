@@ -14,10 +14,10 @@ interface ServiceCardProps {
 
 export function ServiceCard({ index, service }: ServiceCardProps) {
   return (
-    <li className="relative flex min-h-[28rem] flex-col overflow-hidden border border-border-strong bg-surface-inverse-raised p-card-y text-text-inverse">
+    <li className="relative flex min-h-[28rem] flex-col overflow-hidden border border-border bg-surface-raised p-card-y text-text">
       <span
         aria-hidden="true"
-        className="absolute -right-cluster -top-cluster font-display text-[6rem] leading-none text-border-strong/20"
+        className="absolute -right-cluster -top-cluster font-display text-[6rem] leading-none text-border/60"
       >
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -28,7 +28,7 @@ export function ServiceCard({ index, service }: ServiceCardProps) {
         <h3 className="mt-cluster font-display text-card font-bold">
           {service.name}
         </h3>
-        <p className="mt-cluster text-body text-text-inverse-muted">
+        <p className="mt-cluster text-body text-text-muted">
           {service.summary}
         </p>
       </div>
@@ -55,7 +55,7 @@ export function FeaturedServices({
   return (
     <section
       aria-labelledby="featured-services-heading"
-      className="border-t border-border-strong bg-surface-inverse text-text-inverse"
+      className="border-t border-border bg-surface text-text"
     >
       <div className="mx-auto w-full max-w-wide px-gutter py-section">
         <div className="grid items-end gap-stack md:grid-cols-[minmax(0,1fr)_minmax(16rem,28rem)]">
@@ -70,7 +70,7 @@ export function FeaturedServices({
               Featured services
             </h2>
           </div>
-          <p className="text-body text-text-inverse-muted">
+          <p className="text-body text-text-muted">
             Service details are published only after the clinic approves the
             wording and supporting media.
           </p>
@@ -84,7 +84,7 @@ export function FeaturedServices({
           </ul>
         ) : (
           <div
-            className="mt-card-y border border-border-strong bg-surface-inverse-raised p-card-y"
+            className="mt-card-y border border-border bg-surface-raised p-card-y"
             role="status"
           >
             <p className="max-w-reading text-lead">

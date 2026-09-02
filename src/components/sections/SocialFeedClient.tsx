@@ -122,7 +122,7 @@ export function SocialFeedClient({ posts }: SocialFeedClientProps) {
           ) : null}
           {CLINIC_DETAILS.facebookReelsUrl ? (
             <a
-              className="inline-flex min-h-control items-center justify-center rounded-button border border-border-strong bg-transparent px-button-x py-button-y text-button font-bold text-text transition-colors hover:bg-surface-inverse/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="inline-flex min-h-control items-center justify-center rounded-button border border-border bg-transparent px-button-x py-button-y text-button font-bold text-text transition-colors hover:bg-surface-raised focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
               href={CLINIC_DETAILS.facebookReelsUrl}
               rel="noreferrer"
               target="_blank"

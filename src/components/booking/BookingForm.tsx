@@ -40,7 +40,7 @@ const FIELD_ORDER: readonly BookingFieldName[] = [
 ];
 
 const INPUT_CLASSES =
-  "min-h-control w-full rounded-control border border-border-strong bg-surface-inverse px-cluster py-control-y text-body text-text-inverse placeholder:text-text-inverse-muted focus:border-action focus:outline-none focus:ring-[length:var(--focus-ring-width)] focus:ring-focus aria-[invalid=true]:border-error-inverse";
+  "min-h-control w-full rounded-control border border-border bg-surface px-cluster py-control-y text-body text-text placeholder:text-text-muted focus:border-action focus:outline-none focus:ring-[length:var(--focus-ring-width)] focus:ring-focus aria-[invalid=true]:border-error";
 
 export function validateBookingValues(
   values: BookingFormValues,
@@ -131,7 +131,7 @@ export function BookingForm() {
 
   return (
     <form
-      className="rounded-image border border-border-strong bg-surface-inverse-raised p-card-x"
+      className="rounded-image border border-border bg-surface-raised p-card-x"
       data-testid="booking-form"
       noValidate
       onSubmit={handleSubmit}
@@ -140,13 +140,13 @@ export function BookingForm() {
       <div className="grid gap-stack sm:grid-cols-2">
         <div>
           <label
-            className="text-label font-bold uppercase tracking-label text-text-inverse-muted"
+            className="text-label font-bold uppercase tracking-label text-text-muted"
             htmlFor="fullName"
           >
             Full name
           </label>
           <p
-            className="mt-inline text-label text-text-inverse-muted"
+            className="mt-inline text-label text-text-muted"
             id="fullName-hint"
           >
             Enter the name the clinic should use when speaking with you.
@@ -164,10 +164,7 @@ export function BookingForm() {
             value={values.fullName}
           />
           {errors.fullName ? (
-            <p
-              className="mt-inline text-label text-error-inverse"
-              id="fullName-error"
-            >
+            <p className="mt-inline text-label text-error" id="fullName-error">
               {errors.fullName}
             </p>
           ) : null}
@@ -175,15 +172,12 @@ export function BookingForm() {
 
         <div>
           <label
-            className="text-label font-bold uppercase tracking-label text-text-inverse-muted"
+            className="text-label font-bold uppercase tracking-label text-text-muted"
             htmlFor="email"
           >
             Email address
           </label>
-          <p
-            className="mt-inline text-label text-text-inverse-muted"
-            id="email-hint"
-          >
+          <p className="mt-inline text-label text-text-muted" id="email-hint">
             Used only in this on-screen demonstration.
           </p>
           <input
@@ -200,10 +194,7 @@ export function BookingForm() {
             value={values.email}
           />
           {errors.email ? (
-            <p
-              className="mt-inline text-label text-error-inverse"
-              id="email-error"
-            >
+            <p className="mt-inline text-label text-error" id="email-error">
               {errors.email}
             </p>
           ) : null}
@@ -211,15 +202,12 @@ export function BookingForm() {
 
         <div>
           <label
-            className="text-label font-bold uppercase tracking-label text-text-inverse-muted"
+            className="text-label font-bold uppercase tracking-label text-text-muted"
             htmlFor="phone"
           >
             Phone number
           </label>
-          <p
-            className="mt-inline text-label text-text-inverse-muted"
-            id="phone-hint"
-          >
+          <p className="mt-inline text-label text-text-muted" id="phone-hint">
             Include the country or area code when applicable.
           </p>
           <input
@@ -236,10 +224,7 @@ export function BookingForm() {
             value={values.phone}
           />
           {errors.phone ? (
-            <p
-              className="mt-inline text-label text-error-inverse"
-              id="phone-error"
-            >
+            <p className="mt-inline text-label text-error" id="phone-error">
               {errors.phone}
             </p>
           ) : null}
@@ -247,13 +232,13 @@ export function BookingForm() {
 
         <div>
           <label
-            className="text-label font-bold uppercase tracking-label text-text-inverse-muted"
+            className="text-label font-bold uppercase tracking-label text-text-muted"
             htmlFor="serviceId"
           >
             Service to discuss
           </label>
           <p
-            className="mt-inline text-label text-text-inverse-muted"
+            className="mt-inline text-label text-text-muted"
             id="serviceId-hint"
           >
             This is a discussion preference, not a treatment selection.
@@ -276,10 +261,7 @@ export function BookingForm() {
             ))}
           </select>
           {errors.serviceId ? (
-            <p
-              className="mt-inline text-label text-error-inverse"
-              id="serviceId-error"
-            >
+            <p className="mt-inline text-label text-error" id="serviceId-error">
               {errors.serviceId}
             </p>
           ) : null}
@@ -287,13 +269,13 @@ export function BookingForm() {
 
         <div>
           <label
-            className="text-label font-bold uppercase tracking-label text-text-inverse-muted"
+            className="text-label font-bold uppercase tracking-label text-text-muted"
             htmlFor="preferredDate"
           >
             Preferred date
           </label>
           <p
-            className="mt-inline text-label text-text-inverse-muted"
+            className="mt-inline text-label text-text-muted"
             id="preferredDate-hint"
           >
             A preference only; availability is not shown or reserved.
@@ -314,7 +296,7 @@ export function BookingForm() {
           />
           {errors.preferredDate ? (
             <p
-              className="mt-inline text-label text-error-inverse"
+              className="mt-inline text-label text-error"
               id="preferredDate-error"
             >
               {errors.preferredDate}
@@ -324,13 +306,13 @@ export function BookingForm() {
 
         <div>
           <label
-            className="text-label font-bold uppercase tracking-label text-text-inverse-muted"
+            className="text-label font-bold uppercase tracking-label text-text-muted"
             htmlFor="preferredTime"
           >
             Preferred time
           </label>
           <p
-            className="mt-inline text-label text-text-inverse-muted"
+            className="mt-inline text-label text-text-muted"
             id="preferredTime-hint"
           >
             A preference only; it does not reserve a schedule.
@@ -351,7 +333,7 @@ export function BookingForm() {
           />
           {errors.preferredTime ? (
             <p
-              className="mt-inline text-label text-error-inverse"
+              className="mt-inline text-label text-error"
               id="preferredTime-error"
             >
               {errors.preferredTime}
@@ -362,15 +344,12 @@ export function BookingForm() {
 
       <div className="mt-stack">
         <label
-          className="text-label font-bold uppercase tracking-label text-text-inverse-muted"
+          className="text-label font-bold uppercase tracking-label text-text-muted"
           htmlFor="notes"
         >
           Notes <span className="normal-case">(optional)</span>
         </label>
-        <p
-          className="mt-inline text-label text-text-inverse-muted"
-          id="notes-hint"
-        >
+        <p className="mt-inline text-label text-text-muted" id="notes-hint">
           Keep sensitive medical information out of this demonstration.
         </p>
         <textarea
@@ -384,8 +363,8 @@ export function BookingForm() {
         />
       </div>
 
-      <div className="mt-card-y border-t border-border-strong pt-stack">
-        <p className="text-body text-text-inverse-muted">
+      <div className="mt-card-y border-t border-border pt-stack">
+        <p className="text-body text-text-muted">
           This demonstration does not submit, send, save, or reserve anything.
         </p>
         <Button className="mt-stack w-full" type="submit">
@@ -398,8 +377,8 @@ export function BookingForm() {
           aria-live={status === "invalid" ? "assertive" : "polite"}
           className={`mt-stack border p-cluster ${
             status === "invalid"
-              ? "border-error-inverse text-text-inverse"
-              : "border-action bg-action/10 text-text-inverse"
+              ? "border-error text-error"
+              : "border-action bg-action/10 text-text"
           }`}
           ref={statusRef}
           role={status === "invalid" ? "alert" : "status"}
@@ -412,7 +391,7 @@ export function BookingForm() {
           ) : (
             <>
               <p className="font-bold">Online booking is coming soon.</p>
-              <p className="mt-inline text-text-inverse-muted">
+              <p className="mt-inline text-text-muted">
                 No appointment was created and your details were not sent. Use
                 the verified contact options beside this form.
               </p>

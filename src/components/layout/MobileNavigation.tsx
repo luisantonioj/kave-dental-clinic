@@ -30,7 +30,7 @@ export function MobileNavigation({ items }: MobileNavigationProps) {
       <button
         aria-controls="mobile-navigation"
         aria-expanded={isOpen}
-        className="inline-flex min-h-control min-w-control items-center justify-center rounded-control border border-border-strong px-cluster text-label font-bold uppercase tracking-label text-text-inverse transition-colors [transition-duration:var(--motion-duration-fast)] hover:bg-surface-inverse-raised focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus"
+        className="inline-flex min-h-control min-w-control items-center justify-center rounded-control border border-border px-cluster text-label font-bold uppercase tracking-label text-text transition-colors [transition-duration:var(--motion-duration-fast)] hover:bg-surface-raised focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus"
         onClick={() => {
           setIsOpen((currentValue) => !currentValue);
         }}
@@ -43,7 +43,7 @@ export function MobileNavigation({ items }: MobileNavigationProps) {
       {isOpen ? (
         <nav
           aria-label="Mobile navigation"
-          className="absolute inset-x-0 top-full border-b border-border-strong bg-surface-inverse px-gutter py-stack"
+          className="absolute inset-x-0 top-full border-b border-border bg-surface px-gutter py-stack shadow-lg"
           id="mobile-navigation"
           onKeyDown={(event) => {
             if (event.key === "Escape") {
@@ -56,7 +56,7 @@ export function MobileNavigation({ items }: MobileNavigationProps) {
             {items.map((item, index) => (
               <li key={item.href}>
                 <Link
-                  className="flex min-h-control items-center border-b border-border-strong text-label font-bold uppercase tracking-label text-text-inverse-muted transition-colors [transition-duration:var(--motion-duration-fast)] hover:text-action focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus"
+                  className="flex min-h-control items-center border-b border-border text-label font-bold uppercase tracking-label text-text-muted transition-colors [transition-duration:var(--motion-duration-fast)] hover:text-action focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus"
                   href={item.href}
                   onClick={() => {
                     setIsOpen(false);

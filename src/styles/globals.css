@@ -3,22 +3,25 @@
 /*
  * Shared tokens consolidate repeated values from the 1280px Figma frames.
  * Route sections consume these semantic names instead of raw measurements.
+ *
+ * Light mode is the default. Dark mode overrides follow via the .dark class
+ * on <html>, toggled by ThemeProvider and persisted in localStorage.
  */
 @theme {
-  --color-surface: #f7f6f2;
+  --color-surface: #fafaf7;
   --color-surface-raised: #ffffff;
-  --color-surface-inverse: #0e0e0e;
-  --color-surface-inverse-raised: #191919;
-  --color-text: #1c1c1a;
-  --color-text-muted: #626158;
+  --color-surface-inverse: #111111;
+  --color-surface-inverse-raised: #1a1a1a;
+  --color-text: #111111;
+  --color-text-muted: #5c5c5c;
   --color-text-inverse: #ffffff;
-  --color-text-inverse-muted: #cac8ac;
-  --color-border: #d8d6cc;
-  --color-border-strong: #66665f;
-  --color-action: #ece924;
-  --color-action-hover: #f5f238;
-  --color-action-active: #d9d61a;
-  --color-action-contrast: #343400;
+  --color-text-inverse-muted: #b0b0a0;
+  --color-border: #e0dfd8;
+  --color-border-strong: #666666;
+  --color-action: #f4c430;
+  --color-action-hover: #f7cf4a;
+  --color-action-active: #dbb22a;
+  --color-action-contrast: #111111;
   --color-focus: #246bfd;
   --color-success: #1f7a4c;
   --color-warning: #8a5a00;
@@ -76,6 +79,35 @@
   --motion-duration-fast: 150ms;
   --motion-duration-standard: 250ms;
   --motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/*
+ * Dark mode overrides. The .dark class is set on <html> by ThemeProvider
+ * (persisted in localStorage, with prefers-color-scheme as initial fallback).
+ * In light mode, the base surface is #fafaf7 and raised surface is #ffffff.
+ * In dark mode, the base surface becomes #111111 and raised surface is #1a1a1a.
+ */
+.dark {
+  --color-surface: #111111;
+  --color-surface-raised: #1a1a1a;
+  --color-surface-inverse: #111111;
+  --color-surface-inverse-raised: #222222;
+  --color-text: #fafaf7;
+  --color-text-muted: #a0a0a0;
+  --color-text-inverse: #ffffff;
+  --color-text-inverse-muted: #b0b0a0;
+  --color-border: #2a2a2a;
+  --color-border-strong: #444444;
+  --color-action: #f4c430;
+  --color-action-hover: #f7cf4a;
+  --color-action-active: #dbb22a;
+  --color-action-contrast: #111111;
+  --color-focus: #5b93ff;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --color-error-inverse: #ff8a80;
+  --color-disabled: #555555;
 }
 
 @layer base {

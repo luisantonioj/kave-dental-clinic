@@ -11,7 +11,7 @@ export function BookingContactCards() {
     >
       <section
         aria-labelledby="booking-hours-heading"
-        className="rounded-image border border-action/20 bg-border-strong p-card-x text-text-inverse"
+        className="rounded-image border border-action/40 bg-surface-raised p-card-x text-text"
       >
         <p className="text-label font-bold uppercase tracking-label text-action">
           Clinic hours
@@ -22,14 +22,14 @@ export function BookingContactCards() {
         >
           Plan your visit
         </h2>
-        <p className="mt-stack text-body text-text-inverse-muted">
+        <p className="mt-stack text-body text-text-muted">
           {CLINIC_DETAILS.hours}
         </p>
       </section>
 
       <section
         aria-labelledby="booking-contact-heading"
-        className="rounded-image border border-border-strong bg-surface-inverse-raised p-card-x text-text-inverse"
+        className="rounded-image border border-border bg-surface-raised p-card-x text-text"
       >
         <p className="text-label font-bold uppercase tracking-label text-action">
           Direct contact
@@ -42,7 +42,7 @@ export function BookingContactCards() {
         </h2>
         <dl className="mt-stack space-y-cluster">
           <div>
-            <dt className="text-label uppercase tracking-label text-text-inverse-muted">
+            <dt className="text-label uppercase tracking-label text-text-muted">
               Phone
             </dt>
             <dd>
@@ -55,7 +55,7 @@ export function BookingContactCards() {
             </dd>
           </div>
           <div>
-            <dt className="text-label uppercase tracking-label text-text-inverse-muted">
+            <dt className="text-label uppercase tracking-label text-text-muted">
               Address
             </dt>
             <dd className="mt-inline text-body">{CLINIC_DETAILS.address}</dd>
@@ -65,7 +65,7 @@ export function BookingContactCards() {
 
       <section
         aria-labelledby="booking-social-heading"
-        className="rounded-image border border-border-strong bg-surface-inverse p-card-x text-text-inverse"
+        className="rounded-image border border-border bg-surface-raised p-card-x text-text"
       >
         <h2
           className="text-label font-bold uppercase tracking-label text-action"

@@ -7,6 +7,7 @@ const GLOBAL_STYLES = readFileSync(
   "utf8",
 );
 
+/** Read a hex colour token from the `@theme {}` block (light mode). */
 function readHexToken(name: string) {
   const match = GLOBAL_STYLES.match(
     new RegExp(`--color-${name}:\\s*(#[0-9a-fA-F]{6})`),
@@ -14,6 +15,25 @@ function readHexToken(name: string) {
 
   if (!match?.[1]) {
     throw new Error(`Missing hexadecimal color token: ${name}`);
+  }
+
+  return match[1];
+}
+
+/** Read a hex colour token from the `.dark {}` block (dark mode overrides). */
+function readDarkHexToken(name: string) {
+  const darkBlock = GLOBAL_STYLES.match(/\.dark\s*\{([^}]+)\}/);
+
+  if (!darkBlock?.[1]) {
+    throw new Error("Missing .dark {} block in globals.css");
+  }
+
+  const match = darkBlock[1].match(
+    new RegExp(`--color-${name}:\\s*(#[0-9a-fA-F]{6})`),
+  );
+
+  if (!match?.[1]) {
+    throw new Error(`Missing dark-mode hexadecimal color token: ${name}`);
   }
 
   return match[1];
@@ -54,10 +74,30 @@ describe("global accessibility tokens", () => {
     ["focus", "surface-inverse", 3],
     ["border-strong", "surface-inverse", 3],
   ])(
-    "%s against %s meets its minimum contrast ratio",
+    "light – %s against %s meets its minimum contrast ratio",
     (foreground, background, minimumRatio) => {
       expect(
         contrastRatio(readHexToken(foreground), readHexToken(background)),
+      ).toBeGreaterThanOrEqual(minimumRatio);
+    },
+  );
+
+  it.each([
+    ["text", "surface", 4.5],
+    ["text-muted", "surface", 4.5],
+    ["text-inverse", "surface-inverse", 4.5],
+    ["text-inverse-muted", "surface-inverse-raised", 4.5],
+    ["action-contrast", "action", 4.5],
+    ["error-inverse", "surface-inverse-raised", 4.5],
+    ["focus", "surface", 3],
+  ])(
+    "dark – %s against %s meets its minimum contrast ratio",
+    (foreground, background, minimumRatio) => {
+      expect(
+        contrastRatio(
+          readDarkHexToken(foreground),
+          readDarkHexToken(background),
+        ),
       ).toBeGreaterThanOrEqual(minimumRatio);
     },
   );

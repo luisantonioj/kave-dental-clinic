@@ -14,7 +14,7 @@ export function PatientStories({ records }: PatientStoriesProps) {
   return (
     <section
       aria-labelledby="patient-stories-heading"
-      className="bg-surface-inverse-raised px-gutter py-section text-text-inverse"
+      className="bg-surface-raised px-gutter py-section text-text"
       data-testid="patient-stories"
     >
       <div className="mx-auto w-full max-w-wide">
@@ -25,7 +25,7 @@ export function PatientStories({ records }: PatientStoriesProps) {
           >
             Patient <span className="text-action">stories</span>
           </h2>
-          <p className="max-w-reading text-body text-text-inverse-muted">
+          <p className="max-w-reading text-body text-text-muted">
             Stories appear only when the individual&apos;s publication consent
             and final wording are documented.
           </p>
@@ -38,7 +38,7 @@ export function PatientStories({ records }: PatientStoriesProps) {
           >
             {stories.map((story) => (
               <li
-                className="overflow-hidden rounded-image border border-border-strong bg-surface-inverse"
+                className="overflow-hidden rounded-image border border-border bg-surface"
                 key={story.id}
               >
                 {story.image ? (
@@ -55,7 +55,7 @@ export function PatientStories({ records }: PatientStoriesProps) {
                   <h3 className="mt-cluster font-display text-card font-bold uppercase">
                     {story.title}
                   </h3>
-                  <p className="mt-cluster text-body text-text-inverse-muted">
+                  <p className="mt-cluster text-body text-text-muted">
                     {story.summary}
                   </p>
                 </article>
@@ -64,7 +64,7 @@ export function PatientStories({ records }: PatientStoriesProps) {
           </ul>
         ) : (
           <div
-            className="mt-card-y border-y border-border-strong py-card-y"
+            className="mt-card-y border-y border-border py-card-y"
             data-testid="patient-stories-empty-state"
           >
             <p className="max-w-reading text-lead">
