@@ -40,7 +40,7 @@ describe("FeaturedServices", () => {
         screen.getByRole("heading", { name: category.name }),
       ).toBeInTheDocument();
       expect(
-        screen.getByRole("link", { name: `Explore ${category.name} →` }),
+        screen.getByRole("link", { name: `Explore ${category.name}` }),
       ).toHaveAttribute("href", `/services#${category.anchorId}`);
     }
   });

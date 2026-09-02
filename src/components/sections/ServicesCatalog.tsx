@@ -1,10 +1,11 @@
+import Link from "next/link";
+
 import {
   getAllServiceCategories,
   type ServiceCategoryRecord,
   type ProcedureItem,
 } from "../../content/services";
 import { ResponsiveImage } from "../ui/ResponsiveImage";
-import { TextLink } from "../ui/Button";
 
 interface ProcedureCardProps {
   procedure: ProcedureItem;
@@ -12,21 +13,25 @@ interface ProcedureCardProps {
 
 function ProcedureCard({ procedure }: ProcedureCardProps) {
   return (
-    <article className="flex flex-col justify-between border border-border bg-surface-raised p-card-y transition-colors hover:border-border-strong">
+    <Link
+      href="/booking"
+      aria-label={`Book consultation for ${procedure.name}`}
+      className="group flex flex-col justify-between border border-border bg-surface-raised p-card-y transition-all duration-300 hover:border-action/60 focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus focus-visible:ring-offset-[length:var(--focus-ring-offset)]"
+    >
       <div>
         {procedure.tags && procedure.tags.length > 0 && (
           <div className="mb-2 flex flex-wrap gap-1.5">
             {procedure.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-block rounded border border-border px-2 py-0.5 text-[0.68rem] font-bold uppercase tracking-wider text-action"
+                className="inline-block rounded border border-border bg-surface px-2 py-0.5 text-[0.68rem] font-bold uppercase tracking-wider text-action"
               >
                 {tag}
               </span>
             ))}
           </div>
         )}
-        <h4 className="font-display text-card font-bold text-text">
+        <h4 className="font-display text-card font-bold text-text transition-colors group-hover:text-action">
           {procedure.name}
         </h4>
         <p className="mt-1 text-sm text-text-muted">{procedure.description}</p>
@@ -36,13 +41,7 @@ function ProcedureCard({ procedure }: ProcedureCardProps) {
           </p>
         )}
       </div>
-
-      <div className="mt-4 border-t border-border pt-2.5">
-        <TextLink className="text-action text-xs font-bold" href="/booking">
-          Consult on this procedure →
-        </TextLink>
-      </div>
-    </article>
+    </Link>
   );
 }
 

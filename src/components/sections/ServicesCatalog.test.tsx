@@ -30,12 +30,14 @@ describe("ServicesCatalog", () => {
 
     expect(totalProcedures).toBe(24);
 
-    const consultationLinks = screen.getAllByRole("link", {
-      name: "Consult on this procedure →",
-    });
-    expect(consultationLinks).toHaveLength(24);
-    for (const link of consultationLinks) {
-      expect(link).toHaveAttribute("href", "/booking");
+    for (const category of categories) {
+      for (const proc of category.procedures) {
+        expect(
+          screen.getByRole("link", {
+            name: `Book consultation for ${proc.name}`,
+          }),
+        ).toHaveAttribute("href", "/booking");
+      }
     }
 
     expect(container).not.toHaveTextContent(UNSUPPORTED_SERVICE_CLAIMS);
