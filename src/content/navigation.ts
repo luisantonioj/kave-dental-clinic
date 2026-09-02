@@ -11,7 +11,7 @@ export interface NavItem {
   href: AppRoute;
 }
 
-export const NAV_ITEMS = [
+export const PRIMARY_NAV_ITEMS = [
   {
     label: "Home",
     href: "/",
@@ -24,8 +24,14 @@ export const NAV_ITEMS = [
     label: "Transformations",
     href: "/transformations",
   },
+] as const satisfies readonly NavItem[];
+
+export const MOBILE_NAV_ITEMS = [
+  ...PRIMARY_NAV_ITEMS,
   {
     label: "Booking",
     href: "/booking",
   },
 ] as const satisfies readonly NavItem[];
+
+export const NAV_ITEMS = MOBILE_NAV_ITEMS;

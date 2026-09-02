@@ -1,4 +1,13 @@
 import { CLINIC_DETAILS } from "../../content/clinic";
+import type { ApprovedImage } from "../../content/images";
+import { ResponsiveImage } from "../ui/ResponsiveImage";
+
+const LOCATION_IMAGE: ApprovedImage = {
+  src: "/images/booking/clinic-location.jpg",
+  alt: "Kave Dental Clinic facade in Tomas Morato, Quezon City",
+  width: 1280,
+  height: 720,
+};
 
 export function BookingLocation() {
   return (
@@ -22,19 +31,21 @@ export function BookingLocation() {
           </p>
         </div>
 
-        <div
-          aria-hidden="true"
-          className="relative min-h-[22rem] overflow-hidden rounded-image border border-border bg-surface-raised"
-        >
-          <div className="absolute inset-[12%] grid grid-cols-4 grid-rows-3 gap-cluster opacity-60">
-            {Array.from({ length: 12 }, (_, index) => (
-              <span
-                className="border border-border"
-                key={`location-grid-${index}`}
-              />
-            ))}
+        <div className="relative min-h-[22rem] overflow-hidden rounded-image border border-border bg-surface-raised shadow-md">
+          <ResponsiveImage
+            className="h-full w-full object-cover"
+            image={LOCATION_IMAGE}
+            sizes="(min-width: 1024px) 60vw, 100vw"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-surface/40 via-transparent to-transparent"
+          />
+          <div className="absolute bottom-4 left-4 rounded-pill border border-border bg-surface/90 px-4 py-1.5 backdrop-blur-sm">
+            <p className="text-xs font-bold uppercase tracking-label text-action">
+              Quezon City, Metro Manila
+            </p>
           </div>
-          <div className="absolute left-1/2 top-1/2 size-control -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-action bg-action/20 shadow-[0_0_0_1rem_rgba(244,196,48,0.08)]" />
         </div>
       </div>
     </section>

@@ -178,14 +178,9 @@ export function FeaturedServices({
               className="font-display text-heading font-extrabold uppercase text-text"
               id="featured-services-heading"
             >
-              Featured Services & Disciplines
+              Featured Services
             </h2>
           </div>
-          <p className="text-body text-text-muted">
-            Explore our 6 core dental disciplines—from routine preventive care
-            to specialized smile design, restorative crowns, and implant
-            surgery.
-          </p>
         </div>
 
         <ul className="mt-card-y grid grid-cols-1 gap-stack md:grid-cols-2 lg:grid-cols-3">

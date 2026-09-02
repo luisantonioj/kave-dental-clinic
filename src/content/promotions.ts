@@ -16,7 +16,18 @@ export interface UnavailablePromotion extends PromotionBase {
 
 export type Promotion = ApprovedPromotion | UnavailablePromotion;
 
-export const PROMOTION_RECORDS = [] as const satisfies readonly Promotion[];
+export const PROMOTION_RECORDS = [
+  {
+    id: "consultation-smile-assessment",
+    title: "Aesthetic Smile Assessment & Consultation",
+    details: [
+      "In-person examination and shade analysis",
+      "Personalized treatment plan for veneers, crowns, or aligners",
+      "Transparent breakdown of treatment steps and oral health care",
+    ],
+    status: "approved",
+  },
+] as const satisfies readonly Promotion[];
 
 export function isApprovedPromotion(
   promotion: Promotion,

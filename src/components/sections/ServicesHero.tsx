@@ -1,5 +1,14 @@
+import type { ApprovedImage } from "../../content/images";
 import { SERVICES_HERO } from "../../content/services-page";
 import { ButtonLink } from "../ui/Button";
+import { ResponsiveImage } from "../ui/ResponsiveImage";
+
+const SERVICES_HERO_IMAGE: ApprovedImage = {
+  src: "/images/hero/services-hero.jpg",
+  alt: "Precision aesthetic zirconia dental crowns and porcelain veneers on natural sandstone",
+  width: 960,
+  height: 1280,
+};
 
 export function ServicesHero() {
   return (
@@ -27,13 +36,17 @@ export function ServicesHero() {
           </ButtonLink>
         </div>
 
-        <div
-          aria-hidden="true"
-          className="relative hidden aspect-[4/5] self-center bg-surface-raised/40 lg:block"
-        >
-          <div className="absolute inset-[12%] rounded-[48%_48%_38%_38%] border border-action/40 bg-[linear-gradient(145deg,rgba(244,196,48,0.08),rgba(244,196,48,0.02))]" />
-          <div className="absolute inset-x-[22%] bottom-[14%] h-px bg-action/60" />
-          <div className="absolute inset-y-[18%] left-1/2 w-px bg-border" />
+        <div className="relative hidden aspect-[4/5] overflow-hidden rounded-image border border-border bg-surface-raised shadow-xl lg:block">
+          <ResponsiveImage
+            className="h-full w-full object-cover"
+            image={SERVICES_HERO_IMAGE}
+            priority
+            sizes="(min-width: 1280px) 40vw, 50vw"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-surface/30 via-transparent to-transparent"
+          />
         </div>
       </div>
     </section>

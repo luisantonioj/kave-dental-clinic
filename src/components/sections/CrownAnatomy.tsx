@@ -1,4 +1,13 @@
+import type { ApprovedImage } from "../../content/images";
 import { CROWN_ANATOMY_POINTS } from "../../content/services-page";
+import { ResponsiveImage } from "../ui/ResponsiveImage";
+
+const CROWN_IMAGE: ApprovedImage = {
+  src: "/images/services/crown-anatomy.jpg",
+  alt: "Monolithic zirconia crown restoration model resting on sandstone pedestal in dental laboratory",
+  width: 960,
+  height: 1280,
+};
 
 export function CrownAnatomy() {
   return (
@@ -42,13 +51,16 @@ export function CrownAnatomy() {
             ))}
           </ol>
 
-          <div
-            aria-hidden="true"
-            className="relative mx-auto aspect-[4/5] w-full max-w-[23rem]"
-          >
-            <div className="absolute inset-x-[10%] top-[4%] h-[58%] rounded-[48%_48%_38%_38%] border-2 border-action/60 bg-[radial-gradient(circle_at_38%_20%,rgba(244,196,48,0.18),transparent_35%),linear-gradient(150deg,rgba(244,196,48,0.15),var(--color-surface-raised))]" />
-            <div className="absolute inset-x-[24%] bottom-[8%] h-[45%] rounded-b-[48%] border-x-2 border-b-2 border-border" />
-            <div className="absolute left-0 right-0 top-[61%] h-px bg-action/70" />
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-[23rem] overflow-hidden rounded-image border border-border bg-surface-raised shadow-md">
+            <ResponsiveImage
+              className="h-full w-full object-cover"
+              image={CROWN_IMAGE}
+              sizes="(min-width: 1024px) 30vw, 80vw"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-surface/30 via-transparent to-transparent"
+            />
           </div>
         </div>
       </div>

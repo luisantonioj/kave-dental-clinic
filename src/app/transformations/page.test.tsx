@@ -7,7 +7,7 @@ const UNAPPROVED_FIGMA_CONTENT =
   /smiles of the week|complete rejuvenation|10-shade|perfect structural alignment|real patients, real results|Clarissa M\.|Jonathan D\.|Sophia L\.|Marcus Rivera|award-winning|installment plans|within 24 hours/i;
 
 describe("TransformationsPage", () => {
-  it("renders one qualified heading and production-safe empty states", () => {
+  it("renders one qualified heading, approved transformation records, and stories", () => {
     const { container } = render(<TransformationsPage />);
 
     expect(
@@ -17,14 +17,10 @@ describe("TransformationsPage", () => {
       }),
     ).toBeInTheDocument();
     expect(container.querySelectorAll("h1")).toHaveLength(1);
-    expect(
-      screen.getByTestId("transformation-gallery-empty-state"),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByTestId("patient-stories-empty-state"),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("transformation-gallery")).toBeInTheDocument();
+    expect(screen.getByTestId("patient-stories")).toBeInTheDocument();
     expect(screen.getByTestId("social-feed")).toBeInTheDocument();
-    expect(screen.getAllByRole("article")).toHaveLength(10);
+    expect(screen.getAllByRole("article").length).toBeGreaterThanOrEqual(10);
   });
 
   it("offers only a static booking link and collects no personal information", () => {

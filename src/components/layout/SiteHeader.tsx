@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { NAV_ITEMS } from "../../content/navigation";
+import { MOBILE_NAV_ITEMS, PRIMARY_NAV_ITEMS } from "../../content/navigation";
 import { ButtonLink } from "../ui/Button";
 import { MobileNavigation } from "./MobileNavigation";
 import { ThemeToggle } from "./ThemeToggle";
@@ -25,7 +25,7 @@ export function SiteHeader() {
 
         <nav aria-label="Primary navigation" className="hidden md:block">
           <ul className="flex items-center gap-cluster lg:gap-stack">
-            {NAV_ITEMS.map((item) => (
+            {PRIMARY_NAV_ITEMS.map((item) => (
               <li key={item.href}>
                 <Link
                   className="inline-flex min-h-control items-center text-label font-bold uppercase tracking-label text-text-muted transition-colors [transition-duration:var(--motion-duration-fast)] hover:text-action focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus active:text-action-active"
@@ -47,7 +47,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-cluster md:hidden">
           <ThemeToggle />
-          <MobileNavigation items={NAV_ITEMS} />
+          <MobileNavigation items={MOBILE_NAV_ITEMS} />
         </div>
       </div>
     </header>

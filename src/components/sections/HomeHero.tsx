@@ -1,4 +1,13 @@
+import type { ApprovedImage } from "../../content/images";
 import { ButtonLink } from "../ui/Button";
+import { ResponsiveImage } from "../ui/ResponsiveImage";
+
+const HERO_IMAGE: ApprovedImage = {
+  src: "/images/hero/home-hero.jpg",
+  alt: "Modern aesthetic dental clinic interior with warm architectural travertine finishes and natural light",
+  width: 960,
+  height: 1280,
+};
 
 export function HomeHero() {
   return (
@@ -30,14 +39,17 @@ export function HomeHero() {
           </div>
         </div>
 
-        <div
-          aria-hidden="true"
-          className="hidden aspect-[4/5] grid-cols-2 gap-cluster border border-border bg-surface-raised/50 p-cluster lg:grid"
-        >
-          <div className="border border-border bg-surface-raised" />
-          <div className="translate-y-stack border border-action/40 bg-action/10" />
-          <div className="-translate-y-stack border border-action/20 bg-action/5" />
-          <div className="border border-border bg-surface-raised" />
+        <div className="relative hidden aspect-[4/5] overflow-hidden rounded-image border border-border bg-surface-raised shadow-xl lg:block">
+          <ResponsiveImage
+            className="h-full w-full object-cover"
+            image={HERO_IMAGE}
+            priority
+            sizes="(min-width: 1280px) 40vw, 50vw"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-surface/30 via-transparent to-transparent"
+          />
         </div>
       </div>
     </section>

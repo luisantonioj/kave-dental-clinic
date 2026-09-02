@@ -235,7 +235,8 @@ export function ServicesCatalog() {
     );
   }, [categoryResults]);
 
-  const isFiltering = searchQuery.trim().length > 0 || selectedCategory !== "all";
+  const isFiltering =
+    searchQuery.trim().length > 0 || selectedCategory !== "all";
 
   const handleResetFilters = () => {
     setSearchQuery("");
@@ -243,20 +244,24 @@ export function ServicesCatalog() {
   };
 
   return (
-    <>
-      {/* Sticky Categories & Filter Navigation Bar */}
+    <section
+      id="services-catalog"
+      aria-labelledby="services-catalog-heading"
+      className="relative bg-surface"
+    >
+      {/* Sticky Categories & Filter Navigation Bar - sticks only within the catalog section */}
       <nav
         aria-label="Services categories"
         className="sticky top-[var(--spacing-header)] z-30 border-y border-border bg-surface/95 py-3 backdrop-blur-md"
       >
-        <div className="mx-auto flex w-full max-w-wide items-center justify-between gap-cluster overflow-x-auto px-gutter scrollbar-none">
-          <span className="hidden text-label font-bold uppercase tracking-label text-text-muted lg:inline-block">
+        <div className="mx-auto flex w-full max-w-wide items-center gap-cluster px-gutter">
+          <span className="hidden shrink-0 text-label font-bold uppercase tracking-label text-text-muted md:inline-block">
             Categories:
           </span>
           <div
             role="tablist"
             aria-label="Filter procedures by category"
-            className="flex flex-nowrap items-center gap-2"
+            className="flex min-w-0 flex-1 flex-nowrap items-center gap-2 overflow-x-auto scrollbar-none"
           >
             {/* All Services Pill */}
             <button
@@ -302,15 +307,6 @@ export function ServicesCatalog() {
                       : "border-border bg-surface-raised text-text hover:border-action hover:text-action"
                   }`}
                 >
-                  <span
-                    className={
-                      isSelected
-                        ? "text-action-contrast"
-                        : "text-action group-hover:text-action"
-                    }
-                  >
-                    {category.number}
-                  </span>
                   <span>{category.name}</span>
                   <span
                     className={`rounded-full px-1.5 py-0.5 text-[0.65rem] font-black ${
@@ -328,12 +324,8 @@ export function ServicesCatalog() {
         </div>
       </nav>
 
-      {/* Main Catalog Section */}
-      <section
-        id="services-catalog"
-        aria-labelledby="services-catalog-heading"
-        className="bg-surface px-gutter pb-section"
-      >
+      {/* Main Catalog Content */}
+      <div className="px-gutter pb-section">
         <div className="mx-auto w-full max-w-wide">
           <div className="pt-section pb-stack">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -342,12 +334,12 @@ export function ServicesCatalog() {
                   id="services-catalog-heading"
                   className="font-display text-heading font-extrabold uppercase text-text"
                 >
-                  All Services & Clinical Procedures
+                  All Services
                 </h2>
                 <p className="mt-cluster max-w-reading text-lead text-text-muted">
                   Explore our procedure catalog below. Use the search bar or
-                  category pills to find treatments and topics to discuss
-                  during your individual consultation.
+                  category pills to find treatments and topics to discuss during
+                  your individual consultation.
                 </p>
               </div>
 
@@ -527,7 +519,7 @@ export function ServicesCatalog() {
             </div>
           )}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
