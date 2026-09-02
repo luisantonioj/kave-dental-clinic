@@ -25,10 +25,10 @@ export interface ApprovedLaboratoryStory {
 }
 
 export const SERVICES_HERO = {
-  eyebrow: "Featured services",
+  eyebrow: "Comprehensive Care & Smile Design",
   heading: "Zirconia and featured dental services",
   description:
-    "Explore service categories Kave Dental Clinic publicly features. A consultation is needed to discuss individual suitability, limitations, and treatment planning.",
+    "Explore our complete range of general, cosmetic, restorative, orthodontic, and surgical dental care. A clinical consultation is needed to evaluate individual oral health and determine personalized treatment planning.",
 } as const satisfies ServicesHeroContent;
 
 export const VENEER_DISCUSSION_POINTS = [

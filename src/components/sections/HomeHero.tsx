@@ -14,10 +14,10 @@ export function HomeHero() {
 
       <div className="mx-auto grid min-h-[calc(100svh-var(--spacing-header))] w-full max-w-wide items-center gap-section px-gutter py-section lg:grid-cols-[minmax(0,3fr)_minmax(16rem,2fr)]">
         <div className="max-w-[52rem]">
-          <h4 className="text-balance font-display text-heading font-extrabold uppercase">
+          <h1 className="text-balance font-display text-display font-extrabold uppercase">
             Your ticket to a{" "}
             <span className="text-action">picture-perfect smile</span>
-          </h4>
+          </h1>
           <p className="mt-stack max-w-reading text-lead text-text-muted">
             Explore Kave Dental Clinic&apos;s featured services, clinic-approved
             work, and verified contact details.

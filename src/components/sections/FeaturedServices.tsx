@@ -1,10 +1,14 @@
-import type { ApprovedService } from "../../content/services";
-import { getApprovedServices } from "../../content/services";
+import type {
+  ApprovedService,
+  ServiceCategoryRecord,
+} from "../../content/services";
+import { getAllServiceCategories } from "../../content/services";
 import { ResponsiveImage } from "../ui/ResponsiveImage";
 import { TextLink } from "../ui/Button";
 
 export interface FeaturedServicesProps {
   services?: readonly ApprovedService[];
+  categories?: readonly ServiceCategoryRecord[];
 }
 
 interface ServiceCardProps {
@@ -49,9 +53,115 @@ export function ServiceCard({ index, service }: ServiceCardProps) {
   );
 }
 
+interface CategoryCardProps {
+  category: ServiceCategoryRecord;
+}
+
+export function CategoryPillarCard({ category }: CategoryCardProps) {
+  return (
+    <li className="relative flex flex-col justify-between overflow-hidden border border-border bg-surface-raised p-card-y text-text transition-all duration-300 hover:border-action/50">
+      <span
+        aria-hidden="true"
+        className="absolute -right-2 -top-3 font-display text-[5.5rem] font-black leading-none text-border/40 select-none"
+      >
+        {category.number}
+      </span>
+
+      <div className="relative z-10">
+        <div className="flex items-center gap-2">
+          <p className="text-label font-bold uppercase tracking-label text-action">
+            {category.isSpecialty ? "Specialty Focus" : "Clinical Care"}
+          </p>
+        </div>
+        <h3 className="mt-cluster font-display text-card font-bold text-text">
+          {category.name}
+        </h3>
+        <p className="mt-cluster text-body text-text-muted">
+          {category.shortSummary}
+        </p>
+
+        <div className="mt-card-y flex flex-wrap gap-1.5">
+          {category.featuredProcedures.map((procName) => (
+            <span
+              key={procName}
+              className="inline-block rounded border border-border bg-surface px-2.5 py-1 text-xs font-semibold text-text-muted"
+            >
+              {procName}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="relative z-10 mt-card-y border-t border-border pt-cluster">
+        <TextLink
+          className="text-action text-xs font-bold uppercase tracking-wider"
+          href={`/services#${category.anchorId}`}
+        >
+          Explore {category.name} →
+        </TextLink>
+      </div>
+    </li>
+  );
+}
+
 export function FeaturedServices({
-  services = getApprovedServices(),
+  services,
+  categories,
 }: FeaturedServicesProps) {
+  // If specific individual services prop is passed, render legacy/approved service cards
+  if (services !== undefined) {
+    return (
+      <section
+        aria-labelledby="featured-services-heading"
+        className="border-t border-border bg-surface text-text"
+      >
+        <div className="mx-auto w-full max-w-wide px-gutter py-section">
+          <div className="grid items-end gap-stack md:grid-cols-[minmax(0,1fr)_minmax(16rem,28rem)]">
+            <div>
+              <p className="text-label font-bold uppercase tracking-label text-action">
+                Explore care
+              </p>
+              <h2
+                className="mt-cluster font-display text-heading font-extrabold uppercase"
+                id="featured-services-heading"
+              >
+                Featured services
+              </h2>
+            </div>
+            <p className="text-body text-text-muted">
+              Service details are published only after the clinic approves the
+              wording and supporting media.
+            </p>
+          </div>
+
+          {services.length > 0 ? (
+            <ul className="mt-card-y grid grid-cols-1 gap-stack sm:grid-cols-2 xl:grid-cols-4">
+              {services.map((service, index) => (
+                <ServiceCard index={index} key={service.id} service={service} />
+              ))}
+            </ul>
+          ) : (
+            <div
+              className="mt-card-y border border-border bg-surface-raised p-card-y"
+              role="status"
+            >
+              <p className="max-w-reading text-lead">
+                Detailed service cards are awaiting clinic-approved images and
+                wording.
+              </p>
+              <TextLink className="mt-cluster text-action" href="/services">
+                Visit services
+              </TextLink>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  // Default home route presentation: render all 6 core clinical disciplines
+  const activeCategories = categories ?? getAllServiceCategories();
+
   return (
     <section
       aria-labelledby="featured-services-heading"
@@ -61,41 +171,27 @@ export function FeaturedServices({
         <div className="grid items-end gap-stack md:grid-cols-[minmax(0,1fr)_minmax(16rem,28rem)]">
           <div>
             <p className="text-label font-bold uppercase tracking-label text-action">
-              Explore care
+              Explore Care
             </p>
             <h2
-              className="mt-cluster font-display text-heading font-extrabold uppercase"
+              className="mt-cluster font-display text-heading font-extrabold uppercase text-text"
               id="featured-services-heading"
             >
-              Featured services
+              Featured Services & Disciplines
             </h2>
           </div>
           <p className="text-body text-text-muted">
-            Service details are published only after the clinic approves the
-            wording and supporting media.
+            Explore our 6 core dental disciplines—from routine preventive care
+            to specialized smile design, restorative crowns, and implant
+            surgery.
           </p>
         </div>
 
-        {services.length > 0 ? (
-          <ul className="mt-card-y grid grid-cols-1 gap-stack sm:grid-cols-2 xl:grid-cols-4">
-            {services.map((service, index) => (
-              <ServiceCard index={index} key={service.id} service={service} />
-            ))}
-          </ul>
-        ) : (
-          <div
-            className="mt-card-y border border-border bg-surface-raised p-card-y"
-            role="status"
-          >
-            <p className="max-w-reading text-lead">
-              Detailed service cards are awaiting clinic-approved images and
-              wording.
-            </p>
-            <TextLink className="mt-cluster text-action" href="/services">
-              Visit services
-            </TextLink>
-          </div>
-        )}
+        <ul className="mt-card-y grid grid-cols-1 gap-stack md:grid-cols-2 lg:grid-cols-3">
+          {activeCategories.map((category) => (
+            <CategoryPillarCard key={category.id} category={category} />
+          ))}
+        </ul>
       </div>
     </section>
   );

@@ -3,7 +3,9 @@ import type { Metadata } from "next";
 import { CrownAnatomy } from "../../components/sections/CrownAnatomy";
 import { LaboratoryStory } from "../../components/sections/LaboratoryStory";
 import { ServicesCallToAction } from "../../components/sections/ServicesCallToAction";
+import { ServicesCatalog } from "../../components/sections/ServicesCatalog";
 import { ServicesHero } from "../../components/sections/ServicesHero";
+import { ServicesNav } from "../../components/sections/ServicesNav";
 import { VeneerOverview } from "../../components/sections/VeneerOverview";
 import { LABORATORY_STORY } from "../../content/services-page";
 import { createPageMetadata } from "../../lib/metadata";
@@ -17,6 +19,8 @@ export default function ServicesPage() {
   return (
     <main id="main-content" tabIndex={-1}>
       <ServicesHero />
+      <ServicesNav />
+      <ServicesCatalog />
       <VeneerOverview />
       <CrownAnatomy />
       <LaboratoryStory story={LABORATORY_STORY} />

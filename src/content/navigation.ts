@@ -1,4 +1,10 @@
-export type AppRoute = "/" | "/services" | "/transformations" | "/booking";
+export type AppRoute =
+  | "/"
+  | "/services"
+  | "/transformations"
+  | "/booking"
+  | `/services#${string}`
+  | `#${string}`;
 
 export interface NavItem {
   label: string;

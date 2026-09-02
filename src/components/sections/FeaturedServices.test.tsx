@@ -2,6 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import type { ApprovedService } from "../../content/services";
+import { getAllServiceCategories } from "../../content/services";
 import { FeaturedServices } from "./FeaturedServices";
 
 const TEST_SERVICES = [
@@ -28,7 +29,23 @@ const TEST_SERVICES = [
 );
 
 describe("FeaturedServices", () => {
-  it("renders approved service cards in the responsive grid", () => {
+  it("renders all 6 clinical pillar categories by default", () => {
+    render(<FeaturedServices />);
+
+    const categories = getAllServiceCategories();
+    expect(categories).toHaveLength(6);
+
+    for (const category of categories) {
+      expect(
+        screen.getByRole("heading", { name: category.name }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("link", { name: `Explore ${category.name} →` }),
+      ).toHaveAttribute("href", `/services#${category.anchorId}`);
+    }
+  });
+
+  it("renders approved service cards when custom services array is passed", () => {
     render(<FeaturedServices services={TEST_SERVICES} />);
 
     const list = screen.getByRole("list");
@@ -47,7 +64,7 @@ describe("FeaturedServices", () => {
     }
   });
 
-  it("renders a coherent state when no service media is approved", () => {
+  it("renders a coherent state when empty services array is passed", () => {
     render(<FeaturedServices services={[]} />);
 
     expect(screen.getByRole("status")).toHaveTextContent(

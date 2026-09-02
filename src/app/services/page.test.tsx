@@ -20,6 +20,12 @@ describe("ServicesPage", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
+        name: "All Services & Clinical Procedures",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
         name: "Topics for a veneer consultation",
       }),
     ).toBeInTheDocument();
