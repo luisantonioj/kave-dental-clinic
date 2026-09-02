@@ -59,46 +59,59 @@ interface CategoryCardProps {
 
 export function CategoryPillarCard({ category }: CategoryCardProps) {
   return (
-    <li className="relative flex flex-col justify-between overflow-hidden border border-border bg-surface-raised p-card-y text-text transition-all duration-300 hover:border-action/50">
-      <span
-        aria-hidden="true"
-        className="absolute -right-2 -top-3 font-display text-[5.5rem] font-black leading-none text-border/40 select-none"
-      >
-        {category.number}
-      </span>
-
-      <div className="relative z-10">
-        <div className="flex items-center gap-2">
-          <p className="text-label font-bold uppercase tracking-label text-action">
-            {category.isSpecialty ? "Specialty Focus" : "Clinical Care"}
-          </p>
-        </div>
-        <h3 className="mt-cluster font-display text-card font-bold text-text">
-          {category.name}
-        </h3>
-        <p className="mt-cluster text-body text-text-muted">
-          {category.shortSummary}
-        </p>
-
-        <div className="mt-card-y flex flex-wrap gap-1.5">
-          {category.featuredProcedures.map((procName) => (
-            <span
-              key={procName}
-              className="inline-block rounded border border-border bg-surface px-2.5 py-1 text-xs font-semibold text-text-muted"
-            >
-              {procName}
-            </span>
-          ))}
-        </div>
+    <li className="group relative flex flex-col justify-between overflow-hidden border border-border bg-surface-raised text-text transition-all duration-300 hover:border-action/60">
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface">
+        <ResponsiveImage
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          image={category.image}
+          sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-surface-raised via-surface-raised/20 to-transparent"
+        />
+        <span
+          aria-hidden="true"
+          className="absolute right-3 top-2 font-display text-4xl font-black text-white/80 drop-shadow-md select-none"
+        >
+          {category.number}
+        </span>
       </div>
 
-      <div className="relative z-10 mt-card-y border-t border-border pt-cluster">
-        <TextLink
-          className="text-action text-xs font-bold uppercase tracking-wider"
-          href={`/services#${category.anchorId}`}
-        >
-          Explore {category.name} →
-        </TextLink>
+      <div className="flex flex-1 flex-col justify-between p-card-y">
+        <div>
+          <div className="flex items-center gap-2">
+            <p className="text-label font-bold uppercase tracking-label text-action">
+              {category.isSpecialty ? "Specialty Discipline" : "Clinical Care"}
+            </p>
+          </div>
+          <h3 className="mt-1 font-display text-card font-bold text-text">
+            {category.name}
+          </h3>
+          <p className="mt-cluster text-body text-text-muted">
+            {category.shortSummary}
+          </p>
+
+          <div className="mt-card-y flex flex-wrap gap-1.5">
+            {category.featuredProcedures.map((procName) => (
+              <span
+                key={procName}
+                className="inline-block rounded border border-border bg-surface px-2.5 py-1 text-xs font-medium text-text-muted"
+              >
+                {procName}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-card-y border-t border-border pt-cluster">
+          <TextLink
+            className="text-action text-xs font-bold uppercase tracking-wider"
+            href={`/services#${category.anchorId}`}
+          >
+            Explore {category.name} →
+          </TextLink>
+        </div>
       </div>
     </li>
   );

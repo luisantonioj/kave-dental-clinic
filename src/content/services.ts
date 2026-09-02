@@ -26,6 +26,7 @@ export interface ServiceCategoryRecord {
   anchorId: string;
   detailRoute: AppRoute;
   isSpecialty?: boolean;
+  image: ApprovedImage;
   featuredProcedures: readonly string[];
   procedures: readonly ProcedureItem[];
 }
@@ -36,11 +37,17 @@ export const SERVICE_CATEGORIES: readonly ServiceCategoryRecord[] = [
     number: "01",
     name: "General Dentistry",
     shortSummary:
-      "Comprehensive oral examinations, preventive cleanings, and essential extractions for ongoing dental health.",
+      "Routine check-ups, deep cleaning, and essential preventive oral care.",
     fullDescription:
-      "Routine preventive and foundational oral care to maintain long-term gum and tooth health, detect issues early, and keep your smile healthy.",
+      "Fundamental preventive care to maintain oral health and detect dental concerns early.",
     anchorId: "general-dentistry",
     detailRoute: "/services",
+    image: {
+      src: "/images/services/general-dentistry.jpg",
+      alt: "Clean clinical dental examination tools on warm stone surface",
+      width: 1024,
+      height: 768,
+    },
     featuredProcedures: [
       "Dental Check-up",
       "Oral Prophylaxis",
@@ -51,27 +58,27 @@ export const SERVICE_CATEGORIES: readonly ServiceCategoryRecord[] = [
         id: "dental-check-up",
         name: "Dental Check-up",
         description:
-          "Comprehensive clinical examination of teeth, gums, and oral tissues to evaluate overall oral health and identify concerns early.",
+          "Comprehensive evaluation of teeth, gums, and oral health.",
         consultationNote:
-          "Includes assessment of existing restorations, periodontal health, and personalized oral care guidance.",
+          "Includes assessment of existing restorations and personalized oral care advice.",
         tags: ["Preventive", "Routine Care"],
       },
       {
         id: "oral-prophylaxis",
         name: "Oral Prophylaxis",
         description:
-          "Professional teeth cleaning to remove plaque, calculus (tartar), and surface stains for optimal oral hygiene.",
+          "Professional cleaning to remove plaque, tartar, and surface stains.",
         consultationNote:
-          "Recommended at regular intervals to help prevent periodontal disease and tooth decay.",
+          "Recommended regularly to prevent periodontal issues and tooth decay.",
         tags: ["Deep Clean", "Preventive"],
       },
       {
         id: "tooth-extraction",
         name: "Tooth Extraction",
         description:
-          "Careful removal of non-restorable, severely decayed, or problematic teeth with patient comfort in focus.",
+          "Safe and comfortable removal of non-restorable or damaged teeth.",
         consultationNote:
-          "A clinician will evaluate whether a tooth can be restored before recommending an extraction.",
+          "A clinician will evaluate restorative alternatives before extraction.",
         tags: ["Oral Surgery", "Restorative"],
       },
     ],
@@ -81,12 +88,18 @@ export const SERVICE_CATEGORIES: readonly ServiceCategoryRecord[] = [
     number: "02",
     name: "Cosmetic Dentistry",
     shortSummary:
-      "Precision porcelain, ceramage, and composite veneers alongside professional whitening for individualized smile design.",
+      "Custom porcelain and composite veneers with professional whitening for smile design.",
     fullDescription:
-      "Smile design solutions tailored to your individual aesthetic goals, focusing on natural appearance, facial harmony, and conservative tooth preparation.",
+      "Aesthetic smile design focused on natural tooth shape, shade, and facial harmony.",
     anchorId: "cosmetic-dentistry",
     detailRoute: "/services",
     isSpecialty: true,
+    image: {
+      src: "/images/services/cosmetic-dentistry.jpg",
+      alt: "Porcelain veneer shade guide and aesthetic smile consultation",
+      width: 1024,
+      height: 768,
+    },
     featuredProcedures: [
       "Zirconia Veneers",
       "Ceramage Veneers",
@@ -98,36 +111,36 @@ export const SERVICE_CATEGORIES: readonly ServiceCategoryRecord[] = [
         id: "zirconia-veneers",
         name: "Zirconia Veneers",
         description:
-          "High-strength, custom-milled ceramic shells designed for natural aesthetics, durability, and individualized shade matching.",
+          "High-strength ceramic shells for natural smile enhancement and shade design.",
         consultationNote:
-          "Requires consultation to evaluate bite alignment, tooth preparation needs, and cosmetic expectations.",
+          "Evaluates bite alignment, preparation needs, and cosmetic expectations.",
         tags: ["Zirconia", "Smile Design"],
       },
       {
         id: "ceramage-veneers",
         name: "Ceramage Veneers",
         description:
-          "Micro-hybrid composite-ceramic veneers offering high polishability, elasticity, and aesthetic enhancement.",
+          "Micro-hybrid composite-ceramic veneers offering durability and aesthetics.",
         consultationNote:
-          "Discuss material characteristics and shade matching during an individual assessment.",
+          "Discuss material properties and shade matching during your consultation.",
         tags: ["Composite-Ceramic", "Aesthetic"],
       },
       {
         id: "composite-veneers",
         name: "Composite Veneers",
         description:
-          "Direct or indirect composite resin layering to reshape, contour, or brighten teeth with minimal tooth preparation.",
+          "Direct composite resin layering for subtle smile adjustments.",
         consultationNote:
-          "Ideal for subtle cosmetic adjustments and conservative smile enhancements.",
+          "Ideal for conservative cosmetic bonding with minimal preparation.",
         tags: ["Conservative", "Direct Bonding"],
       },
       {
         id: "teeth-whitening",
         name: "Teeth Whitening",
         description:
-          "Professional in-clinic whitening treatments designed to safely brighten discolored or stained teeth.",
+          "Professional in-clinic whitening for a brighter, refreshed smile.",
         consultationNote:
-          "Initial shade evaluation and gum barrier protection are reviewed before treatment.",
+          "Initial shade assessment and gum barrier protection are completed before whitening.",
         tags: ["In-Clinic", "Brightening"],
       },
     ],
@@ -137,12 +150,18 @@ export const SERVICE_CATEGORIES: readonly ServiceCategoryRecord[] = [
     number: "03",
     name: "Crowns & Bridges",
     shortSummary:
-      "Fixed prosthodontic restorations including monolithic zirconia, bridges, and precision PMMA temporaries.",
+      "Durable zirconia crowns, fixed bridges, and precision temporary restorations.",
     fullDescription:
-      "Durable fixed restorations engineered to protect compromised teeth, restore chewing function, and seamlessly replace missing teeth.",
+      "Long-lasting fixed prosthetics to protect damaged teeth and seamlessly replace missing teeth.",
     anchorId: "crowns-and-bridges",
     detailRoute: "/services",
     isSpecialty: true,
+    image: {
+      src: "/images/services/crowns-and-bridges.jpg",
+      alt: "Monolithic zirconia dental bridge restoration on stone podium",
+      width: 1024,
+      height: 768,
+    },
     featuredProcedures: [
       "Zirconia Crowns",
       "Zirconia Bridges",
@@ -153,45 +172,45 @@ export const SERVICE_CATEGORIES: readonly ServiceCategoryRecord[] = [
         id: "zirconia-crowns",
         name: "Zirconia Crowns",
         description:
-          "Full-coverage monolithic or layered zirconia restorations providing exceptional strength and lifelike translucency.",
+          "Full-coverage monolithic ceramic crowns with lifelike strength.",
         consultationNote:
-          "Custom-designed to protect weakened teeth following root canal therapy or significant tooth structure loss.",
+          "Protects weakened teeth following root canal treatment or severe wear.",
         tags: ["Monolithic Zirconia", "Fixed Restoration"],
       },
       {
         id: "zirconia-bridges",
         name: "Zirconia Bridges",
         description:
-          "Fixed bridges anchored to adjacent teeth or implants to replace one or more missing teeth with lasting stability.",
+          "Fixed ceramic bridges to replace one or more missing teeth.",
         consultationNote:
-          "Span length and abutment tooth stability are assessed during diagnostic planning.",
+          "Span length and abutment tooth health are reviewed during planning.",
         tags: ["Tooth Replacement", "Fixed Prosthetics"],
       },
       {
         id: "zirconia-crowns-and-bridges",
         name: "Zirconia Crowns & Bridges",
         description:
-          "Combined fixed prosthetic solutions for comprehensive restorative and functional smile rehabilitation.",
+          "Comprehensive fixed prosthetics for full functional and aesthetic smile rehabilitation.",
         consultationNote:
-          "Planned in coordination with occlusion and aesthetic goals.",
+          "Custom-planned to restore natural chewing balance and bite height.",
         tags: ["Full Rehabilitation", "Zirconia"],
       },
       {
         id: "pmma-crowns",
         name: "PMMA Crowns",
         description:
-          "Precision-milled polymethyl methacrylate crowns used for intermediate restorations and aesthetic evaluation.",
+          "Precision-milled provisional crowns for treatment planning.",
         consultationNote:
-          "Serves as a reliable provisional phase before final ceramic placement.",
+          "Reliable intermediate phase before permanent crown placement.",
         tags: ["Provisional", "CAD/CAM"],
       },
       {
         id: "pmma-temporaries",
         name: "PMMA Temporaries",
         description:
-          "High-quality temporary restorations to protect prepared teeth and maintain function while permanent prosthetics are crafted.",
+          "Protective temporary restorations while permanent prosthetics are made.",
         consultationNote:
-          "Protects tooth sensitivity and maintains gingival margins during fabrication.",
+          "Protects prepared teeth and preserves gum margins during fabrication.",
         tags: ["Temporary Care", "Protection"],
       },
     ],
@@ -201,38 +220,44 @@ export const SERVICE_CATEGORIES: readonly ServiceCategoryRecord[] = [
     number: "04",
     name: "Orthodontics",
     shortSummary:
-      "Traditional metal braces, tooth-colored ceramic brackets, and discreet clear aligners for alignment correction.",
+      "Metal brackets, tooth-colored ceramic braces, and discreet clear aligners.",
     fullDescription:
-      "Targeted orthodontic therapies designed to align crooked or crowded teeth, close gaps, improve bite mechanics, and promote long-term dental health.",
+      "Modern alignment therapies to straighten teeth, close gaps, and improve bite function.",
     anchorId: "orthodontics",
     detailRoute: "/services",
+    image: {
+      src: "/images/services/orthodontics.jpg",
+      alt: "Modern clear aligner trays for aesthetic orthodontics",
+      width: 1024,
+      height: 768,
+    },
     featuredProcedures: ["Dental Braces", "Ceramic Braces", "Clear Aligners"],
     procedures: [
       {
         id: "dental-braces",
         name: "Dental Braces",
         description:
-          "Reliable traditional fixed brackets and archwires to correct moderate to severe misalignment and bite discrepancies.",
+          "Traditional fixed braces for effective alignment and bite correction.",
         consultationNote:
-          "Treatment duration depends on the complexity of crowding, spacing, and jaw alignment.",
+          "Treatment duration depends on the complexity of tooth spacing and alignment.",
         tags: ["Traditional", "Alignment"],
       },
       {
         id: "ceramic-braces",
         name: "Ceramic Braces",
         description:
-          "Tooth-colored aesthetic ceramic brackets that blend naturally with teeth while providing dependable tooth movement.",
+          "Tooth-colored aesthetic brackets for a discreet appearance.",
         consultationNote:
-          "A discreet alternative to traditional metal brackets with comparable mechanical efficacy.",
+          "Blends naturally with teeth while providing dependable orthodontic movement.",
         tags: ["Aesthetic", "Tooth-Colored"],
       },
       {
         id: "clear-aligners",
         name: "Clear Aligners",
         description:
-          "Discreet, removable custom clear trays designed for comfortable, gradual alignment adjustments.",
+          "Removable, transparent custom trays for gradual tooth alignment.",
         consultationNote:
-          "Suitability depends on case complexity, compliance, and clinical diagnostic scans.",
+          "Suitability depends on case complexity and clinical scan analysis.",
         tags: ["Removable", "Discreet"],
       },
     ],
@@ -242,11 +267,17 @@ export const SERVICE_CATEGORIES: readonly ServiceCategoryRecord[] = [
     number: "05",
     name: "Dental Implants & Surgery",
     shortSummary:
-      "Permanent tooth replacement implants, bone grafting, wisdom tooth removal, and minor surgical procedures.",
+      "Titanium implants, bone grafting, wisdom tooth removal, and minor oral surgery.",
     fullDescription:
-      "Advanced surgical solutions to replace missing tooth roots, preserve bone structure, and manage complex dental conditions safely.",
+      "Permanent tooth replacements and surgical care delivered with comfort and precision.",
     anchorId: "dental-implants-surgery",
     detailRoute: "/services",
+    image: {
+      src: "/images/services/dental-implants.jpg",
+      alt: "Titanium dental implant fixture and ceramic crown component",
+      width: 1024,
+      height: 768,
+    },
     featuredProcedures: [
       "Dental Implants",
       "Dental Bone Graft",
@@ -258,45 +289,45 @@ export const SERVICE_CATEGORIES: readonly ServiceCategoryRecord[] = [
         id: "dental-implants",
         name: "Dental Implants",
         description:
-          "Biocompatible titanium fixtures surgically placed into the jawbone to serve as stable anchors for crowns, bridges, or dentures.",
+          "Biocompatible titanium anchors permanently replacing missing tooth roots.",
         consultationNote:
-          "Requires bone density evaluation and radiographic imaging before surgical planning.",
+          "Requires bone density evaluation and imaging before surgical planning.",
         tags: ["Tooth Replacement", "Surgical"],
       },
       {
         id: "dental-bone-graft",
         name: "Dental Bone Graft",
         description:
-          "Bone augmentation procedures to build sufficient bone volume and density for successful implant placement.",
+          "Bone augmentation to create stable foundations for implants.",
         consultationNote:
-          "Discussed when jawbone ridge resorption has occurred following tooth loss.",
+          "Discussed when bone volume needs enhancement after tooth loss.",
         tags: ["Bone Augmentation", "Surgical"],
       },
       {
         id: "wisdom-tooth-extraction",
         name: "Wisdom Tooth Extraction",
         description:
-          "Surgical removal of impacted, painful, or misaligned third molars to prevent crowding, cysts, and infection.",
+          "Safe surgical removal of impacted or painful third molars.",
         consultationNote:
-          "Panoramic radiograph assessment is required to plan surgical access and nerve proximity.",
+          "Radiographs are reviewed to assess molar positioning and nerve safety.",
         tags: ["Third Molar", "Surgical"],
       },
       {
         id: "gingivectomy",
         name: "Gingivectomy",
         description:
-          "Precision gum reshaping procedure to remove excess tissue, treat periodontal pockets, or improve gumline symmetry.",
+          "Precision gum contouring to enhance symmetry and periodontal health.",
         consultationNote:
-          "Performed under local anesthesia for comfortable tissue contouring.",
+          "Comfortable tissue reshaping under local anesthesia.",
         tags: ["Periodontal", "Gum Contouring"],
       },
       {
         id: "dental-surgery",
         name: "Dental Surgery",
         description:
-          "Minor surgical interventions for soft and hard oral tissue management tailored to individual clinical requirements.",
+          "Targeted minor oral surgical procedures for hard and soft tissues.",
         consultationNote:
-          "Pre-operative health assessment and post-operative recovery guidelines are reviewed in detail.",
+          "Pre-op evaluation and personalized post-op recovery care are reviewed.",
         tags: ["Oral Surgery", "Clinical Care"],
       },
     ],
@@ -306,11 +337,17 @@ export const SERVICE_CATEGORIES: readonly ServiceCategoryRecord[] = [
     number: "06",
     name: "Dentures & Restorative Dentistry",
     shortSummary:
-      "Tooth-saving root canal therapy alongside precision Ivocap complete and full removable prosthetics.",
+      "Endodontic root canal therapy alongside precision Ivocap removable dentures.",
     fullDescription:
-      "Restorative and prosthetic care focused on saving damaged natural teeth and replacing multiple missing teeth with well-fitted, comfortable dentures.",
+      "Restorative treatments to preserve natural teeth and restore full arch chewing function.",
     anchorId: "dentures-restorative",
     detailRoute: "/services",
+    image: {
+      src: "/images/services/dentures-restorative.jpg",
+      alt: "Precision prosthetic dentistry model and restorative materials",
+      width: 1024,
+      height: 768,
+    },
     featuredProcedures: [
       "Root Canal Treatment",
       "Ivocap Dentures",
@@ -322,36 +359,36 @@ export const SERVICE_CATEGORIES: readonly ServiceCategoryRecord[] = [
         id: "root-canal-treatment",
         name: "Root Canal Treatment",
         description:
-          "Endodontic therapy to clean, disinfect, and seal infected or inflamed tooth pulp, relieving pain and preserving the natural tooth.",
+          "Therapy to clean infected pulp, relieve pain, and save the natural tooth.",
         consultationNote:
-          "Often paired with a protective crown restoration to restore structural integrity.",
+          "Often paired with a crown restoration to protect tooth strength.",
         tags: ["Endodontics", "Tooth Preservation"],
       },
       {
         id: "ivocap-dentures",
         name: "Ivocap Dentures",
         description:
-          "High-precision injection-molded acrylic dentures offering superior fit, minimal shrinkage, and enhanced durability.",
+          "High-precision injection-molded acrylic dentures with exceptional fit.",
         consultationNote:
-          "The Ivocap injection system provides improved suction and reduced porousness compared to conventional acrylics.",
+          "Provides superior suction, low porosity, and enhanced durability.",
         tags: ["Precision Acrylic", "Removable Prosthetics"],
       },
       {
         id: "complete-dentures",
         name: "Complete Dentures",
         description:
-          "Custom-fabricated upper or lower removable appliances to restore full dental arch function and facial support.",
+          "Custom upper or lower removable appliances for full arch restoration.",
         consultationNote:
-          "Detailed impressions and bite registrations ensure balanced chewing contact.",
+          "Accurate impressions ensure balanced chewing and facial support.",
         tags: ["Full Arch", "Removable"],
       },
       {
         id: "full-dentures",
         name: "Full Dentures",
         description:
-          "Comprehensive dual-arch prosthetic solution designed to restore chewing ability, speech, and smile confidence.",
+          "Complete dual-arch dentures restoring chewing function and smile aesthetics.",
         consultationNote:
-          "Includes try-in appointments for personalized aesthetic and phonetics verification.",
+          "Includes try-in fittings to verify comfort, aesthetics, and phonetics.",
         tags: ["Dual Arch", "Smile Rehabilitation"],
       },
     ],
