@@ -13,11 +13,8 @@ export function BookingContactCards() {
         aria-labelledby="booking-hours-heading"
         className="rounded-image border border-action/40 bg-surface-raised p-card-x text-text"
       >
-        <p className="text-label font-bold uppercase tracking-label text-action">
-          Clinic hours
-        </p>
         <h2
-          className="mt-cluster font-display text-card font-bold uppercase"
+          className="font-display text-card font-bold uppercase"
           id="booking-hours-heading"
         >
           Plan your visit
@@ -31,11 +28,8 @@ export function BookingContactCards() {
         aria-labelledby="booking-contact-heading"
         className="rounded-image border border-border bg-surface-raised p-card-x text-text"
       >
-        <p className="text-label font-bold uppercase tracking-label text-action">
-          Direct contact
-        </p>
         <h2
-          className="mt-cluster font-display text-card font-bold uppercase"
+          className="font-display text-card font-bold uppercase"
           id="booking-contact-heading"
         >
           Contact the clinic

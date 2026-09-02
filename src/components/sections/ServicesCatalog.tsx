@@ -19,18 +19,6 @@ function ProcedureCard({ procedure }: ProcedureCardProps) {
       className="group flex h-full flex-col justify-between border border-border bg-surface-raised p-card-y transition-all duration-300 hover:border-action/60 focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus focus-visible:ring-offset-[length:var(--focus-ring-offset)]"
     >
       <div>
-        {procedure.tags && procedure.tags.length > 0 && (
-          <div className="mb-3 flex flex-wrap gap-1.5">
-            {procedure.tags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-block rounded border border-border bg-surface px-2.5 py-1 text-[0.7rem] font-bold uppercase tracking-wider text-action"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
         <h4 className="font-display text-card font-bold text-text transition-colors group-hover:text-action">
           {procedure.name}
         </h4>
@@ -127,12 +115,9 @@ export function ServicesCatalog() {
     >
       <div className="mx-auto w-full max-w-wide">
         <div className="pt-section pb-stack">
-          <p className="text-label font-bold uppercase tracking-label text-action">
-            Complete Directory
-          </p>
           <h2
             id="services-catalog-heading"
-            className="mt-cluster font-display text-heading font-extrabold uppercase text-text"
+            className="font-display text-heading font-extrabold uppercase text-text"
           >
             All Services & Clinical Procedures
           </h2>

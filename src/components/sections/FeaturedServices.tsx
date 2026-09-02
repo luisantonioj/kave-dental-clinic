@@ -125,11 +125,8 @@ export function FeaturedServices({
         <div className="mx-auto w-full max-w-wide px-gutter py-section">
           <div className="grid items-end gap-stack md:grid-cols-[minmax(0,1fr)_minmax(16rem,28rem)]">
             <div>
-              <p className="text-label font-bold uppercase tracking-label text-action">
-                Explore care
-              </p>
               <h2
-                className="mt-cluster font-display text-heading font-extrabold uppercase"
+                className="font-display text-heading font-extrabold uppercase"
                 id="featured-services-heading"
               >
                 Featured services
@@ -177,11 +174,8 @@ export function FeaturedServices({
       <div className="mx-auto w-full max-w-wide px-gutter py-section">
         <div className="grid items-end gap-stack md:grid-cols-[minmax(0,1fr)_minmax(16rem,28rem)]">
           <div>
-            <p className="text-label font-bold uppercase tracking-label text-action">
-              Explore Care
-            </p>
             <h2
-              className="mt-cluster font-display text-heading font-extrabold uppercase text-text"
+              className="font-display text-heading font-extrabold uppercase text-text"
               id="featured-services-heading"
             >
               Featured Services & Disciplines

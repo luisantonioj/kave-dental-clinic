@@ -20,11 +20,8 @@ export default function BookingPage() {
         <div className="mx-auto w-full max-w-wide">
           <div className="grid gap-stack lg:grid-cols-[minmax(0,3fr)_auto] lg:items-end">
             <div>
-              <p className="text-label font-bold uppercase tracking-label text-action">
-                Static booking preview
-              </p>
               <h1
-                className="mt-cluster max-w-[14ch] font-display text-display font-extrabold uppercase"
+                className="max-w-[14ch] font-display text-display font-extrabold uppercase"
                 id="booking-heading"
               >
                 Explore <span className="text-action">booking</span>

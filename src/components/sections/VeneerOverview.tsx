@@ -16,11 +16,8 @@ export function VeneerOverview() {
         </div>
 
         <div className="self-center">
-          <p className="text-label font-bold uppercase tracking-label text-text-muted">
-            Zirconia veneers
-          </p>
           <h2
-            className="mt-cluster max-w-[12ch] font-display text-heading font-extrabold uppercase"
+            className="max-w-[12ch] font-display text-heading font-extrabold uppercase"
             id="veneer-heading"
           >
             Topics for a veneer consultation

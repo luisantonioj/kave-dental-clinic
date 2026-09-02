@@ -8,11 +8,8 @@ export function BookingLocation() {
     >
       <div className="mx-auto grid w-full max-w-wide gap-card-y lg:grid-cols-[minmax(16rem,1fr)_minmax(0,2fr)] lg:items-center">
         <div>
-          <p className="text-label font-bold uppercase tracking-label text-action">
-            Quezon City
-          </p>
           <h2
-            className="mt-cluster font-display text-heading font-extrabold uppercase"
+            className="font-display text-heading font-extrabold uppercase"
             id="booking-location-heading"
           >
             Visit the clinic

@@ -19,11 +19,8 @@ export function TransformationGallery({ records }: TransformationGalleryProps) {
     >
       <div className="mx-auto w-full max-w-wide">
         <div className="max-w-reading">
-          <p className="text-label font-bold uppercase tracking-label text-action">
-            Published with consent
-          </p>
           <h2
-            className="mt-cluster font-display text-heading font-extrabold uppercase"
+            className="font-display text-heading font-extrabold uppercase"
             id="transformation-gallery-heading"
           >
             Approved transformations

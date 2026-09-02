@@ -15,9 +15,6 @@ export function ServicesHero() {
 
       <div className="mx-auto grid min-h-[46rem] w-full max-w-wide items-end gap-section px-gutter py-section lg:min-h-[calc(100svh-var(--spacing-header))] lg:grid-cols-[minmax(0,3fr)_minmax(17rem,2fr)]">
         <div className="relative z-10 max-w-[58rem]">
-          <p className="mb-stack text-label font-bold uppercase tracking-label text-action">
-            {SERVICES_HERO.eyebrow}
-          </p>
           <h1 className="text-balance font-display text-display font-extrabold uppercase">
             Zirconia and featured{" "}
             <span className="text-action">dental services</span>

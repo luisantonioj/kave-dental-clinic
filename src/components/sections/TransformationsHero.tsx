@@ -11,10 +11,7 @@ export function TransformationsHero() {
       />
 
       <div className="max-w-[58rem]">
-        <p className="text-label font-bold uppercase tracking-label text-action">
-          Clinic-approved work
-        </p>
-        <h1 className="mt-stack text-balance font-display text-display font-extrabold uppercase">
+        <h1 className="text-balance font-display text-display font-extrabold uppercase">
           Transformation <span className="text-action">gallery</span>
         </h1>
         <p className="mx-auto mt-stack max-w-reading text-lead text-text-muted">

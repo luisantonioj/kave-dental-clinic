@@ -8,11 +8,8 @@ export function CrownAnatomy() {
     >
       <div className="mx-auto w-full max-w-wide">
         <div className="max-w-reading">
-          <p className="text-label font-bold uppercase tracking-label text-action">
-            Crown anatomy
-          </p>
           <h2
-            className="mt-cluster font-display text-heading font-extrabold uppercase"
+            className="font-display text-heading font-extrabold uppercase"
             id="crown-heading"
           >
             Four points to discuss

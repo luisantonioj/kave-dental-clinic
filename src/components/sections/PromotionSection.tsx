@@ -22,11 +22,8 @@ export function PromotionSection({
       >
         <div className="mx-auto grid w-full max-w-wide gap-stack px-gutter py-section md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
           <div>
-            <p className="text-label font-bold uppercase tracking-label text-action">
-              Plan your visit
-            </p>
             <h2
-              className="mt-cluster max-w-reading font-display text-heading font-extrabold uppercase"
+              className="max-w-reading font-display text-heading font-extrabold uppercase"
               id="home-contact-heading"
             >
               Start with verified clinic contact
@@ -45,11 +42,8 @@ export function PromotionSection({
     >
       <div className="mx-auto grid w-full max-w-wide gap-card-y px-gutter py-section lg:grid-cols-[minmax(0,2fr)_minmax(16rem,1fr)]">
         <div>
-          <p className="inline-flex bg-action px-cluster py-inline text-label font-bold uppercase tracking-label text-action-contrast">
-            Clinic-approved promotion
-          </p>
           <h2
-            className="mt-stack font-display text-heading font-extrabold uppercase"
+            className="font-display text-heading font-extrabold uppercase"
             id="approved-promotion-heading"
           >
             {promotion.title}

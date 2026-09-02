@@ -21,11 +21,8 @@ export function SocialFeed({ records = SOCIAL_POST_RECORDS }: SocialFeedProps) {
       <div className="mx-auto w-full max-w-wide">
         <div className="grid gap-stack lg:grid-cols-[minmax(0,2fr)_minmax(16rem,1fr)] lg:items-end">
           <div>
-            <p className="text-label font-bold uppercase tracking-label text-text-muted">
-              Curated from official profiles
-            </p>
             <h2
-              className="mt-cluster font-display text-heading font-extrabold uppercase"
+              className="font-display text-heading font-extrabold uppercase"
               id="social-feed-heading"
             >
               Latest from <span className="text-text-muted">Kave</span>

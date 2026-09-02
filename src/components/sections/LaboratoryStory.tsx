@@ -12,11 +12,8 @@ export function LaboratoryStory({ story = null }: LaboratoryStoryProps) {
     >
       <div className="mx-auto grid w-full max-w-wide gap-card-y lg:grid-cols-[minmax(0,4fr)_minmax(0,6fr)]">
         <div>
-          <p className="text-label font-bold uppercase tracking-label">
-            Laboratory and process
-          </p>
           <h2
-            className="mt-cluster max-w-[12ch] font-display text-heading font-extrabold uppercase"
+            className="max-w-[12ch] font-display text-heading font-extrabold uppercase"
             id="laboratory-heading"
           >
             {story?.heading ?? "Information awaiting clinic approval"}

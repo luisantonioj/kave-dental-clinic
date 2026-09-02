@@ -17,11 +17,8 @@ export function TransformationPreview({
     >
       <div className="mx-auto w-full max-w-wide px-gutter py-section">
         <div className="mx-auto max-w-reading text-center">
-          <p className="text-label font-bold uppercase tracking-label text-text-muted">
-            Clinic-approved work
-          </p>
           <h2
-            className="mt-cluster font-display text-heading font-extrabold uppercase"
+            className="font-display text-heading font-extrabold uppercase"
             id="transformation-preview-heading"
           >
             Transformation gallery
