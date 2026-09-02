@@ -10,7 +10,7 @@ export function TransformationsHero() {
         className="absolute left-1/2 top-1/2 -z-10 aspect-[5/2] w-[72rem] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-border bg-[radial-gradient(ellipse_at_center,rgba(244,196,48,0.08),transparent_62%)]"
       />
 
-      <div className="max-w-[58rem]">
+      <div className="mx-auto w-full max-w-[58rem]">
         <h1 className="text-balance font-display text-display font-extrabold uppercase">
           Transformation <span className="text-action">gallery</span>
         </h1>

@@ -21,7 +21,7 @@ export function HomeHero() {
         className="absolute inset-y-0 right-0 -z-10 hidden w-[42%] border-l border-border bg-[linear-gradient(135deg,transparent_0_28%,rgba(244,196,48,0.06)_28%_29%,transparent_29%_58%,rgba(244,196,48,0.03)_58%_59%,transparent_59%)] lg:block"
       />
 
-      <div className="mx-auto grid min-h-[calc(100svh-var(--spacing-header))] w-full max-w-wide items-center gap-section px-gutter py-section lg:grid-cols-[minmax(0,3fr)_minmax(16rem,2fr)]">
+      <div className="mx-auto grid w-full max-w-wide items-center gap-stack px-gutter py-section lg:min-h-[calc(100svh-var(--spacing-header))] lg:grid-cols-[minmax(0,3fr)_minmax(16rem,2fr)] lg:gap-section">
         <div className="max-w-[52rem]">
           <h1 className="text-balance font-display text-display font-extrabold uppercase">
             Your ticket to a{" "}
@@ -39,12 +39,11 @@ export function HomeHero() {
           </div>
         </div>
 
-        <div className="relative hidden aspect-[4/5] overflow-hidden rounded-image border border-border bg-surface-raised shadow-xl lg:block">
+        <div className="relative aspect-[4/3] w-full max-w-xl mx-auto overflow-hidden rounded-image border border-border bg-surface-raised shadow-xl sm:aspect-[16/10] lg:aspect-[4/5] lg:max-w-none">
           <ResponsiveImage
             className="h-full w-full object-cover"
             image={HERO_IMAGE}
-            priority
-            sizes="(min-width: 1280px) 40vw, 50vw"
+            sizes="(min-width: 1280px) 40vw, (min-width: 1024px) 50vw, (min-width: 640px) 80vw, 100vw"
           />
           <div
             aria-hidden="true"

@@ -15,6 +15,16 @@ describe("HomePage", () => {
     ).toBeInTheDocument();
   });
 
+  it("renders the approved hero image with accessible alt text", () => {
+    render(<HomePage />);
+
+    expect(
+      screen.getByAltText(
+        "Modern aesthetic dental clinic interior with warm architectural travertine finishes and natural light",
+      ),
+    ).toBeInTheDocument();
+  });
+
   it("defines accurate route-specific metadata", () => {
     expect(metadata).toMatchObject({
       title: "Kave Dental Clinic | Services and Contact",

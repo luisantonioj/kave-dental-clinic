@@ -22,7 +22,7 @@ export function ServicesHero() {
         className="absolute -right-[12rem] top-1/2 -z-10 aspect-square w-[34rem] -translate-y-1/2 rounded-full border border-action/20 bg-[radial-gradient(circle_at_40%_35%,rgba(244,196,48,0.06),transparent_68%)] sm:-right-[8rem] lg:right-gutter lg:w-[38rem]"
       />
 
-      <div className="mx-auto grid min-h-[46rem] w-full max-w-wide items-end gap-section px-gutter py-section lg:min-h-[calc(100svh-var(--spacing-header))] lg:grid-cols-[minmax(0,3fr)_minmax(17rem,2fr)]">
+      <div className="mx-auto grid w-full max-w-wide items-center gap-stack px-gutter py-section lg:min-h-[calc(100svh-var(--spacing-header))] lg:grid-cols-[minmax(0,3fr)_minmax(17rem,2fr)] lg:gap-section lg:items-end">
         <div className="relative z-10 max-w-[58rem]">
           <h1 className="text-balance font-display text-display font-extrabold uppercase">
             Zirconia and featured{" "}
@@ -36,12 +36,11 @@ export function ServicesHero() {
           </ButtonLink>
         </div>
 
-        <div className="relative hidden aspect-[4/5] overflow-hidden rounded-image border border-border bg-surface-raised shadow-xl lg:block">
+        <div className="relative aspect-[4/3] w-full max-w-xl mx-auto overflow-hidden rounded-image border border-border bg-surface-raised shadow-xl sm:aspect-[16/10] lg:aspect-[4/5] lg:max-w-none">
           <ResponsiveImage
             className="h-full w-full object-cover"
             image={SERVICES_HERO_IMAGE}
-            priority
-            sizes="(min-width: 1280px) 40vw, 50vw"
+            sizes="(min-width: 1280px) 40vw, (min-width: 1024px) 50vw, (min-width: 640px) 80vw, 100vw"
           />
           <div
             aria-hidden="true"

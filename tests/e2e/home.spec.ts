@@ -43,12 +43,15 @@ test("renders the shared layout without horizontal overflow", async ({
     }),
   ).toHaveAttribute("href", "/transformations");
   await expect(
-    page.getByText(
-      "Detailed service cards are awaiting clinic-approved images and wording.",
+    hero.getByAltText(
+      "Modern aesthetic dental clinic interior with warm architectural travertine finishes and natural light",
     ),
   ).toBeVisible();
   await expect(
-    page.getByText("No transformation media is approved for publication yet."),
+    page.getByRole("heading", { name: "Featured Services" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Transformation gallery" }),
   ).toBeVisible();
   await expect(page.getByText(/500\+|PHP 4,000/i)).toHaveCount(0);
 

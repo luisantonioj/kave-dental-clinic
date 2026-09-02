@@ -62,6 +62,16 @@ describe("ServicesPage", () => {
     expect(container).not.toHaveTextContent(UNSUPPORTED_SERVICE_CLAIMS);
   });
 
+  it("renders the approved services hero image with accessible alt text", () => {
+    render(<ServicesPage />);
+
+    expect(
+      screen.getByAltText(
+        "Precision aesthetic zirconia dental crowns and porcelain veneers on natural sandstone",
+      ),
+    ).toBeInTheDocument();
+  });
+
   it("defines accurate route-specific metadata", () => {
     expect(metadata).toMatchObject({
       title: "Dental Services | Kave Dental Clinic",

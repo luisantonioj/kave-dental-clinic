@@ -29,9 +29,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `npm run dev -- --webpack --hostname 127.0.0.1 --port ${PORT}`,
+    command: `npm run start -- --hostname 127.0.0.1 --port ${PORT}`,
     url: BASE_URL,
-    reuseExistingServer: false,
+    reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },
 });

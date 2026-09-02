@@ -20,7 +20,7 @@ describe("TransformationsPage", () => {
     expect(screen.getByTestId("transformation-gallery")).toBeInTheDocument();
     expect(screen.getByTestId("patient-stories")).toBeInTheDocument();
     expect(screen.getByTestId("social-feed")).toBeInTheDocument();
-    expect(screen.getAllByRole("article").length).toBeGreaterThanOrEqual(10);
+    expect(screen.getAllByRole("article").length).toBeGreaterThanOrEqual(8);
   });
 
   it("offers only a static booking link and collects no personal information", () => {

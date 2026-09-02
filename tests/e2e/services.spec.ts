@@ -14,6 +14,11 @@ test("services route is responsive, qualified, and keyboard reachable", async ({
     }),
   ).toBeVisible();
   await expect(
+    page.getByAltText(
+      "Precision aesthetic zirconia dental crowns and porcelain veneers on natural sandstone",
+    ),
+  ).toBeVisible();
+  await expect(
     page.getByRole("heading", {
       level: 2,
       name: "Topics for a veneer consultation",
@@ -84,10 +89,10 @@ test("services search and category filtering work interactively", async ({
   // Search for "zirconia"
   await searchInput.fill("zirconia");
   await expect(
-    page.getByRole("heading", { name: "Zirconia Veneers" }),
+    page.getByRole("heading", { name: "Zirconia Veneers", exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Zirconia Crowns" }),
+    page.getByRole("heading", { name: "Zirconia Crowns", exact: true }),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Dental Check-up" }),
