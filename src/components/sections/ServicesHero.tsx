@@ -32,7 +32,7 @@ export function ServicesHero() {
 
         <div
           aria-hidden="true"
-          className="relative hidden aspect-[4/5] self-center border border-border bg-surface-raised/40 lg:block"
+          className="relative hidden aspect-[4/5] self-center bg-surface-raised/40 lg:block"
         >
           <div className="absolute inset-[12%] rounded-[48%_48%_38%_38%] border border-action/40 bg-[linear-gradient(145deg,rgba(244,196,48,0.08),rgba(244,196,48,0.02))]" />
           <div className="absolute inset-x-[22%] bottom-[14%] h-px bg-action/60" />

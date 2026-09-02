@@ -9,7 +9,7 @@ export function VeneerOverview() {
       <div className="mx-auto grid w-full max-w-wide gap-section lg:grid-cols-[minmax(17rem,4fr)_minmax(0,6fr)]">
         <div
           aria-hidden="true"
-          className="relative min-h-[24rem] overflow-hidden rounded-image border border-border bg-surface-raised lg:min-h-[44rem]"
+          className="relative min-h-[24rem] overflow-hidden rounded-image bg-surface-raised lg:min-h-[44rem]"
         >
           <div className="absolute inset-[12%] rounded-[50%_50%_42%_42%] border-2 border-border-strong bg-[radial-gradient(circle_at_42%_25%,white,transparent_28%),linear-gradient(155deg,#f7f6f2,#d8d6cc)]" />
           <div className="absolute inset-x-[18%] bottom-[16%] h-[18%] rounded-[50%] border border-action/60 bg-action/20" />

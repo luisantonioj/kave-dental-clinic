@@ -62,9 +62,9 @@ function CategorySection({ category }: CategorySectionProps) {
       <div className="grid gap-stack lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.9fr)] lg:gap-section">
         {/* Visual Category Spotlight Column */}
         <div className="flex flex-col">
-          <div className="relative aspect-[4/3] w-full overflow-hidden border border-border bg-surface-raised">
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-raised">
             <ResponsiveImage
-              className="h-full w-full object-cover"
+              className="h-full w-full rounded-none object-cover"
               image={category.image}
               sizes="(min-width: 1280px) 35vw, (min-width: 1024px) 40vw, 100vw"
             />
@@ -79,7 +79,7 @@ function CategorySection({ category }: CategorySectionProps) {
               {category.number}
             </span>
             <div className="absolute bottom-3 left-4 right-4">
-              <span className="inline-block rounded-full border border-border bg-surface-raised/90 px-3 py-1 text-xs font-semibold text-action backdrop-blur-sm">
+              <span className="inline-block rounded-full bg-surface-raised/90 px-3 py-1 text-xs font-semibold text-action backdrop-blur-sm shadow-sm">
                 {category.isSpecialty
                   ? "Specialty Discipline"
                   : "Clinical Care"}{" "}

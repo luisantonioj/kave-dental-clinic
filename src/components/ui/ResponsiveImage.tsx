@@ -15,10 +15,13 @@ export function ResponsiveImage({
   priority = false,
   sizes,
 }: ResponsiveImageProps) {
+  const hasCustomRounding = className?.includes("rounded-");
+  const baseRounding = hasCustomRounding ? "" : "rounded-image";
+
   return (
     <Image
       alt={image.alt}
-      className={`h-auto w-full rounded-image object-cover ${className ?? ""}`}
+      className={`h-auto w-full object-cover ${baseRounding} ${className ?? ""}`}
       height={image.height}
       priority={priority}
       sizes={sizes}

@@ -60,9 +60,9 @@ interface CategoryCardProps {
 export function CategoryPillarCard({ category }: CategoryCardProps) {
   return (
     <li className="group relative flex flex-col justify-between overflow-hidden border border-border bg-surface-raised text-text transition-all duration-300 hover:border-action/60">
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface">
+      <div className="relative aspect-[16/10] w-full overflow-hidden">
         <ResponsiveImage
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full rounded-none object-cover transition-transform duration-500 group-hover:scale-105"
           image={category.image}
           sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
         />
