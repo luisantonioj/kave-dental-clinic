@@ -187,6 +187,22 @@ are not authorized implementation work.
       localStorage persistence and FOUC prevention. **Accept when:** theme toggle
       is accessible, operable by keyboard, available in desktop/mobile nav, and tested.
 
+## 11. MVP Ops Interface (Front Desk Booking Management)
+
+- [x] Isolate public routes in `(public)` route group and establish clean `/ops` layout.
+      **Accept when:** public pages retain exact URLs and metadata while `/ops` renders
+      its own staff workspace layout without public marketing navigation.
+- [x] Define typed domain models, seed data, and `BookingRepository` interface with local storage adapter.
+      **Accept when:** CRUD operations, filtering by date/service/status, and seed reset are tested and working.
+- [x] Implement Ops header, metrics summary cards, booking search/filters, and responsive table/cards.
+      **Accept when:** staff can search, filter by status and date, and toggle demo data reset.
+- [x] Implement interactive Booking Details Drawer with status transitions, rescheduling, and staff notes.
+      **Accept when:** Confirm, Reschedule, Complete, Cancel, and Staff Notes persist reactively.
+- [x] Implement month calendar and day agenda view.
+      **Accept when:** appointments are plotted by date and clicking any slot opens details.
+- [x] Implement mock passcode authentication and session management.
+      **Accept when:** unauthorized access redirects to `/ops/login` and valid demo credentials grant access.
+
 ## Future booking system
 
 Do not begin these tasks until the clinic approves a separate booking-system

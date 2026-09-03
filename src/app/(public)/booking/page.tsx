@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-import { BookingContactCards } from "../../components/booking/BookingContactCards";
-import { BookingForm } from "../../components/booking/BookingForm";
-import { BookingLocation } from "../../components/booking/BookingLocation";
-import { createPageMetadata } from "../../lib/metadata";
+import { BookingContactCards } from "../../../components/booking/BookingContactCards";
+import { BookingForm } from "../../../components/booking/BookingForm";
+import { BookingLocation } from "../../../components/booking/BookingLocation";
+import { createPageMetadata } from "../../../lib/metadata";
 
 export const metadata: Metadata = createPageMetadata(
   "Explore Booking | Kave Dental Clinic",

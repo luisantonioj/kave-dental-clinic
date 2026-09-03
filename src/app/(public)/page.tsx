@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
-import { FeaturedServices } from "../components/sections/FeaturedServices";
-import { HomeHero } from "../components/sections/HomeHero";
-import { PromotionSection } from "../components/sections/PromotionSection";
-import { TransformationPreview } from "../components/sections/TransformationPreview";
-import { createPageMetadata } from "../lib/metadata";
+import { FeaturedServices } from "../../components/sections/FeaturedServices";
+import { HomeHero } from "../../components/sections/HomeHero";
+import { PromotionSection } from "../../components/sections/PromotionSection";
+import { TransformationPreview } from "../../components/sections/TransformationPreview";
+import { createPageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = createPageMetadata(
   "Kave Dental Clinic | Services and Contact",

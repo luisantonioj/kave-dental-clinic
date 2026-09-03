@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Anybody, Manrope } from "next/font/google";
 import type { ReactNode } from "react";
 
-import { SiteFooter } from "../components/layout/SiteFooter";
-import { SiteHeader } from "../components/layout/SiteHeader";
 import { ThemeProvider } from "../components/layout/ThemeProvider";
 import { CLINIC_STRUCTURED_DATA } from "../content/structured-data";
 import { createPageMetadata } from "../lib/metadata";
@@ -59,11 +57,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <script id="clinic-structured-data" type="application/ld+json">
           {JSON.stringify(CLINIC_STRUCTURED_DATA).replace(/</g, "\\u003c")}
         </script>
-        <ThemeProvider>
-          <SiteHeader />
-          <div className="flex-1">{children}</div>
-          <SiteFooter />
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

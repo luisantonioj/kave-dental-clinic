@@ -294,3 +294,39 @@ Do not infer these policies from the current Figma form.
 Patient information is sensitive. It must not be collected until the backend,
 privacy notice, consent language, retention policy, access controls, security
 rules, and incident process are approved together.
+
+## Ops frontend interface (Kave Ops)
+
+An MVP operational frontend for clinic staff is hosted under the discreet route
+segment `/ops` (configured for deployment at `kave-ops.vercel.app` or
+`ops.kavedental.com`). It allows clinic receptionists to review, confirm,
+reschedule, complete, and cancel booking inquiries.
+
+### Layout and route separation
+
+Public routes (`/`, `/services`, `/transformations`, `/booking`) are grouped
+under `src/app/(public)/layout.tsx` with `SiteHeader` and `SiteFooter`.
+Operations routes live under `src/app/ops/layout.tsx` and render `OpsHeader`
+without public marketing navigation or footers.
+
+### Data repository pattern
+
+Data access is decoupled behind the `BookingRepository` interface:
+
+```ts
+export interface BookingRepository {
+  getBookings(filters?: BookingFilters): Promise<Booking[]>;
+  getBookingById(id: string): Promise<Booking | null>;
+  updateStatus(id: string, status: BookingStatus): Promise<Booking>;
+  reschedule(id: string, date: string, time: string): Promise<Booking>;
+  updateStaffNotes(id: string, staffNotes: string): Promise<Booking>;
+  getMetrics(): Promise<OpsSummaryMetrics>;
+  resetDemoData(): Promise<void>;
+}
+```
+
+The MVP implementation uses `LocalStorageBookingRepository` seeded with realistic
+appointments in `src/lib/ops/booking-seed.ts`. When a persistent backend (such as
+Neon Serverless Postgres or Supabase) is authorized, a concrete SQL repository
+can be swapped in without modifying any UI components or views.
+
