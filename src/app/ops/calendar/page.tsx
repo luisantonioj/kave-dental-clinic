@@ -79,7 +79,7 @@ export default function OpsCalendarPage() {
   }
 
   return (
-    <div className="space-y-stack">
+    <div className="flex flex-col flex-1 min-h-[calc(100vh-12rem)] space-y-cluster">
       <div>
         <h1 className="font-display text-heading font-bold text-text">
           Appointment Calendar

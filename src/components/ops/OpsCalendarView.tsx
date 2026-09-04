@@ -130,11 +130,11 @@ export function OpsCalendarView({
   const selectedDayBookings = bookingsByDate.get(selectedDateStr) || [];
 
   return (
-    <div className="grid gap-stack lg:grid-cols-3">
+    <div className="flex flex-col lg:grid lg:grid-cols-3 gap-stack flex-1 lg:min-h-[calc(100vh-13rem)] items-stretch">
       {/* Calendar Grid (2 cols on lg) */}
-      <div className="rounded-card border border-border bg-surface-raised p-cluster lg:col-span-2">
+      <div className="rounded-card border border-border bg-surface-raised p-cluster lg:col-span-2 flex flex-col h-full">
         {/* Month Navigation */}
-        <div className="flex items-center justify-between border-b border-border pb-cluster">
+        <div className="flex items-center justify-between border-b border-border pb-cluster flex-shrink-0">
           <div className="flex items-center gap-inline">
             <h2 className="font-display text-card font-bold text-text">
               {MONTH_NAMES[month]} {year}
@@ -169,7 +169,7 @@ export function OpsCalendarView({
         </div>
 
         {/* Day of Week Headers */}
-        <div className="mt-inline grid grid-cols-7 text-center text-label font-bold uppercase tracking-label text-text-muted">
+        <div className="mt-inline grid grid-cols-7 text-center text-label font-bold uppercase tracking-label text-text-muted flex-shrink-0">
           {DAY_NAMES.map((name) => (
             <div className="py-inline" key={name}>
               {name}
@@ -177,15 +177,20 @@ export function OpsCalendarView({
           ))}
         </div>
 
-        {/* Days Grid */}
-        <div className="grid grid-cols-7 gap-px border border-border bg-border">
+        {/* Days Grid - stretches to maximize vertical space */}
+        <div
+          className="flex-1 grid grid-cols-7 gap-px border border-border bg-border"
+          style={{
+            gridTemplateRows: `repeat(${calendarDays.length / 7}, minmax(5rem, 1fr))`,
+          }}
+        >
           {calendarDays.map((day, idx) => {
             const isSelected = day.dateStr === selectedDateStr;
             const hasBookings = day.bookings.length > 0;
 
             return (
               <button
-                className={`min-h-[4.5rem] p-1 text-left transition-colors flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus ${
+                className={`h-full min-h-[5.5rem] p-1.5 text-left transition-colors flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus ${
                   day.isCurrentMonth
                     ? isSelected
                       ? "bg-action/20 font-bold"
@@ -214,10 +219,10 @@ export function OpsCalendarView({
                 </div>
 
                 {hasBookings ? (
-                  <div className="mt-1 flex flex-col gap-0.5 overflow-hidden">
-                    {day.bookings.slice(0, 2).map((b) => (
+                  <div className="mt-1 flex flex-1 flex-col gap-1 overflow-hidden">
+                    {day.bookings.slice(0, 3).map((b) => (
                       <span
-                        className={`truncate rounded px-1 text-[0.65rem] ${getStatusBadgeClasses(
+                        className={`truncate rounded px-1.5 py-0.5 text-[0.68rem] leading-tight font-medium ${getStatusBadgeClasses(
                           b.status,
                         )}`}
                         key={b.id}
@@ -225,14 +230,14 @@ export function OpsCalendarView({
                         {b.preferredTime} {b.fullName.split(" ")[0]}
                       </span>
                     ))}
-                    {day.bookings.length > 2 ? (
-                      <span className="text-[0.6rem] text-text-muted">
-                        +{day.bookings.length - 2} more
+                    {day.bookings.length > 3 ? (
+                      <span className="text-[0.65rem] font-semibold text-text-muted">
+                        +{day.bookings.length - 3} more
                       </span>
                     ) : null}
                   </div>
                 ) : (
-                  <div />
+                  <div className="flex-1" />
                 )}
               </button>
             );
@@ -240,9 +245,9 @@ export function OpsCalendarView({
         </div>
       </div>
 
-      {/* Day Agenda Panel (1 col on lg) */}
-      <div className="rounded-card border border-border bg-surface-raised p-cluster">
-        <div className="border-b border-border pb-inline">
+      {/* Day Agenda Panel (1 col on lg) - matches vertical height */}
+      <div className="rounded-card border border-border bg-surface-raised p-cluster flex flex-col h-full">
+        <div className="border-b border-border pb-inline flex-shrink-0">
           <span className="text-label font-bold uppercase tracking-label text-text-muted">
             Daily Agenda
           </span>
@@ -254,9 +259,9 @@ export function OpsCalendarView({
           </p>
         </div>
 
-        <div className="mt-cluster divide-y divide-border overflow-y-auto max-h-[30rem]">
+        <div className="mt-cluster divide-y divide-border overflow-y-auto flex-1 min-h-0 pr-1 max-h-[32rem] lg:max-h-none">
           {selectedDayBookings.length === 0 ? (
-            <div className="py-card-y text-center text-text-muted">
+            <div className="flex flex-1 items-center justify-center py-card-y text-center text-text-muted">
               <p>Select another date on the calendar to inspect schedule.</p>
             </div>
           ) : (
