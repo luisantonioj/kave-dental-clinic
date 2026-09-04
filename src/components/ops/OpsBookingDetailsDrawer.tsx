@@ -14,6 +14,99 @@ interface OpsBookingDetailsDrawerProps {
   onSaveStaffNotes: (id: string, notes: string) => Promise<void>;
 }
 
+function CheckCircleIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-4 w-4 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.5"
+      viewBox="0 0 24 24"
+    >
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+      <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
+  );
+}
+
+function CalendarClockIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-4 w-4 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <rect height="18" rx="2" ry="2" width="18" x="3" y="4" />
+      <line x1="16" x2="16" y1="2" y2="6" />
+      <line x1="8" x2="8" y1="2" y2="6" />
+      <line x1="3" x2="21" y1="10" y2="10" />
+      <polyline points="12 14 12 17 15 17" />
+    </svg>
+  );
+}
+
+function DoubleCheckIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-4 w-4 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.5"
+      viewBox="0 0 24 24"
+    >
+      <polyline points="20 6 9 17 4 12" />
+      <polyline points="20 12 14 18" />
+    </svg>
+  );
+}
+
+function BanIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-4 w-4 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="4.93" x2="19.07" y1="4.93" y2="19.07" />
+    </svg>
+  );
+}
+
+function RotateCcwIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-4 w-4 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <polyline points="1 4 1 10 7 10" />
+      <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+    </svg>
+  );
+}
+
 export function OpsBookingDetailsDrawer({
   booking,
   isOpen,
@@ -119,41 +212,44 @@ export function OpsBookingDetailsDrawer({
             <span className="block text-label font-bold uppercase tracking-label text-text-muted">
               Quick Actions
             </span>
-            <div className="mt-inline flex flex-wrap gap-inline">
+            <div className="mt-inline grid grid-cols-1 sm:grid-cols-2 gap-inline w-full">
               {booking.status === "pending" ? (
                 <button
-                  className="rounded-control bg-action px-cluster py-inline text-label font-bold uppercase tracking-label text-action-contrast hover:bg-action-hover focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus"
+                  className="sm:col-span-2 w-full flex items-center justify-center gap-2 rounded-control bg-action px-cluster py-2.5 text-label font-bold uppercase tracking-label text-action-contrast hover:bg-action-hover focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus transition-colors"
                   disabled={actionLoading}
                   onClick={() => handleStatus("confirmed")}
                   type="button"
                 >
+                  <CheckCircleIcon />
                   Confirm Booking
                 </button>
               ) : null}
 
-              <button
-                className="rounded-control border border-border bg-surface-raised px-cluster py-inline text-label font-bold uppercase tracking-label text-text hover:bg-surface focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus"
-                disabled={actionLoading}
-                onClick={() => setIsRescheduleOpen(true)}
-                type="button"
-              >
-                Reschedule
-              </button>
-
               {booking.status === "confirmed" ? (
                 <button
-                  className="rounded-control border border-success/40 bg-success/15 px-cluster py-inline text-label font-bold uppercase tracking-label text-success hover:bg-success/25 focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus"
+                  className="sm:col-span-2 w-full flex items-center justify-center gap-2 rounded-control border border-success/40 bg-success/15 px-cluster py-2.5 text-label font-bold uppercase tracking-label text-success hover:bg-success/25 focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus transition-colors"
                   disabled={actionLoading}
                   onClick={() => handleStatus("completed")}
                   type="button"
                 >
+                  <DoubleCheckIcon />
                   Mark Completed
                 </button>
               ) : null}
 
+              <button
+                className="w-full flex items-center justify-center gap-2 rounded-control border border-border bg-surface-raised px-cluster py-2.5 text-label font-bold uppercase tracking-label text-text hover:bg-surface focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus transition-colors"
+                disabled={actionLoading}
+                onClick={() => setIsRescheduleOpen(true)}
+                type="button"
+              >
+                <CalendarClockIcon />
+                Reschedule
+              </button>
+
               {booking.status !== "cancelled" ? (
                 <button
-                  className="rounded-control border border-error/40 px-cluster py-inline text-label font-bold uppercase tracking-label text-error hover:bg-error/10 focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus"
+                  className="w-full flex items-center justify-center gap-2 rounded-control border border-error/40 px-cluster py-2.5 text-label font-bold uppercase tracking-label text-error hover:bg-error/10 focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus transition-colors"
                   disabled={actionLoading}
                   onClick={() => {
                     if (
@@ -164,15 +260,17 @@ export function OpsBookingDetailsDrawer({
                   }}
                   type="button"
                 >
+                  <BanIcon />
                   Cancel
                 </button>
               ) : (
                 <button
-                  className="rounded-control border border-border px-cluster py-inline text-label font-bold uppercase tracking-label text-text-muted hover:text-text"
+                  className="w-full flex items-center justify-center gap-2 rounded-control border border-border px-cluster py-2.5 text-label font-bold uppercase tracking-label text-text-muted hover:text-text hover:bg-surface focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus transition-colors"
                   disabled={actionLoading}
                   onClick={() => handleStatus("pending")}
                   type="button"
                 >
+                  <RotateCcwIcon />
                   Re-open (Pending)
                 </button>
               )}
