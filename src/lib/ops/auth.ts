@@ -37,6 +37,37 @@ export function getSession(): OpsAuthSession | null {
   }
 }
 
+type AuthListener = () => void;
+const listeners = new Set<AuthListener>();
+
+export function subscribeAuth(listener: AuthListener): () => void {
+  listeners.add(listener);
+  function handleStorage(e: StorageEvent) {
+    if (e.key === SESSION_KEY || e.key === null) {
+      listener();
+    }
+  }
+  if (typeof window !== "undefined") {
+    window.addEventListener("storage", handleStorage);
+  }
+  return () => {
+    listeners.delete(listener);
+    if (typeof window !== "undefined") {
+      window.removeEventListener("storage", handleStorage);
+    }
+  };
+}
+
+function notifyAuth() {
+  listeners.forEach((listener) => {
+    try {
+      listener();
+    } catch {
+      // ignore
+    }
+  });
+}
+
 export function login(passcode: string): { success: boolean; error?: string } {
   const trimmed = passcode.trim();
   if (trimmed === DEMO_PASSCODE || trimmed === DEMO_PASSCODE_FALLBACK) {
@@ -51,6 +82,7 @@ export function login(passcode: string): { success: boolean; error?: string } {
     } catch {
       // ignore storage errors
     }
+    notifyAuth();
     return { success: true };
   }
 
@@ -68,4 +100,5 @@ export function logout(): void {
   } catch {
     // ignore
   }
+  notifyAuth();
 }

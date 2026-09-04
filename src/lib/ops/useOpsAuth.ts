@@ -1,19 +1,38 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
-import { getSession, isAuthenticated, type OpsAuthSession } from "./auth";
+import {
+  getSession,
+  isAuthenticated,
+  subscribeAuth,
+  type OpsAuthSession,
+} from "./auth";
+
+function getClientSnapshot(): boolean {
+  return true;
+}
+
+function getServerSnapshot(): boolean {
+  return false;
+}
 
 export function useOpsAuth() {
   const router = useRouter();
-  const [session] = useState<OpsAuthSession | null>(() => getSession());
-  const [ready] = useState(() => isAuthenticated());
+  const isMounted = useSyncExternalStore(
+    subscribeAuth,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
+
+  const ready = isMounted;
+  const session: OpsAuthSession | null = isMounted ? getSession() : null;
 
   useEffect(() => {
-    if (!isAuthenticated()) {
+    if (isMounted && !isAuthenticated()) {
       router.replace("/ops/login");
     }
-  }, [router]);
+  }, [isMounted, router]);
 
   return { ready, session };
 }

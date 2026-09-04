@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import { Anybody, Manrope } from "next/font/google";
 import type { ReactNode } from "react";
@@ -50,13 +51,23 @@ export default function RootLayout({ children }: RootLayoutProps) {
       lang="en"
       suppressHydrationWarning
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
-      </head>
+      <head />
       <body className="flex min-h-screen flex-col bg-surface font-body text-text antialiased">
-        <script id="clinic-structured-data" type="application/ld+json">
-          {JSON.stringify(CLINIC_STRUCTURED_DATA).replace(/</g, "\\u003c")}
-        </script>
+        <Script
+          dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }}
+          id="theme-init"
+          strategy="beforeInteractive"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(CLINIC_STRUCTURED_DATA).replace(
+              /</g,
+              "\\u003c",
+            ),
+          }}
+          id="clinic-structured-data"
+          type="application/ld+json"
+        />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

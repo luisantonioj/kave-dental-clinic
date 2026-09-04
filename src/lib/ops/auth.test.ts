@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   DEMO_PASSCODE,
   DEMO_PASSCODE_FALLBACK,
@@ -6,6 +6,7 @@ import {
   isAuthenticated,
   login,
   logout,
+  subscribeAuth,
 } from "./auth";
 
 describe("Ops Auth Helper", () => {
@@ -44,5 +45,20 @@ describe("Ops Auth Helper", () => {
     expect(isAuthenticated()).toBe(true);
     logout();
     expect(isAuthenticated()).toBe(false);
+  });
+
+  it("notifies subscribers when login and logout occur", () => {
+    const listener = vi.fn();
+    const unsubscribe = subscribeAuth(listener);
+
+    login(DEMO_PASSCODE);
+    expect(listener).toHaveBeenCalledTimes(1);
+
+    logout();
+    expect(listener).toHaveBeenCalledTimes(2);
+
+    unsubscribe();
+    login(DEMO_PASSCODE);
+    expect(listener).toHaveBeenCalledTimes(2);
   });
 });
