@@ -56,12 +56,48 @@ describe("LocalStorageBookingRepository", () => {
     expect(updated.preferredTime).toBe("15:00");
   });
 
-  it("updates staff notes", async () => {
+  it("updates staff notes with legacy method", async () => {
     const updated = await repo.updateStaffNotes(
       "KV-2026-001",
       "Follow-up done.",
     );
     expect(updated.staffNotes).toBe("Follow-up done.");
+  });
+
+  it("adds a new staff note", async () => {
+    const updated = await repo.addStaffNote(
+      "KV-2026-001",
+      "Patient called to confirm parking.",
+    );
+    expect(updated.internalNotes).toBeDefined();
+    expect(
+      updated.internalNotes?.some((n) => n.text === "Patient called to confirm parking."),
+    ).toBe(true);
+    expect(updated.staffNotes).toBe("Patient called to confirm parking.");
+  });
+
+  it("updates an existing staff note", async () => {
+    const added = await repo.addStaffNote("KV-2026-001", "Initial note");
+    const noteId = added.internalNotes?.[added.internalNotes.length - 1].id;
+    expect(noteId).toBeDefined();
+
+    const updated = await repo.updateStaffNote(
+      "KV-2026-001",
+      noteId!,
+      "Corrected note text",
+    );
+    const targetNote = updated.internalNotes?.find((n) => n.id === noteId);
+    expect(targetNote?.text).toBe("Corrected note text");
+    expect(targetNote?.updatedAt).toBeDefined();
+  });
+
+  it("deletes a staff note", async () => {
+    const added = await repo.addStaffNote("KV-2026-001", "Note to be deleted");
+    const noteId = added.internalNotes?.[added.internalNotes.length - 1].id;
+    expect(noteId).toBeDefined();
+
+    const updated = await repo.deleteStaffNote("KV-2026-001", noteId!);
+    expect(updated.internalNotes?.some((n) => n.id === noteId)).toBe(false);
   });
 
   it("computes summary metrics correctly", async () => {

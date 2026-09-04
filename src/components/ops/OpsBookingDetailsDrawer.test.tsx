@@ -91,4 +91,144 @@ describe("OpsBookingDetailsDrawer", () => {
       "Patient called back.",
     );
   });
+
+  it("renders posted notes and calls onAddStaffNote when submitting new note", async () => {
+    const user = userEvent.setup();
+    const handleAddNote = vi.fn().mockResolvedValue(undefined);
+
+    const bookingWithNotes: Booking = {
+      ...MOCK_BOOKING,
+      internalNotes: [
+        {
+          id: "note-1",
+          text: "Existing first note",
+          createdAt: "2026-09-01T12:00:00Z",
+        },
+      ],
+    };
+
+    render(
+      <OpsBookingDetailsDrawer
+        booking={bookingWithNotes}
+        isOpen={true}
+        onAddStaffNote={handleAddNote}
+        onClose={vi.fn()}
+        onReschedule={vi.fn()}
+        onStatusChange={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByText("Existing first note")).toBeInTheDocument();
+
+    const textarea = screen.getByLabelText(/Internal Staff Notes/i);
+    await user.type(textarea, "New follow up entry");
+
+    const saveBtn = screen.getByRole("button", { name: "Save Notes" });
+    await user.click(saveBtn);
+
+    expect(handleAddNote).toHaveBeenCalledWith("KV-001", "New follow up entry");
+    expect(textarea).toHaveValue("");
+  });
+
+  it("allows editing an existing posted staff note", async () => {
+    const user = userEvent.setup();
+    const handleUpdateNote = vi.fn().mockResolvedValue(undefined);
+
+    const bookingWithNotes: Booking = {
+      ...MOCK_BOOKING,
+      internalNotes: [
+        {
+          id: "note-1",
+          text: "Original note text",
+          createdAt: "2026-09-01T12:00:00Z",
+        },
+      ],
+    };
+
+    render(
+      <OpsBookingDetailsDrawer
+        booking={bookingWithNotes}
+        isOpen={true}
+        onClose={vi.fn()}
+        onReschedule={vi.fn()}
+        onStatusChange={vi.fn()}
+        onUpdateStaffNote={handleUpdateNote}
+      />,
+    );
+
+    const editBtn = screen.getByRole("button", { name: "Edit note" });
+    await user.click(editBtn);
+
+    const editTextarea = screen.getByLabelText("Edit note text");
+    expect(editTextarea).toHaveValue("Original note text");
+
+    await user.clear(editTextarea);
+    await user.type(editTextarea, "Updated note text");
+
+    const saveEditBtn = screen.getByRole("button", { name: "Save" });
+    await user.click(saveEditBtn);
+
+    expect(handleUpdateNote).toHaveBeenCalledWith(
+      "KV-001",
+      "note-1",
+      "Updated note text",
+    );
+  });
+
+  it("calls onDeleteStaffNote when clicking delete", async () => {
+    const user = userEvent.setup();
+    const handleDeleteNote = vi.fn().mockResolvedValue(undefined);
+
+    const bookingWithNotes: Booking = {
+      ...MOCK_BOOKING,
+      internalNotes: [
+        {
+          id: "note-1",
+          text: "Note to delete",
+          createdAt: "2026-09-01T12:00:00Z",
+        },
+      ],
+    };
+
+    render(
+      <OpsBookingDetailsDrawer
+        booking={bookingWithNotes}
+        isOpen={true}
+        onClose={vi.fn()}
+        onDeleteStaffNote={handleDeleteNote}
+        onReschedule={vi.fn()}
+        onStatusChange={vi.fn()}
+      />,
+    );
+
+    const deleteBtn = screen.getByRole("button", { name: "Delete note" });
+    await user.click(deleteBtn);
+
+    expect(handleDeleteNote).toHaveBeenCalledWith("KV-001", "note-1");
+  });
+
+  it("renders quick actions with proper buttons for confirmed status", () => {
+    const confirmedBooking: Booking = {
+      ...MOCK_BOOKING,
+      status: "confirmed",
+    };
+
+    render(
+      <OpsBookingDetailsDrawer
+        booking={confirmedBooking}
+        isOpen={true}
+        onClose={vi.fn()}
+        onReschedule={vi.fn()}
+        onStatusChange={vi.fn()}
+      />,
+    );
+
+    expect(
+      screen.getByRole("button", { name: "Mark Completed" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Reschedule" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Cancel" })).toBeInTheDocument();
+  });
 });
