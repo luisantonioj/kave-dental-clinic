@@ -1,5 +1,13 @@
 export type BookingStatus = "pending" | "confirmed" | "completed" | "cancelled";
 
+export interface StaffNote {
+  id: string;
+  text: string;
+  createdAt: string; // ISO 8601
+  updatedAt?: string;
+  author?: string;
+}
+
 export interface Booking {
   id: string;
   fullName: string;
@@ -12,6 +20,7 @@ export interface Booking {
   notes: string;
   status: BookingStatus;
   staffNotes?: string;
+  internalNotes?: StaffNote[];
   createdAt: string; // ISO 8601
   updatedAt: string; // ISO 8601
 }

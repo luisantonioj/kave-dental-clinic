@@ -68,6 +68,25 @@ export default function OpsCalendarPage() {
     setSelectedBooking(updated);
   }
 
+  async function handleAddStaffNote(id: string, text: string) {
+    const updated = await bookingRepository.addStaffNote(id, text);
+    setSelectedBooking(updated);
+  }
+
+  async function handleUpdateStaffNote(
+    id: string,
+    noteId: string,
+    text: string,
+  ) {
+    const updated = await bookingRepository.updateStaffNote(id, noteId, text);
+    setSelectedBooking(updated);
+  }
+
+  async function handleDeleteStaffNote(id: string, noteId: string) {
+    const updated = await bookingRepository.deleteStaffNote(id, noteId);
+    setSelectedBooking(updated);
+  }
+
   if (!ready || loading) {
     return (
       <div className="flex min-h-[40vh] items-center justify-center">
@@ -98,10 +117,13 @@ export default function OpsCalendarPage() {
       <OpsBookingDetailsDrawer
         booking={selectedBooking}
         isOpen={drawerOpen}
+        onAddStaffNote={handleAddStaffNote}
         onClose={() => setDrawerOpen(false)}
+        onDeleteStaffNote={handleDeleteStaffNote}
         onReschedule={handleReschedule}
         onSaveStaffNotes={handleSaveStaffNotes}
         onStatusChange={handleStatusChange}
+        onUpdateStaffNote={handleUpdateStaffNote}
       />
     </div>
   );

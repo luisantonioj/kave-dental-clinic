@@ -95,6 +95,25 @@ function BookingsContent() {
     setSelectedBooking(updated);
   }
 
+  async function handleAddStaffNote(id: string, text: string) {
+    const updated = await bookingRepository.addStaffNote(id, text);
+    setSelectedBooking(updated);
+  }
+
+  async function handleUpdateStaffNote(
+    id: string,
+    noteId: string,
+    text: string,
+  ) {
+    const updated = await bookingRepository.updateStaffNote(id, noteId, text);
+    setSelectedBooking(updated);
+  }
+
+  async function handleDeleteStaffNote(id: string, noteId: string) {
+    const updated = await bookingRepository.deleteStaffNote(id, noteId);
+    setSelectedBooking(updated);
+  }
+
   function handleMetricCardClick(
     status: "all" | "pending" | "confirmed" | "completed" | "cancelled",
   ) {
@@ -159,10 +178,13 @@ function BookingsContent() {
       <OpsBookingDetailsDrawer
         booking={selectedBooking}
         isOpen={drawerOpen}
+        onAddStaffNote={handleAddStaffNote}
         onClose={() => setDrawerOpen(false)}
+        onDeleteStaffNote={handleDeleteStaffNote}
         onReschedule={handleReschedule}
         onSaveStaffNotes={handleSaveStaffNotes}
         onStatusChange={handleStatusChange}
+        onUpdateStaffNote={handleUpdateStaffNote}
       />
     </div>
   );

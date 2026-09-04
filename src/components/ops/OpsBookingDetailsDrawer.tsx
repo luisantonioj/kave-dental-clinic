@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import type { Booking, BookingStatus } from "../../types/ops";
+import { useEffect, useMemo, useState } from "react";
+import type { Booking, BookingStatus, StaffNote } from "../../types/ops";
 import { getStatusBadgeClasses } from "./OpsBookingTable";
 import { OpsRescheduleModal } from "./OpsRescheduleModal";
 
@@ -11,7 +11,10 @@ interface OpsBookingDetailsDrawerProps {
   onClose: () => void;
   onStatusChange: (id: string, status: BookingStatus) => Promise<void>;
   onReschedule: (id: string, date: string, time: string) => Promise<void>;
-  onSaveStaffNotes: (id: string, notes: string) => Promise<void>;
+  onSaveStaffNotes?: (id: string, notes: string) => Promise<void>;
+  onAddStaffNote?: (id: string, text: string) => Promise<void>;
+  onUpdateStaffNote?: (id: string, noteId: string, text: string) => Promise<void>;
+  onDeleteStaffNote?: (id: string, noteId: string) => Promise<void>;
 }
 
 function CheckCircleIcon() {
@@ -107,6 +110,42 @@ function RotateCcwIcon() {
   );
 }
 
+function EditIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-3.5 w-3.5 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+    </svg>
+  );
+}
+
+function TrashIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-3.5 w-3.5 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <polyline points="3 6 5 6 21 6" />
+      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+    </svg>
+  );
+}
+
 export function OpsBookingDetailsDrawer({
   booking,
   isOpen,
@@ -114,19 +153,44 @@ export function OpsBookingDetailsDrawer({
   onStatusChange,
   onReschedule,
   onSaveStaffNotes,
+  onAddStaffNote,
+  onUpdateStaffNote,
+  onDeleteStaffNote,
 }: OpsBookingDetailsDrawerProps) {
   const [prevBookingId, setPrevBookingId] = useState(booking?.id);
-  const [staffNotes, setStaffNotes] = useState(booking?.staffNotes || "");
+  const [newNoteText, setNewNoteText] = useState("");
+  const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
+  const [editingNoteText, setEditingNoteText] = useState("");
   const [savingNotes, setSavingNotes] = useState(false);
-  const [notesSavedMsg, setNotesSavedMsg] = useState(false);
+  const [notesMessage, setNotesMessage] = useState<string | null>(null);
   const [isRescheduleOpen, setIsRescheduleOpen] = useState(false);
   const [actionLoading, setActionLoading] = useState(false);
 
   if (booking && booking.id !== prevBookingId) {
     setPrevBookingId(booking.id);
-    setStaffNotes(booking.staffNotes || "");
-    setNotesSavedMsg(false);
+    setNewNoteText("");
+    setEditingNoteId(null);
+    setEditingNoteText("");
+    setNotesMessage(null);
   }
+
+  const notesList: StaffNote[] = useMemo(() => {
+    if (!booking) return [];
+    if (booking.internalNotes && booking.internalNotes.length > 0) {
+      return booking.internalNotes;
+    }
+    if (booking.staffNotes && booking.staffNotes.trim()) {
+      return [
+        {
+          id: `legacy-${booking.id}`,
+          text: booking.staffNotes,
+          createdAt: booking.updatedAt || booking.createdAt,
+          author: "Front Desk Staff",
+        },
+      ];
+    }
+    return [];
+  }, [booking]);
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -150,13 +214,62 @@ export function OpsBookingDetailsDrawer({
     }
   }
 
-  async function handleNotesSave() {
+  async function handleAddNote() {
+    if (!booking || !newNoteText.trim()) return;
+    try {
+      setSavingNotes(true);
+      if (onAddStaffNote) {
+        await onAddStaffNote(booking.id, newNoteText.trim());
+      } else if (onSaveStaffNotes) {
+        await onSaveStaffNotes(booking.id, newNoteText.trim());
+      }
+      setNewNoteText("");
+      setNotesMessage("Notes saved");
+      setTimeout(() => setNotesMessage(null), 3000);
+    } finally {
+      setSavingNotes(false);
+    }
+  }
+
+  function handleStartEdit(note: StaffNote) {
+    setEditingNoteId(note.id);
+    setEditingNoteText(note.text);
+  }
+
+  function handleCancelEdit() {
+    setEditingNoteId(null);
+    setEditingNoteText("");
+  }
+
+  async function handleSaveEdit(noteId: string) {
+    if (!booking || !editingNoteText.trim()) return;
+    try {
+      setSavingNotes(true);
+      if (onUpdateStaffNote) {
+        await onUpdateStaffNote(booking.id, noteId, editingNoteText.trim());
+      } else if (onSaveStaffNotes) {
+        await onSaveStaffNotes(booking.id, editingNoteText.trim());
+      }
+      setEditingNoteId(null);
+      setEditingNoteText("");
+      setNotesMessage("Note updated");
+      setTimeout(() => setNotesMessage(null), 3000);
+    } finally {
+      setSavingNotes(false);
+    }
+  }
+
+  async function handleDeleteNote(noteId: string) {
     if (!booking) return;
     try {
       setSavingNotes(true);
-      await onSaveStaffNotes(booking.id, staffNotes);
-      setNotesSavedMsg(true);
-      setTimeout(() => setNotesSavedMsg(false), 3000);
+      if (onDeleteStaffNote) {
+        await onDeleteStaffNote(booking.id, noteId);
+      } else if (onSaveStaffNotes) {
+        await onSaveStaffNotes(booking.id, "");
+      }
+      setNotesMessage("Note deleted");
+      setTimeout(() => setNotesMessage(null), 3000);
     } finally {
       setSavingNotes(false);
     }
@@ -348,39 +461,147 @@ export function OpsBookingDetailsDrawer({
           </div>
 
           {/* Internal Staff Notes */}
-          <div className="rounded-card border border-border bg-surface p-cluster">
-            <label
-              className="block text-label font-bold uppercase tracking-label text-text-muted"
-              htmlFor="staff-notes"
-            >
-              Internal Staff Notes
-            </label>
-            <p className="text-[0.75rem] text-text-muted mt-0.5">
-              Visible to front desk staff only.
-            </p>
-            <textarea
-              className="mt-inline min-h-[5rem] w-full rounded-control border border-border bg-surface-raised p-cluster text-body text-text focus:border-action focus:outline-none focus:ring-[length:var(--focus-ring-width)] focus:ring-focus"
-              id="staff-notes"
-              onChange={(e) => setStaffNotes(e.target.value)}
-              placeholder="e.g. Spoke with patient on phone; confirmed zirconia consultation..."
-              value={staffNotes}
-            />
-            <div className="mt-inline flex items-center justify-between">
-              {notesSavedMsg ? (
-                <span className="text-label font-bold text-success">
-                  ✓ Notes saved
-                </span>
+          <div className="rounded-card border border-border bg-surface p-cluster space-y-cluster">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-label font-bold uppercase tracking-label text-text-muted">
+                  Internal Staff Notes
+                </h3>
+                <p className="text-[0.75rem] text-text-muted mt-0.5">
+                  Visible to front desk staff only.
+                </p>
+              </div>
+              <span className="rounded-pill border border-border bg-surface-raised px-inline py-0.5 text-label font-bold text-text-muted">
+                {notesList.length} {notesList.length === 1 ? "note" : "notes"}
+              </span>
+            </div>
+
+            {/* Posted Notes List - Placed ABOVE the input portion */}
+            <div className="space-y-inline">
+              <span className="block text-[0.7rem] font-bold uppercase tracking-label text-text-muted">
+                Posted Notes
+              </span>
+              {notesList.length === 0 ? (
+                <div className="rounded-control border border-dashed border-border bg-surface-raised p-cluster text-center text-label text-text-muted">
+                  No internal staff notes posted yet.
+                </div>
               ) : (
-                <span />
+                <div className="space-y-inline max-h-[16rem] overflow-y-auto pr-1">
+                  {notesList.map((note) => {
+                    const isEditing = editingNoteId === note.id;
+
+                    if (isEditing) {
+                      return (
+                        <div
+                          className="rounded-control border border-action bg-surface-raised p-cluster space-y-inline"
+                          key={note.id}
+                        >
+                          <textarea
+                            aria-label="Edit note text"
+                            className="w-full min-h-[4rem] rounded-control border border-border bg-surface p-inline text-body text-text focus:border-action focus:outline-none focus:ring-[length:var(--focus-ring-width)] focus:ring-focus"
+                            onChange={(e) => setEditingNoteText(e.target.value)}
+                            value={editingNoteText}
+                          />
+                          <div className="flex items-center justify-end gap-inline">
+                            <button
+                              className="rounded-control border border-border px-inline py-1 text-label font-bold uppercase tracking-label text-text-muted hover:text-text"
+                              onClick={handleCancelEdit}
+                              type="button"
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              className="rounded-control bg-action px-cluster py-1 text-label font-bold uppercase tracking-label text-action-contrast hover:bg-action-hover"
+                              disabled={savingNotes || !editingNoteText.trim()}
+                              onClick={() => handleSaveEdit(note.id)}
+                              type="button"
+                            >
+                              Save
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <div
+                        className="rounded-control border border-border bg-surface-raised p-cluster transition-colors hover:border-border-strong"
+                        key={note.id}
+                      >
+                        <p className="text-body text-text whitespace-pre-wrap break-words">
+                          {note.text}
+                        </p>
+                        <div className="mt-inline flex items-center justify-between border-t border-border/60 pt-1 text-[0.75rem] text-text-muted">
+                          <span>
+                            {new Date(note.createdAt).toLocaleString(undefined, {
+                              month: "short",
+                              day: "numeric",
+                              hour: "numeric",
+                              minute: "2-digit",
+                            })}
+                            {note.updatedAt ? " (edited)" : ""}
+                          </span>
+                          <div className="flex items-center gap-1">
+                            <button
+                              aria-label="Edit note"
+                              className="rounded p-1 text-text-muted hover:text-text hover:bg-surface focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-focus"
+                              onClick={() => handleStartEdit(note)}
+                              title="Edit note"
+                              type="button"
+                            >
+                              <EditIcon />
+                            </button>
+                            <button
+                              aria-label="Delete note"
+                              className="rounded p-1 text-text-muted hover:text-error hover:bg-error/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-focus"
+                              onClick={() => handleDeleteNote(note.id)}
+                              title="Delete note"
+                              type="button"
+                            >
+                              <TrashIcon />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               )}
-              <button
-                className="rounded-control bg-action px-cluster py-inline text-label font-bold uppercase tracking-label text-action-contrast hover:bg-action-hover focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus"
-                disabled={savingNotes}
-                onClick={handleNotesSave}
-                type="button"
+            </div>
+
+            {/* Input portion for notes - Placed BELOW posted notes */}
+            <div className="border-t border-border pt-cluster space-y-inline">
+              <label
+                className="block text-label font-bold uppercase tracking-label text-text-muted"
+                htmlFor="staff-notes"
               >
-                {savingNotes ? "Saving..." : "Save Notes"}
-              </button>
+                Add Internal Note
+              </label>
+              <textarea
+                aria-label="Internal Staff Notes"
+                className="min-h-[4.5rem] w-full rounded-control border border-border bg-surface-raised p-cluster text-body text-text focus:border-action focus:outline-none focus:ring-[length:var(--focus-ring-width)] focus:ring-focus"
+                id="staff-notes"
+                onChange={(e) => setNewNoteText(e.target.value)}
+                placeholder="Write an internal note for clinic staff..."
+                value={newNoteText}
+              />
+              <div className="flex items-center justify-between">
+                {notesMessage ? (
+                  <span className="text-label font-bold text-success">
+                    ✓ {notesMessage}
+                  </span>
+                ) : (
+                  <span />
+                )}
+                <button
+                  className="rounded-control bg-action px-cluster py-inline text-label font-bold uppercase tracking-label text-action-contrast hover:bg-action-hover focus-visible:outline-none focus-visible:ring-[length:var(--focus-ring-width)] focus-visible:ring-focus disabled:opacity-50"
+                  disabled={savingNotes || !newNoteText.trim()}
+                  onClick={handleAddNote}
+                  type="button"
+                >
+                  {savingNotes ? "Saving..." : "Save Notes"}
+                </button>
+              </div>
             </div>
           </div>
 
